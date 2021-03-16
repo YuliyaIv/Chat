@@ -12,6 +12,7 @@ import NotFound from '../components/404'
 
 import Startup from './startup'
 
+
 const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
   const func = (props) =>
     !!rest.user && !!rest.user.name && !!rest.token ? (
