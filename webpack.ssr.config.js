@@ -38,7 +38,6 @@ const config = {
   },
   externals: [nodeExternals()],
   resolve: {
-
     alias: {
       d3: 'd3/index.js',
       './setPrototypeOf': './setPrototypeOf.js',

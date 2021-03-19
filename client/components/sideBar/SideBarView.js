@@ -1,7 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 
+import Channels from './Channels'
+import UserList from './UserList'
 
 const SideBarView = () => {
+  const flagRender = useSelector((s) => s.flag)
+  const [renderComponent, setRenderComponent] = useState(<UserList />)
+
+  useEffect(() => {
+    if (flagRender === 'userList') {
+      setRenderComponent(<UserList />)
+    }
+    if (flagRender === 'channels') {
+      setRenderComponent(<Channels />)
+    }
+  }, [flagRender])
+
   return (
     <div>
       <div className="flex flex-col w-full h-full pl-4 pr-4 py-4 -mr-4">
@@ -58,8 +73,8 @@ const SideBarView = () => {
           </ul>
         </div>
         <h2>Team chat start</h2>
-
         <h2>Team chat end</h2>
+        <div>{renderComponent}</div>
         <h2>Personal chat start</h2>
 
         <h2>Personal chat end</h2>

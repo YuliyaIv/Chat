@@ -44,7 +44,6 @@ const config = {
     contentBase: resolve(__dirname, 'dist/assets'),
     watchContentBase: true,
     host: '0.0.0.0',
-    open: true,
     port: CLIENT_PORT,
     useLocalIp: true,
     historyApiFallback: true,

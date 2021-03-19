@@ -10,6 +10,8 @@ import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
 
+const { readFile, writeFile } = require('fs').promises
+
 require('colors')
 
 let Root
@@ -34,6 +36,39 @@ const middleware = [
 ]
 
 middleware.forEach((it) => server.use(it))
+
+server.get('/api/v1/usersData', (req, res) => {
+  readFile(`${__dirname}/usersData.json`, 'utf8').then((data) => {
+    const dataParse = JSON.parse(data)
+    res.send(dataParse)
+  })
+})
+
+server.post('/api/v1/usersData', async (req, res) => {
+  let data
+  try {
+    data = await readFile(`${__dirname}/usersData.json`, 'utf8')
+    data = JSON.parse(data)
+  } catch (err) {
+    data = {}
+  }
+  const newData = { ...data, ...req.body }
+  writeFile(`${__dirname}/usersData.json`, JSON.stringify(newData), { encoding: 'utf8' })
+  res.send(newData)
+})
+
+server.post('/api/v1/channelsData', async (req, res) => {
+  let data
+  try {
+    data = await readFile(`${__dirname}/channelsData.json`, 'utf8')
+    data = JSON.parse(data)
+  } catch (err) {
+    data = {}
+  }
+  const newData = { ...data, ...req.body }
+  writeFile(`${__dirname}/channelsData.json`, JSON.stringify(newData), { encoding: 'utf8' })
+  res.send(newData)
+})
 
 server.use('/api/', (req, res) => {
   res.status(404)

@@ -1,9 +1,17 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+
+import { setFlagRenderSideBarView } from '../../../redux/reducers/reducerSetFlagRenderSideBarView'
 
 const ButtonSettings = () => {
+  const dispatch = useDispatch()
   return (
     <div>
-      <button type="button" className="flex items-center">
+      <button
+        type="button"
+        className="flex items-center"
+        onClick={() => dispatch(setFlagRenderSideBarView('settings'))}
+      >
         <span className="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
           <svg
             className="w-6 h-6"
