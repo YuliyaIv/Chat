@@ -10,7 +10,7 @@ const ButtonUsersList = () => {
         type="button"
         className="flex items-center"
         onClick={() => {
-          dispatch(setFlagRenderSideBarView('usersList'))
+          dispatch(setFlagRenderSideBarView('userList'))
         }}
       >
         <span className="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">

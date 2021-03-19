@@ -5,7 +5,7 @@ import Channels from './Channels'
 import UserList from './UserList'
 
 const SideBarView = () => {
-  const flagRender = useSelector((s) => s.flag)
+  const flagRender = useSelector((s) => s.reducerSetFlagRenderSideBarView.flag)
   const [renderComponent, setRenderComponent] = useState(<UserList />)
 
   useEffect(() => {
