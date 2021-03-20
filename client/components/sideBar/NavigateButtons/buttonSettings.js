@@ -12,7 +12,7 @@ const ButtonSettings = () => {
         className="flex items-center"
         onClick={() => dispatch(setFlagRenderSideBarView('settings'))}
       >
-        <span className="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
+        <span className="flex items-center justify-center text-cyan-100 hover:bg-cyan-700 h-12 w-12 rounded-2xl">
           <svg
             className="w-6 h-6"
             fill="none"
