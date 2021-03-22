@@ -3,7 +3,7 @@ import React from 'react'
 const ButtonTheme = () => {
   return (
     <div>
-      <button type="button" className="flex items-center">
+      <button type="button" className="focus:outline-none flex items-center">
         <span className="flex items-center justify-center text-cyan-100 hover:bg-cyan-700 h-12 w-12 rounded-2xl">
           <svg
             className="w-6 h-6"

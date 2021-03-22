@@ -5,7 +5,7 @@ const ChatPreview = ({ message, name }) => {
     <div>
       <div className="relative flex flex-row items-center p-4">
         <div className="absolute text-xs text-gray-500 right-0 top-0 mr-4 mt-3">5 min</div>
-        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+        <div className="flex items-center justify-center h-10 w-10 rounded-full bg-gray-500 text-gray-300 font-bold flex-shrink-0 mr-2">
           T r
         </div>
         <div className="flex flex-col flex-grow ml-3">

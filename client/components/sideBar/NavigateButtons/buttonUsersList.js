@@ -8,7 +8,7 @@ const ButtonUsersList = () => {
     <div>
       <button
         type="button"
-        className="flex items-center"
+        className="flex items-center focus:outline-none"
         onClick={() => {
           dispatch(setFlagRenderSideBarView('userList'))
         }}

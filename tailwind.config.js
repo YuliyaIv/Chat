@@ -11,8 +11,12 @@ module.exports = {
       gray: colors.trueGray,
       red: colors.red,
       blue: colors.lightBlue,
-      yellow: colors.amber,
-      cyan: colors.cyan
+      amber: colors.amber,
+      cyan: colors.cyan,
+      yellow: colors.yellow,
+      lime: colors.lime,
+      teal: colors.teal,
+      fuchsia: colors.fuchsia
     }
   }
 }

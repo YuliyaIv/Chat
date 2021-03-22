@@ -9,7 +9,7 @@ const ButtonSettings = () => {
     <div>
       <button
         type="button"
-        className="flex items-center"
+        className="focus:outline-none flex items-center"
         onClick={() => dispatch(setFlagRenderSideBarView('settings'))}
       >
         <span className="flex items-center justify-center text-cyan-100 hover:bg-cyan-700 h-12 w-12 rounded-2xl">
