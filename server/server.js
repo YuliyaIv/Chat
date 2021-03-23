@@ -39,8 +39,15 @@ middleware.forEach((it) => server.use(it))
 
 server.get('/api/v1/usersData', (req, res) => {
   readFile(`${__dirname}/usersData.json`, 'utf8').then((data) => {
-    const dataParse = JSON.parse(data)
-    res.send(dataParse)
+    const dataUsersParsing = JSON.parse(data)
+    res.send(dataUsersParsing)
+  })
+})
+
+server.get('/api/v1/channelsData', (req, res) => {
+  readFile(`${__dirname}/channelsData.json`, 'utf8').then((data) => {
+    const dataChannelsParsing = JSON.parse(data)
+    res.send(dataChannelsParsing)
   })
 })
 

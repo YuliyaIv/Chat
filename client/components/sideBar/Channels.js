@@ -1,23 +1,21 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import ChatPreview from './ChatPreview'
 import InputSearch from '../reuseComponent/InputSearch'
 
-const mess = [
-  {
-    id: 1,
-    name: 'Purpushechka',
-    message:
-      'Hello how are you?Hello how are you?Hello how are you?Hello how are you?Hello how are you?Hello how are you?Hello how are you?'
-  },
-  { id: 2, name: 'Aleksei', message: 'You must to learn js hardest' },
-  { id: 3, name: 'Sasha', message: 'Hey, doode' },
-  { id: 4, name: 'Gleb', message: 'Tailwind it is great styff' },
-  { id: 5, name: 'Yuliia', message: 'Hi' },
-  { id: 6, name: 'Masha', message: 'I am so beautiful' },
-  { id: 7, name: 'Jerry', message: 'Everything bed' },
-  { id: 8, name: 'Pepe', message: 'I am the frog!' }
-]
 const Channels = () => {
+  const { dataChannels } = useSelector((s) => s.reducerDataChannels)
+
+  const renderChat = Object.keys(dataChannels).map((channelId) => {
+    return (
+      <ChatPreview
+        key={channelId}
+        name={dataChannels[channelId].channelName}
+        message={dataChannels[channelId].chatDataMessage[0].textMessage}
+      />
+    )
+  })
+
   return (
     <div>
       <InputSearch textPlaceholder="Search by message..." />
@@ -50,9 +48,7 @@ const Channels = () => {
           </li>
         </ul>
       </div>
-      {mess.map((itChat) => {
-        return <ChatPreview key={itChat.id} name={itChat.name} message={itChat.message} />
-      })}
+      {renderChat}
     </div>
   )
 }

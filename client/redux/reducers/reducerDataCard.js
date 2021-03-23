@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const REDUCER_DATA_CARD = 'REDUCER_DATA_CARD'
 
 const initialState = {
@@ -18,12 +20,12 @@ export default (state = initialState, action) => {
 }
 
 export function getDataCard() {
-  return (dispatch) => {
-    fetch('/api/v1/usersData')
-      .then((respon) => {
-        return respon.json()
-      })
-      .then((data) => dispatch({ type: REDUCER_DATA_CARD, cardOfUsers: data }))
-      .catch((err) => console.error(new Error(err), 'my error reducerDataCard'))
+  return async (dispatch) => {
+    try {
+      const { data } = await axios('/api/v1/usersData')
+      dispatch({ type: REDUCER_DATA_CARD, cardOfUsers: data })
+    } catch (err) {
+      console.error(new Error(err), 'my error reducerDataCard')
+    }
   }
 }

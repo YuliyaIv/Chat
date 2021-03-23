@@ -1,37 +1,30 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-import { getDataCard } from '../../redux/reducers/reducerDataCard'
 import InputSearch from '../reuseComponent/InputSearch'
+import UserDataCard from './UserDataCard'
+import ModalWindow from '../reuseComponent/ModalWindow'
+import UserDataCardInfo from './UserDataCardInfo'
 
 const UserList = () => {
-  const dispatch = useDispatch()
-  const usersObjectData = useSelector((s) => s.reducerDataCard.cardOfUsers)
-
-  useEffect(() => {
-    dispatch(getDataCard())
-  }, [usersObjectData])
+  const { cardOfUsers } = useSelector((s) => s.reducerDataCard)
+  const [flagModalWindow, setflagModalWindow] = useState(false)
 
   const colorStyle = (data) =>
     `flex items-center justify-center h-10 w-10 rounded-full bg-${data}-700 text-gray-300 font-bold flex-shrink-0 mr-2`
 
-  const reuserInfon = Object.keys(usersObjectData).map((id, index) => (
-    <div key={index + 5}>
-      <li className="border-gray-400 flex flex-row mb-2">
-        <div className="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
-          <div className={colorStyle(usersObjectData[id].userMetaDate.defaultAvatar)}>
-            {usersObjectData[id].nameUser[0]}
-          </div>
-          <div className="flex-1 pl-1 mr-16">
-            <div className="font-medium">{usersObjectData[id].nameUser}</div>
-          </div>
-          <div className="text-gray-600 text-xs">
-            <nobr>1:00 PM</nobr>
-          </div>
-        </div>
-      </li>
-    </div>
-  ))
+  const rerenderUsersInfo = Object.keys(cardOfUsers).map((id) => {
+    return (
+      <UserDataCard
+        key={id}
+        cardOfUsers={cardOfUsers}
+        colorStyle={colorStyle}
+        id={id}
+        setflagModalWindow={setflagModalWindow}
+        flagModalWindow={flagModalWindow}
+      />
+    )
+  })
 
   return (
     <div>
@@ -41,12 +34,12 @@ const UserList = () => {
       </div>
       <hr className="bg-cyan-900 h-0.5" />
       <div className="container flex mx-auto w-full items-center justify-center mt-2">
-        <ul className="flex flex-col  p-2">{reuserInfon}</ul>
+        <ul className="flex flex-col  p-2">{rerenderUsersInfo}</ul>
       </div>
+      {flagModalWindow && <ModalWindow comp={<UserDataCardInfo />} />}
     </div>
   )
 }
 
 UserList.propType = {}
-
 export default UserList
