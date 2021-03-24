@@ -19,7 +19,7 @@ const UserDataCardInfo = ({ info, setflagModalWindow, flagModalWindow }) => {
   return (
     <div
       id="modal"
-      className="z-100 absolute w-screen h-screen top-0 left-0 flex items-center justify-center "
+      className="z-100 absolute w-screen h-screen top-0 left-0 flex items-center justify-center  bg-gray-200 bg-opacity-80"
     >
       <div
         id="childModal"
