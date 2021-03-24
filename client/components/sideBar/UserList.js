@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import InputSearch from '../reuseComponent/InputSearch'
-import UserDataCard from './UserDataCard'
-import ModalWindow from '../reuseComponent/ModalWindow'
+
 import UserDataCardInfo from './UserDataCardInfo'
+import UserDataCard from './UserDataCard'
 
 const UserList = () => {
   const { cardOfUsers } = useSelector((s) => s.reducerDataCard)
   const [flagModalWindow, setflagModalWindow] = useState(false)
+  const [idForRenderDataCardInfo, setIdForRenderDataCardInfo] = useState()
 
   const colorStyle = (data) =>
     `flex items-center justify-center h-10 w-10 rounded-full bg-${data}-700 text-gray-300 font-bold flex-shrink-0 mr-2`
@@ -22,6 +23,7 @@ const UserList = () => {
         id={id}
         setflagModalWindow={setflagModalWindow}
         flagModalWindow={flagModalWindow}
+        setIdForRenderDataCardInfo={setIdForRenderDataCardInfo}
       />
     )
   })
@@ -36,7 +38,13 @@ const UserList = () => {
       <div className="container flex mx-auto w-full items-center justify-center mt-2">
         <ul className="flex flex-col  p-2">{rerenderUsersInfo}</ul>
       </div>
-      {flagModalWindow && <ModalWindow comp={<UserDataCardInfo />} />}
+      {flagModalWindow && (
+        <UserDataCardInfo
+          info={cardOfUsers[idForRenderDataCardInfo]}
+          setflagModalWindow={setflagModalWindow}
+          flagModalWindow={flagModalWindow}
+        />
+      )}
     </div>
   )
 }

@@ -10,7 +10,7 @@ const InputSearch = ({ textPlaceholder }) => {
       />
       <button
         type="button"
-        className=" flex flex-grow items-center justify-center  bg-gray-200 text-gray-500 rounded-full focus:outline-none"
+        className="focus:outline-none flex flex-grow items-center justify-center  bg-gray-200 text-gray-500 rounded-full focus:outline-none"
       >
         <svg
           className="w-4 h-4 stroke-current"

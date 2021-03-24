@@ -1,8 +1,23 @@
 import React from 'react'
 
-const UserDataCard = ({ cardOfUsers, colorStyle, id, setflagModalWindow, flagModalWindow }) => {
+const UserDataCard = ({
+  cardOfUsers,
+  colorStyle,
+  id,
+  setflagModalWindow,
+  flagModalWindow,
+  setIdForRenderDataCardInfo
+}) => {
   return (
-    <button type="button" key={id} onClick={() => setflagModalWindow(!flagModalWindow)}>
+    <button
+      type="button"
+      className="focus:outline-none"
+      key={id}
+      onClick={() => {
+        setIdForRenderDataCardInfo(id)
+        setflagModalWindow(!flagModalWindow)
+      }}
+    >
       <li className="border-gray-400 flex flex-row mb-2">
         <div className="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
           <div className={colorStyle(cardOfUsers[id].userMetaDate.defaultAvatar)}>

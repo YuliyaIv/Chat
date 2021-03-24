@@ -7,7 +7,7 @@ const ChatInput = () => {
         <div className="flex flex-row items-center w-full border rounded-3xl h-12 px-2">
           <button
             type="button"
-            className="flex items-center justify-center h-10 w-10 text-gray-400 ml-1"
+            className="focus:outline-none flex items-center justify-center h-10 w-10 text-gray-400 ml-1"
           >
             <svg
               className="w-5 h-5"
@@ -34,7 +34,7 @@ const ChatInput = () => {
           <div className="flex flex-row">
             <button
               type="button"
-              className="flex items-center justify-center h-10 w-8 text-gray-400"
+              className="focus:outline-none flex items-center justify-center h-10 w-8 text-gray-400"
             >
               <svg
                 className="w-5 h-5"
@@ -53,7 +53,7 @@ const ChatInput = () => {
             </button>
             <button
               type="button"
-              className="flex items-center justify-center h-10 w-8 text-gray-400 ml-1 mr-2"
+              className="focus:outline-none flex items-center justify-center h-10 w-8 text-gray-400 ml-1 mr-2"
             >
               <svg
                 className="w-5 h-5"
@@ -75,7 +75,7 @@ const ChatInput = () => {
         <div className="ml-6">
           <button
             type="button"
-            className="flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 hover:bg-gray-300 text-indigo-800 text-white"
+            className="focus:outline-none flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 hover:bg-gray-300 text-indigo-800 text-white"
           >
             <svg
               className="w-5 h-5 transform rotate-90 -mr-px"

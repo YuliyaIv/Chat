@@ -5,7 +5,7 @@ import ChatPannel from './ChatPannel'
 
 const ChatMainWindow = () => {
   return (
-    <div>
+    <div className="z-0">
       <ChatPannel />
       <ChatHistoryMessages />
       <ChatInput />

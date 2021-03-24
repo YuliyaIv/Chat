@@ -93,7 +93,7 @@ const ChatHistoryMessages = () => {
                   <div className="flex flex-row items-center">
                     <button
                       type="button"
-                      className="flex items-center justify-center bg-indigo-600 hover:bg-indigo-800 rounded-full h-8 w-10"
+                      className="focus:outline-none flex items-center justify-center bg-indigo-600 hover:bg-indigo-800 rounded-full h-8 w-10"
                     >
                       <svg
                         className="w-6 h-6 text-white"
@@ -116,7 +116,7 @@ const ChatHistoryMessages = () => {
                         />
                       </svg>
                     </button>
-                    <div className="flex flex-row items-center space-x-px ml-4">
+                    <div className="focus:outline-none flex flex-row items-center space-x-px ml-4">
                       <div className="h-2 w-1 bg-gray-500 rounded-lg" />
                     </div>
                     <div className="h-2 w-1 bg-gray-500 rounded-lg" />

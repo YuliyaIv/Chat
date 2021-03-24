@@ -9,12 +9,8 @@ const SideBarView = () => {
   const [renderComponent, setRenderComponent] = useState(<Channels />)
 
   useEffect(() => {
-    if (flagRender === 'userList') {
-      setRenderComponent(<UserList />)
-    }
-    if (flagRender === 'channels') {
-      setRenderComponent(<Channels />)
-    }
+    if (flagRender === 'userList') setRenderComponent(<UserList />)
+    if (flagRender === 'channels') setRenderComponent(<Channels />)
   }, [flagRender])
 
   return (
