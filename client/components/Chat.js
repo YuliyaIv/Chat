@@ -11,10 +11,12 @@ const Chat = () => {
 
   useEffect(() => {
     dispatch(getDataCard())
+    console.log('rerender getDataCard')
   }, [])
 
   useEffect(() => {
     dispatch(getDataChannels())
+    console.log('rerender getDataChannels')
   }, [])
 
   return (

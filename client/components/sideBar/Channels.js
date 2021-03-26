@@ -7,11 +7,16 @@ const Channels = () => {
   const { dataChannels } = useSelector((s) => s.reducerDataChannels)
 
   const renderChat = Object.keys(dataChannels).map((channelId) => {
+    const messagesInChat = dataChannels[channelId].chatDataMessage
+    const indexLastlMessage = messagesInChat.length - 1
+    const getLastMessage = messagesInChat[indexLastlMessage].textMessage
+
     return (
       <ChatPreview
         key={channelId}
+        channelId={channelId}
         name={dataChannels[channelId].channelName}
-        message={dataChannels[channelId].chatDataMessage[0].textMessage}
+        message={getLastMessage}
       />
     )
   })

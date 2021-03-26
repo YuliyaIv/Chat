@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 const REDUCER_DATA_CHANNELS = 'REDUCER_DATA_CHANNELS'
-
+const REDUSER_DATA_PARTICULAR_CHANNEL = 'REDUSER_DATA_PARTICULAR_CHANNEL'
 const initialState = {
-  dataChannels: {}
+  dataChannels: {},
+  dataParticularChannel: {}
 }
 
 export default (state = initialState, action) => {
@@ -12,6 +13,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         dataChannels: action.dataChannels
+      }
+    }
+    case REDUSER_DATA_PARTICULAR_CHANNEL: {
+      return {
+        ...state,
+        dataParticularChannel: action.dataParticularChannel
       }
     }
     default:
@@ -27,5 +34,17 @@ export function getDataChannels() {
     } catch (err) {
       console.error(new Error(err), 'error dataChannels')
     }
+  }
+}
+
+export function getDataParticularChannel(idChannel) {
+  return (dispatch, getState) => {
+    const store = getState()
+    const dataParticularChannel = store.reducerDataChannels.dataChannels[idChannel]
+
+    dispatch({
+      type: REDUSER_DATA_PARTICULAR_CHANNEL,
+      dataParticularChannel
+    })
   }
 }

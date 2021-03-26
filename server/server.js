@@ -64,6 +64,38 @@ server.post('/api/v1/usersData', async (req, res) => {
   res.send(newData)
 })
 
+server.patch('/api/v1/usersData/:userId', async (req, res) => {
+  const { body } = req
+  try {
+    const objectOfUsers = await readFile(`${__dirname}/usersData.json`, 'utf8')
+    const parseObjectOfUsers = JSON.parse(objectOfUsers)
+    const { userId } = req.params
+    const users = Object.keys(parseObjectOfUsers).includes(userId)
+    const newObjUser = !users
+      ? { ...parseObjectOfUsers, [userId]: body }
+      : { ...parseObjectOfUsers }
+    await writeFile(`${__dirname}/usersData.json`, JSON.stringify(newObjUser), 'utf8')
+    res.send({ status: 'user - OK' })
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
+/*
+server.patch('/api/v1/users/:userId', (req, res) => {
+  const { body } = req
+  readingFile().then((arrayOfUsers) => {
+    const users = JSON.parse(arrayOfUsers)
+    const id = +req.params.userId
+    const updateUser = users.map((user) => {
+      return user.id === id ? { ...user, ...body } : user
+    })
+    writingFile(updateUser)
+    res.send({ status: 'success', id })
+  })
+})
+*/
+
 server.post('/api/v1/channelsData', async (req, res) => {
   let data
   try {
@@ -75,6 +107,22 @@ server.post('/api/v1/channelsData', async (req, res) => {
   const newData = { ...data, ...req.body }
   writeFile(`${__dirname}/channelsData.json`, JSON.stringify(newData), { encoding: 'utf8' })
   res.send(newData)
+})
+
+server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
+  const { body } = req
+  try {
+    const objectOfChannels = await readFile(`${__dirname}/channelsData.json`, 'utf8')
+    const parseObjectOfChannels = JSON.parse(objectOfChannels)
+    const { idChannel } = req.params
+    const channels = Object.keys(parseObjectOfChannels).reduce((a, c) => {
+      return c.includes(idChannel) ? a : { ...a, [idChannel]: body }
+    }, parseObjectOfChannels)
+    await writeFile(`${__dirname}/channelsData.json`, JSON.stringify(channels), 'utf8')
+    res.send({ status: 'channel - OK' })
+  } catch (err) {
+    console.error(new Error(err))
+  }
 })
 
 server.use('/api/', (req, res) => {
