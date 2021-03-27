@@ -1,9 +1,11 @@
 import axios from 'axios'
 
 const REDUCER_DATA_CARD = 'REDUCER_DATA_CARD'
+const USER_ACTIVITY_STATUS = 'USER_ACTIVITY_STATUS'
 
 const initialState = {
-  cardOfUsers: {}
+  cardOfUsers: {},
+  userActivityStatus: ''
 }
 
 export default (state = initialState, action) => {
@@ -12,6 +14,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         cardOfUsers: action.cardOfUsers
+      }
+    }
+    case USER_ACTIVITY_STATUS: {
+      return {
+        ...state,
+        userActivityStatus: action.userActivityStatus
       }
     }
     default:
@@ -27,5 +35,14 @@ export function getDataCard() {
     } catch (err) {
       console.error(new Error(err), 'my error reducerDataCard')
     }
+  }
+}
+
+export function getUserActivityStatus(idOfUser) {
+  return (dispatch, getState) => {
+    const state = getState()
+    const { cardOfUsers } = state.reducerDataCard
+    const userActivityStatus = cardOfUsers[idOfUser].userMetaDate.status
+    dispatch({ type: USER_ACTIVITY_STATUS, userActivityStatus })
   }
 }

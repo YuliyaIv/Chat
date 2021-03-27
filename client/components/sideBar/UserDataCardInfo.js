@@ -1,22 +1,46 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserActivityStatus } from '../../redux/reducers/reducerDataCard'
 
-const UserDataCardInfo = ({ info, setflagModalWindow, flagModalWindow }) => {
+const UserDataCardInfo = ({ info, setflagModalWindow, flagModalWindow, idOfUser }) => {
+  const dispatch = useDispatch()
+  const { userActivityStatus } = useSelector((s) => s.reducerDataCard)
   useEffect(() => {
     const modal = document.querySelector('#modal')
     const childModal = document.querySelector('#childModal')
 
     const handleClickOutside = (e) => {
-      console.log(e)
       if (!e.path.includes(childModal)) {
         setflagModalWindow(!flagModalWindow)
       }
     }
+    
     modal.addEventListener('click', (e) => handleClickOutside(e))
     return () => {
       return modal.removeEventListener('click', (e) => handleClickOutside(e))
     }
   }, [])
 
+  useEffect(() => {
+    dispatch(getUserActivityStatus(idOfUser))
+  }, [])
+
+  const statusOfUser = (status) => {
+    switch (status) {
+      case 'Online':
+        return 'green'
+      case 'Offline':
+        return 'gray'
+      case 'Not disturb':
+        return 'red'
+      default:
+        return 'yellow'
+    }
+  }
+
+  const stylesOfActivityStatus = `bg-${statusOfUser(
+    userActivityStatus
+  )}-500 rounded-full w-2.5 h-2.5 block mx-2`
   return (
     <div
       id="modal"
@@ -42,7 +66,16 @@ const UserDataCardInfo = ({ info, setflagModalWindow, flagModalWindow }) => {
           </h1>
         </div>
         <div className="py-4 px-6">
-          <h1 className="text-2xl font-semibold text-gray-800">{info.nameUser}</h1>
+          <div className="flex flex-wrap items-center">
+            <h2 className="text-xl font-semibold text-gray-800 flex justify-center mr-3">
+              {info.nameUser}
+            </h2>
+            <span className="flex items-center justify-center content-center border rounded-full h-5 pr-2">
+              <div className={stylesOfActivityStatus} />
+              {userActivityStatus}
+            </span>
+          </div>
+
           <p className="py-2 text-lg text-gray-700">{info.aboutUser}</p>
           <div className="flex items-center mt-4 text-gray-700">
             <svg className="h-6 w-6 fill-current" viewBox="0 0 512 512">

@@ -11,22 +11,16 @@ const Chat = () => {
 
   useEffect(() => {
     dispatch(getDataCard())
-    console.log('rerender getDataCard')
   }, [])
 
   useEffect(() => {
     dispatch(getDataChannels())
-    console.log('rerender getDataChannels')
   }, [])
 
   return (
     <div className="flex flex-row h-screen antialiased text-gray-800">
-      <div className="flex flex-row w-96 flex-shrink-0 bg-gray-100 p-4">
-        <SideBar />
-      </div>
-      <div className="z-0 flex flex-col h-full w-full bg-white px-4 py-6">
-        <ChatMainWindow />
-      </div>
+      <SideBar />
+      <ChatMainWindow />
     </div>
   )
 }
