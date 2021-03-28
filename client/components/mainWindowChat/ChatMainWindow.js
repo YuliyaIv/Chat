@@ -10,7 +10,7 @@ const ChatMainWindow = () => {
   const idAdmin = dataParticularChannel.channelAdmin
   const { channelName } = dataParticularChannel
   return (
-    <div className="z-0">
+    <div className="z-0 flex flex-col h-full w-full bg-white px-4 py-6">
       <ChatPannel channelName={channelName} />
       <ChatHistoryMessages messages={messages} etoSoobshenieNapisalImennoTi={idAdmin} />
       <ChatInput />

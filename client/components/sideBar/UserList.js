@@ -40,6 +40,7 @@ const UserList = () => {
       </div>
       {flagModalWindow && (
         <UserDataCardInfo
+          idOfUser={idForRenderDataCardInfo}
           info={cardOfUsers[idForRenderDataCardInfo]}
           setflagModalWindow={setflagModalWindow}
           flagModalWindow={flagModalWindow}
@@ -50,4 +51,5 @@ const UserList = () => {
 }
 
 UserList.propType = {}
+
 export default UserList
