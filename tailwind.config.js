@@ -18,7 +18,8 @@ module.exports = {
       teal: colors.teal,
       fuchsia: colors.fuchsia,
       blueGray: colors.blueGray,
-      indigo: colors.indigo
+      indigo: colors.indigo,
+      green: colors.emerald
     },
     zIndex: {
       0: 0,
