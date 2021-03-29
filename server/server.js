@@ -103,6 +103,7 @@ server.post('/api/v1/channelsData', async (req, res) => {
 
 server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { body } = req
+
   try {
     const objectOfChannels = await readingFile('channelsData.json')
     const parseObjectOfChannels = JSON.parse(objectOfChannels)
@@ -112,6 +113,31 @@ server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
     }, parseObjectOfChannels)
     await writingFile('channelsData.json', channels)
     res.send({ status: 'channel - OK' })
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
+server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
+  const { body } = req
+  try {
+    const { idChannel } = req.params
+    const objectOfChannels = await readingFile('channelsData.json')
+
+    const parseObjectOfChannels = JSON.parse(objectOfChannels)
+    const arrayOfMessages = parseObjectOfChannels[idChannel].chatDataMessage
+    const updateArray = [...arrayOfMessages, body]
+
+    const updateObject = {
+      ...parseObjectOfChannels,
+      [idChannel]: {
+        ...parseObjectOfChannels[idChannel],
+        chatDataMessage: updateArray
+      }
+    }
+
+    writingFile('channelsData.json', updateObject)
+    res.send({ status: 'sended message', body })
   } catch (err) {
     console.error(new Error(err))
   }

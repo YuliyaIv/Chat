@@ -24,4 +24,4 @@ const SideBarView = () => {
 
 SideBarView.propType = {}
 
-export default SideBarView
+export default React.memo(SideBarView)

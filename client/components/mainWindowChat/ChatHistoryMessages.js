@@ -1,10 +1,6 @@
 import React from 'react'
 
 const ChatHistoryMessages = ({ messages, etoSoobshenieNapisalImennoTi }) => {
-  if (typeof messages === 'undefined') {
-    return <div> Choose channel </div>
-  }
-
   const renderMessage = messages.map((objMessage, index) => {
     if (etoSoobshenieNapisalImennoTi !== objMessage.idUserPostedMessage) {
       return (

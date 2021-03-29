@@ -43,12 +43,12 @@ const Channels = () => {
           </li>
           <li>
             <a href="#" className="flex items-center pb-3 text-xs text-gray-700 font-semibold">
-              <span>Archived</span>
+              <span>Private</span>
             </a>
           </li>
           <li>
             <a href="#" className="flex items-center pb-3 text-xs text-gray-700 font-semibold">
-              <span>Starred</span>
+              <span>Team</span>
             </a>
           </li>
         </ul>

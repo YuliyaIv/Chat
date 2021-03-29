@@ -37,4 +37,4 @@ const UserDataCard = ({
 
 UserDataCard.propType = {}
 
-export default UserDataCard
+export default React.memo(UserDataCard)

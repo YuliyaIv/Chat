@@ -2,9 +2,13 @@ import axios from 'axios'
 
 const REDUCER_DATA_CHANNELS = 'REDUCER_DATA_CHANNELS'
 const REDUSER_DATA_PARTICULAR_CHANNEL = 'REDUSER_DATA_PARTICULAR_CHANNEL'
+const NEW_MESSAGE = 'NEW_MESSAGE'
+
 const initialState = {
   dataChannels: {},
-  dataParticularChannel: {}
+  dataParticularChannel: null,
+  dataParticularId: 0,
+  newMessage: {}
 }
 
 export default (state = initialState, action) => {
@@ -18,7 +22,14 @@ export default (state = initialState, action) => {
     case REDUSER_DATA_PARTICULAR_CHANNEL: {
       return {
         ...state,
-        dataParticularChannel: action.dataParticularChannel
+        dataParticularChannel: action.dataParticularChannel,
+        dataParticularId: action.dataParticularId
+      }
+    }
+    case NEW_MESSAGE: {
+      return {
+        ...state,
+        newMessage: action.data
       }
     }
     default:
@@ -44,7 +55,37 @@ export function getDataParticularChannel(idChannel) {
 
     dispatch({
       type: REDUSER_DATA_PARTICULAR_CHANNEL,
-      dataParticularChannel
+      dataParticularChannel,
+      dataParticularId: idChannel
     })
+  }
+}
+
+export function setNewMessage(textMessage) {
+  return async (dispatch, getState) => {
+    try {
+      const store = getState()
+      const { dataParticularId } = store.reducerDataChannels
+      const arrayMessages = store.reducerDataChannels.dataChannels[dataParticularId].chatDataMessage
+      const idLastMessage = arrayMessages[arrayMessages.length - 1].idMessage
+
+      const { data } = await axios({
+        method: 'patch',
+        url: `/api/v1/channelsData/${dataParticularId}/chatDataMessage/${idLastMessage}`,
+        data: {
+          idMessage: +idLastMessage + 1,
+          idUserPostedMessage: 'idUser11111',
+          textMessage,
+          metaDataMessage: {
+            timeCreateMessage: 'itd',
+            timeDeleteMessage: 'itd'
+          }
+        }
+      })
+      console.log(data.body)
+      dispatch({ type: NEW_MESSAGE, data: data.body })
+    } catch (err) {
+      console.error(new Error(err), 'error send new message')
+    }
   }
 }

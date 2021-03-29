@@ -1,6 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { setNewMessage } from '../../redux/reducers/reducerDataChannels'
 
 const ChatInput = () => {
+  const dispatch = useDispatch()
+  const [textMessage, setTextMessage] = useState('')
+
+  const textOfInput = (e) => {
+    setTextMessage(e.target.value)
+  }
+
+  const sendMessageOnClick = () => {
+    dispatch(setNewMessage(textMessage))
+    setTextMessage('')
+  }
+
+  function handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      dispatch(setNewMessage(textMessage))
+      setTextMessage('')
+    }
+  }
+
   return (
     <div>
       <div className="flex flex-row items-center">
@@ -26,6 +47,9 @@ const ChatInput = () => {
           </button>
           <div className="w-full">
             <input
+              value={textMessage}
+              onKeyPress={handleKeyPress}
+              onChange={textOfInput}
               type="text"
               className="border border-transparent w-full focus:outline-none text-sm h-10 flex items-center"
               placeholder="Type your message...."
@@ -74,6 +98,7 @@ const ChatInput = () => {
         </div>
         <div className="ml-6">
           <button
+            onClick={sendMessageOnClick}
             type="button"
             className="focus:outline-none flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 hover:bg-gray-300 text-indigo-800 text-white"
           >

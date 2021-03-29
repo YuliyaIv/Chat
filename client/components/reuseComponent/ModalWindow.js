@@ -10,4 +10,4 @@ const ModalWindow = (props) => {
 
 ModalWindow.propType = {}
 
-export default ModalWindow
+export default React.memo(ModalWindow)

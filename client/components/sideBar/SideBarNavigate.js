@@ -46,4 +46,4 @@ const SideBarNavigate = () => {
 
 SideBarNavigate.propType = {}
 
-export default SideBarNavigate
+export default React.memo(SideBarNavigate)
