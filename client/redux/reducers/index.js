@@ -2,13 +2,13 @@ import { combineReducers } from 'redux'
 import { connectRouter } from 'connected-react-router'
 import reducerDataCard from './reducerDataCard'
 import reducerDataChannels from './reducerDataChannels'
-import reducerSetFlagRenderSideBarView from './reducerSetFlagRenderSideBarView'
+import reducerSetFlagRender from './reducerSetFlagRender'
 
 const createRootReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     reducerDataCard,
-    reducerSetFlagRenderSideBarView,
+    reducerSetFlagRender,
     reducerDataChannels
   })
 

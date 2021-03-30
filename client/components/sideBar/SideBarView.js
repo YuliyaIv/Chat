@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
+import AddChannel from './AddChannel'
 import Channels from './Channels'
 import UserList from './UserList'
 
 const SideBarView = () => {
-  const flagRender = useSelector((s) => s.reducerSetFlagRenderSideBarView.flag)
+  const { flagRenderSideBarView } = useSelector((s) => s.reducerSetFlagRender)
   const [renderComponent, setRenderComponent] = useState(<Channels />)
 
   useEffect(() => {
-    if (flagRender === 'userList') setRenderComponent(<UserList />)
-    if (flagRender === 'channels') setRenderComponent(<Channels />)
-  }, [flagRender])
+    if (flagRenderSideBarView === 'showComponentUserList') setRenderComponent(<UserList />)
+    if (flagRenderSideBarView === 'showComponentChannels') setRenderComponent(<Channels />)
+    if (flagRenderSideBarView === 'showComponentAddChanel') setRenderComponent(<AddChannel />)
+  }, [flagRenderSideBarView])
 
   return (
     <div>

@@ -1,17 +1,23 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { setFlagRenderSideBarView } from '../../../redux/reducers/reducerSetFlagRender'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  setFlagRenderSideBarView,
+  setFlagRenderModalWindow
+} from '../../../redux/reducers/reducerSetFlagRender'
 
-const ButtonChannels = () => {
+const ButtonAddChannel = () => {
   const dispatch = useDispatch()
-
+  const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
   return (
     <div>
       <button
         type="button"
         href="#"
         className="focus:outline-none flex items-center"
-        onClick={() => dispatch(setFlagRenderSideBarView('showComponentChannels'))}
+        onClick={() => {
+          dispatch(setFlagRenderSideBarView('showComponentAddChanel'))
+          dispatch(setFlagRenderModalWindow(!flagRenderModalWindow))
+        }}
       >
         <span className="flex items-center justify-center text-cyan-100 hover:bg-cyan-700 h-12 w-12 rounded-2xl">
           <svg
@@ -34,6 +40,6 @@ const ButtonChannels = () => {
   )
 }
 
-ButtonChannels.propType = {}
+ButtonAddChannel.propType = {}
 
-export default ButtonChannels
+export default ButtonAddChannel

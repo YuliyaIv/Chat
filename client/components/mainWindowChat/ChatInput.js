@@ -7,16 +7,20 @@ const ChatInput = () => {
   const [textMessage, setTextMessage] = useState('')
 
   const textOfInput = (e) => {
+    console.log(e.target.value, 'e.target.value')
     setTextMessage(e.target.value)
   }
 
   const sendMessageOnClick = () => {
+    console.log(textMessage, 'textMessage')
+
     dispatch(setNewMessage(textMessage))
     setTextMessage('')
   }
 
   function handleKeyPress(e) {
     if (e.key === 'Enter') {
+      console.log(textMessage, 'textMessage')
       dispatch(setNewMessage(textMessage))
       setTextMessage('')
     }
