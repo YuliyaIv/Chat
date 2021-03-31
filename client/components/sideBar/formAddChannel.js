@@ -1,95 +1,71 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const FormAddChannel = () => {
+  const [nameChannel, setNameChannel] = useState('')
+  const [description, setDescription] = useState('')
+
+  const changeNameChannel = (e) => {
+    setNameChannel(e.target.value)
+  }
+  const changeDescription = (e) => {
+    setDescription(e.target.value)
+  }
+
+  const setNewChannel = (e) => {
+    console.log(`a ${nameChannel} ${description}`)
+    e.preventDefault()
+  }
+
   return (
-    <div className="font-sans">
-      <div className="relative min-h-screen flex flex-col sm:justify-center items-center bg-gray-100 ">
+    <div className="font-sans container mx-auto px-4">
+      <div className="relative flex flex-col sm:justify-center items-center bg-opacity-100 ">
         <div className="relative sm:max-w-sm w-full">
-          <div className="card bg-blue-400 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6" />
-          <div className="card bg-red-400 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6" />
+          <div className="card bg-teal-600 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6" />
+          <div className="card bg-lime-600 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6" />
           <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
-            <label htmlFor="" className="block text-sm text-gray-700 text-center font-semibold">
-              Login
-            </label>
-            <form method="#" action="#" className="mt-10">
+            <div className="block text-sm text-gray-700 text-center font-semibold">
+              Create channel
+            </div>
+            <form onSubmit={setNewChannel} method="#" action="#" className="mt-10">
               <div>
                 <input
-                  type="email"
-                  placeholder="Email"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                  value={nameChannel}
+                  type="text"
+                  onChange={changeNameChannel}
+                  placeholder=" Channel name"
+                  className="focus:outline-none mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                 />
               </div>
 
               <div className="mt-7">
                 <input
-                  type="password"
-                  placeholder="Contraseña"
-                  className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                  value={description}
+                  onChange={changeDescription}
+                  type="text"
+                  placeholder=" Description"
+                  className="focus:outline-none mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
                 />
-              </div>
-
-              <div className="mt-7 flex">
-                <label
-                  htmlFor="remember_me"
-                  className="inline-flex items-center w-full cursor-pointer"
-                >
-                  <input
-                    id="remember_me"
-                    type="checkbox"
-                    className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                    name="remember"
-                  />
-                  <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-
-                <div className="w-full text-right">
-                  <a className="underline text-sm text-gray-600 hover:text-gray-900" href="#">
-                    ¿Olvido su contraseña?
-                  </a>
-                </div>
-              </div>
-
-              <div className="mt-7">
-                <button
-                  type="button"
-                  className="bg-blue-500 w-full py-3 rounded-xl text-white shadow-xl hover:shadow-inner focus:outline-none transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-                >
-                  Login
-                </button>
               </div>
 
               <div className="flex mt-7 items-center text-center">
-                <hr className="border-gray-300 border-1 w-full rounded-md" />
-                <label className="block font-medium text-sm text-gray-700 w-full">Accede con</label>
                 <hr className="border-gray-300 border-1 w-full rounded-md" />
               </div>
 
               <div className="flex mt-7 justify-center w-full">
                 <button
+                  onClick={setNewChannel}
                   type="button"
-                  className="mr-5 bg-blue-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                  className="focus:outline-none  mr-5 bg-teal-600 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 >
-                  Facebook
+                  Accept
                 </button>
 
                 <button
                   type="button"
-                  className="bg-red-500 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
+                  className="focus:outline-none bg-lime-600 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 >
-                  Google
+                  Сancel
                 </button>
-              </div>
-
-              <div className="mt-7">
-                <div className="flex justify-center items-center">
-                  <label className="w-full text-sm text-gray-600">¿Eres nuevo?</label>
-                  <a
-                    href="#"
-                    className="w-full text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
-                  >
-                    Crea una cuenta
-                  </a>
-                </div>
               </div>
             </form>
           </div>
