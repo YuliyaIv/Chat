@@ -5,7 +5,7 @@ import {
   setFlagRenderSideBarView
 } from '../../redux/reducers/reducerSetFlagRender'
 
-const ModalWindow = ({ component }) => {
+const ModalWindow = ({ children }) => {
   const dispatch = useDispatch()
   const { flagRenderModalWindow, flagRenderSideBarView } = useSelector(
     (s) => s.reducerSetFlagRender
@@ -38,7 +38,7 @@ const ModalWindow = ({ component }) => {
       id="modal"
       className="z-100 absolute w-screen h-screen top-0 left-0 flex items-center justify-center  bg-gray-200 bg-opacity-80"
     >
-      <div id="childModal">{component} </div>
+      <div id="childModal">{children} </div>
     </div>
   )
 }

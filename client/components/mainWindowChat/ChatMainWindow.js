@@ -11,7 +11,6 @@ const ChatMainWindow = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getDataChannels())
-    console.log(newMessage, 'newMessage ChatMainWindow')
   }, [newMessage])
 
   if (!dataParticularId) {

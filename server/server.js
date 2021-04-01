@@ -101,6 +101,24 @@ server.post('/api/v1/channelsData', async (req, res) => {
   res.send(newData)
 })
 
+server.patch('/api/v1/channelsData', async (req, res) => {
+  const {
+    body: { objectFromNewChannel }
+  } = req
+  try {
+    const dataOfNewChannelAddedFromServer = await readingFile('channelsData.json')
+    const parsedDataOfNewChannelAddedFromServer = JSON.parse(dataOfNewChannelAddedFromServer)
+    const updateChannels = {
+      ...parsedDataOfNewChannelAddedFromServer,
+      ...objectFromNewChannel
+    }
+    await writingFile('channelsData.json', updateChannels)
+    res.status(200).json({ status: 'ok' })
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
 server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { body } = req
 

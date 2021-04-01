@@ -3,12 +3,14 @@ import axios from 'axios'
 const REDUCER_DATA_CHANNELS = 'REDUCER_DATA_CHANNELS'
 const REDUSER_DATA_PARTICULAR_CHANNEL = 'REDUSER_DATA_PARTICULAR_CHANNEL'
 const NEW_MESSAGE = 'NEW_MESSAGE'
+const ADD_NEW_CHANNEL = 'ADD_NEW_CHANNEL'
 
 const initialState = {
   dataChannels: {},
   dataParticularChannel: null,
   dataParticularId: 0,
-  newMessage: {}
+  newMessage: {},
+  objectFromNewChannel: {}
 }
 
 export default (state = initialState, action) => {
@@ -30,6 +32,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         newMessage: action.data
+      }
+    }
+    case ADD_NEW_CHANNEL: {
+      return {
+        ...state,
+        objectFromNewChannel: action.objectFromNewChannel
       }
     }
     default:
@@ -82,10 +90,27 @@ export function setNewMessage(textMessage) {
           }
         }
       })
-      console.log(data.body)
       dispatch({ type: NEW_MESSAGE, data: data.body })
     } catch (err) {
       console.error(new Error(err), 'error send new message')
+    }
+  }
+}
+
+export function setNewChannelActionCreator(objectFromNewChannel) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios({
+        method: 'patch',
+        url: '/api/v1/channelsData',
+        data: {
+          objectFromNewChannel
+        }
+      })
+      console.log(data, 'data')
+      dispatch({ type: ADD_NEW_CHANNEL, objectFromNewChannel })
+    } catch (err) {
+      console.error(new Error(err), 'setNewChannel not a send')
     }
   }
 }

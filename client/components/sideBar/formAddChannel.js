@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const FormAddChannel = () => {
+const FormAddChannel = ({ runDispatchFromAcceptButton }) => {
   const [nameChannel, setNameChannel] = useState('')
   const [description, setDescription] = useState('')
 
@@ -11,9 +11,11 @@ const FormAddChannel = () => {
     setDescription(e.target.value)
   }
 
-  const setNewChannel = (e) => {
-    console.log(`a ${nameChannel} ${description}`)
+  const createNewChannel = (e) => {
     e.preventDefault()
+    setNameChannel('')
+    setDescription('')
+    runDispatchFromAcceptButton(nameChannel, description)
   }
 
   return (
@@ -26,7 +28,7 @@ const FormAddChannel = () => {
             <div className="block text-sm text-gray-700 text-center font-semibold">
               Create channel
             </div>
-            <form onSubmit={setNewChannel} method="#" action="#" className="mt-10">
+            <form onSubmit={createNewChannel} method="#" action="#" className="mt-10">
               <div>
                 <input
                   value={nameChannel}
@@ -53,7 +55,7 @@ const FormAddChannel = () => {
 
               <div className="flex mt-7 justify-center w-full">
                 <button
-                  onClick={setNewChannel}
+                  onClick={createNewChannel}
                   type="button"
                   className="focus:outline-none  mr-5 bg-teal-600 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 >

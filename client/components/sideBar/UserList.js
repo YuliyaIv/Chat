@@ -44,14 +44,12 @@ const UserList = () => {
         <ul className="flex flex-col  p-2">{rerenderUsersInfo}</ul>
       </div>
       {flagRenderModalWindow && (
-        <ModalWindow
-          component={
-            <UserDataCardInfo
-              idOfUser={idForRenderDataCardInfo}
-              info={cardOfUsers[idForRenderDataCardInfo]}
-            />
-          }
-        />
+        <ModalWindow>
+          <UserDataCardInfo
+            idOfUser={idForRenderDataCardInfo}
+            info={cardOfUsers[idForRenderDataCardInfo]}
+          />
+        </ModalWindow>
       )}
     </div>
   )
