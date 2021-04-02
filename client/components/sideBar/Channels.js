@@ -1,17 +1,10 @@
-import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import ChatPreview from './ChatPreview'
 import InputSearch from '../reuseComponent/InputSearch'
-import { getDataChannels } from '../../redux/reducers/reducerDataChannels'
 
 const Channels = () => {
-  const { dataChannels, objectFromNewChannel } = useSelector((s) => s.reducerDataChannels)
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getDataChannels())
-    console.log('dispatch')
-  }, [objectFromNewChannel])
+  const { dataChannels } = useSelector((s) => s.reducerDataChannels)
 
   const renderChat = Object.keys(dataChannels).map((channelId) => {
     const messagesInChat = dataChannels[channelId].chatDataMessage

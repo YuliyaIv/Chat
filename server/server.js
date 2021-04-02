@@ -107,13 +107,13 @@ server.patch('/api/v1/channelsData', async (req, res) => {
   } = req
   try {
     const dataOfNewChannelAddedFromServer = await readingFile('channelsData.json')
-    const parsedDataOfNewChannelAddedFromServer = JSON.parse(dataOfNewChannelAddedFromServer)
+    const objOlderChannels = JSON.parse(dataOfNewChannelAddedFromServer)
     const updateChannels = {
-      ...parsedDataOfNewChannelAddedFromServer,
+      ...objOlderChannels,
       ...objectFromNewChannel
     }
     await writingFile('channelsData.json', updateChannels)
-    res.status(200).json({ status: 'ok' })
+    res.status(200).json(updateChannels)
   } catch (err) {
     console.error(new Error(err))
   }

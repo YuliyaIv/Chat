@@ -13,9 +13,9 @@ const FormAddChannel = ({ runDispatchFromAcceptButton }) => {
 
   const createNewChannel = (e) => {
     e.preventDefault()
+    runDispatchFromAcceptButton(nameChannel, description)
     setNameChannel('')
     setDescription('')
-    runDispatchFromAcceptButton(nameChannel, description)
   }
 
   return (

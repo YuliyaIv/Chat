@@ -9,6 +9,7 @@ const ChatMainWindow = () => {
   const { dataParticularId, dataChannels, newMessage } = useSelector((s) => s.reducerDataChannels)
 
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getDataChannels())
   }, [newMessage])

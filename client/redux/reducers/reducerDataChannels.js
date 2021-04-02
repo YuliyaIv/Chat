@@ -37,7 +37,8 @@ export default (state = initialState, action) => {
     case ADD_NEW_CHANNEL: {
       return {
         ...state,
-        objectFromNewChannel: action.objectFromNewChannel
+        objectFromNewChannel: action.objectFromNewChannel,
+        dataChannels: action.updateChannels
       }
     }
     default:
@@ -100,15 +101,15 @@ export function setNewMessage(textMessage) {
 export function setNewChannelActionCreator(objectFromNewChannel) {
   return async (dispatch) => {
     try {
-      const { data } = await axios({
+      const { data: updateChannels } = await axios({
         method: 'patch',
         url: '/api/v1/channelsData',
         data: {
           objectFromNewChannel
         }
       })
-      console.log(data, 'data')
-      dispatch({ type: ADD_NEW_CHANNEL, objectFromNewChannel })
+      console.log(updateChannels, 'data')
+      dispatch({ type: ADD_NEW_CHANNEL, updateChannels, objectFromNewChannel })
     } catch (err) {
       console.error(new Error(err), 'setNewChannel not a send')
     }

@@ -20,7 +20,7 @@ const AddChannel = () => {
       descriptionFromForm,
       serviceMessage
     )
-    console.log({ id4561315768768643: channel }, 'channel')
+
     dispatch(setNewChannelActionCreator({ id4561315768768643: channel }))
   }
 
