@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { setFlagRenderSideBarView } from '../../../redux/reducers/reducerSetFlagRenderSideBarView'
+import { setFlagRenderSideBarView } from '../../../redux/reducers/reducerSetFlagRender'
 
 const ButtonSettings = () => {
   const dispatch = useDispatch()

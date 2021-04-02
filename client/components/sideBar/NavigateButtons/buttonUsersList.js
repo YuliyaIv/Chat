@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { setFlagRenderSideBarView } from '../../../redux/reducers/reducerSetFlagRenderSideBarView'
+import { setFlagRenderSideBarView } from '../../../redux/reducers/reducerSetFlagRender'
 
 const ButtonUsersList = () => {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const ButtonUsersList = () => {
         type="button"
         className="flex items-center focus:outline-none"
         onClick={() => {
-          dispatch(setFlagRenderSideBarView('userList'))
+          dispatch(setFlagRenderSideBarView('showComponentUserList'))
         }}
       >
         <span className="flex items-center justify-center text-cyan-100 hover:bg-cyan-700 h-12 w-12 rounded-2xl">

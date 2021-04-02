@@ -52,7 +52,7 @@ server.get('/api/v1/usersData', (req, res) => {
 })
 
 server.get('/api/v1/channelsData', (req, res) => {
-  readingFile('channelsData').then((data) => {
+  readingFile('channelsData.json').then((data) => {
     const dataChannelsParsing = JSON.parse(data)
     res.send(dataChannelsParsing)
   })
@@ -88,7 +88,6 @@ server.patch('/api/v1/usersData/:userId', async (req, res) => {
   }
 })
 
-
 server.post('/api/v1/channelsData', async (req, res) => {
   let data
   try {
@@ -102,8 +101,27 @@ server.post('/api/v1/channelsData', async (req, res) => {
   res.send(newData)
 })
 
+server.patch('/api/v1/channelsData', async (req, res) => {
+  const {
+    body: { objectFromNewChannel }
+  } = req
+  try {
+    const dataOfNewChannelAddedFromServer = await readingFile('channelsData.json')
+    const objOlderChannels = JSON.parse(dataOfNewChannelAddedFromServer)
+    const updateChannels = {
+      ...objOlderChannels,
+      ...objectFromNewChannel
+    }
+    await writingFile('channelsData.json', updateChannels)
+    res.status(200).json(updateChannels)
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
 server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { body } = req
+
   try {
     const objectOfChannels = await readingFile('channelsData.json')
     const parseObjectOfChannels = JSON.parse(objectOfChannels)
@@ -113,6 +131,31 @@ server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
     }, parseObjectOfChannels)
     await writingFile('channelsData.json', channels)
     res.send({ status: 'channel - OK' })
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
+server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
+  const { body } = req
+  try {
+    const { idChannel } = req.params
+    const objectOfChannels = await readingFile('channelsData.json')
+
+    const parseObjectOfChannels = JSON.parse(objectOfChannels)
+    const arrayOfMessages = parseObjectOfChannels[idChannel].chatDataMessage
+    const updateArray = [...arrayOfMessages, body]
+
+    const updateObject = {
+      ...parseObjectOfChannels,
+      [idChannel]: {
+        ...parseObjectOfChannels[idChannel],
+        chatDataMessage: updateArray
+      }
+    }
+
+    writingFile('channelsData.json', updateObject)
+    res.send({ status: 'sended message', body })
   } catch (err) {
     console.error(new Error(err))
   }

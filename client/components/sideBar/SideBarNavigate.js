@@ -3,6 +3,7 @@ import ButtonUsersList from './NavigateButtons/buttonUsersList'
 import ButtonChannels from './NavigateButtons/buttonChannels'
 import ButtonSettings from './NavigateButtons/buttonSettings'
 import ButtonTheme from './NavigateButtons/buttonTheme'
+import ButtonAddChannel from './NavigateButtons/buttonAddChannel'
 
 const SideBarNavigate = () => {
   return (
@@ -39,6 +40,9 @@ const SideBarNavigate = () => {
         <li>
           <ButtonTheme />
         </li>
+        <li>
+          <ButtonAddChannel />
+        </li>
       </ul>
     </div>
   )
@@ -46,4 +50,4 @@ const SideBarNavigate = () => {
 
 SideBarNavigate.propType = {}
 
-export default SideBarNavigate
+export default React.memo(SideBarNavigate)

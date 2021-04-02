@@ -11,9 +11,6 @@ const Chat = () => {
 
   useEffect(() => {
     dispatch(getDataCard())
-  }, [])
-
-  useEffect(() => {
     dispatch(getDataChannels())
   }, [])
 

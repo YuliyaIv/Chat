@@ -4,8 +4,7 @@ const UserDataCard = ({
   cardOfUsers,
   colorStyle,
   id,
-  setflagModalWindow,
-  flagModalWindow,
+  changeFlagModal,
   setIdForRenderDataCardInfo
 }) => {
   return (
@@ -14,8 +13,8 @@ const UserDataCard = ({
       className="focus:outline-none"
       key={id}
       onClick={() => {
+        changeFlagModal()
         setIdForRenderDataCardInfo(id)
-        setflagModalWindow(!flagModalWindow)
       }}
     >
       <li className="border-gray-400 flex flex-row mb-2">
@@ -37,4 +36,4 @@ const UserDataCard = ({
 
 UserDataCard.propType = {}
 
-export default UserDataCard
+export default React.memo(UserDataCard)

@@ -32,4 +32,4 @@ const InputSearch = ({ textPlaceholder }) => {
 }
 InputSearch.propType = {}
 
-export default InputSearch
+export default React.memo(InputSearch)

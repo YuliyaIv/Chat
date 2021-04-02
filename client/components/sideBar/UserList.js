@@ -1,15 +1,21 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import InputSearch from '../reuseComponent/InputSearch'
-
+import { setFlagRenderModalWindow } from '../../redux/reducers/reducerSetFlagRender'
 import UserDataCardInfo from './UserDataCardInfo'
 import UserDataCard from './UserDataCard'
+import ModalWindow from '../reuseComponent/ModalWindow'
 
 const UserList = () => {
+  const dispatch = useDispatch()
   const { cardOfUsers } = useSelector((s) => s.reducerDataCard)
-  const [flagModalWindow, setflagModalWindow] = useState(false)
+  const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
   const [idForRenderDataCardInfo, setIdForRenderDataCardInfo] = useState()
+
+  const changeFlagModal = () => {
+    dispatch(setFlagRenderModalWindow(!flagRenderModalWindow))
+  }
 
   const colorStyle = (data) =>
     `flex items-center justify-center h-10 w-10 rounded-full bg-${data}-700 text-gray-300 font-bold flex-shrink-0 mr-2`
@@ -21,8 +27,7 @@ const UserList = () => {
         cardOfUsers={cardOfUsers}
         colorStyle={colorStyle}
         id={id}
-        setflagModalWindow={setflagModalWindow}
-        flagModalWindow={flagModalWindow}
+        changeFlagModal={changeFlagModal}
         setIdForRenderDataCardInfo={setIdForRenderDataCardInfo}
       />
     )
@@ -38,13 +43,13 @@ const UserList = () => {
       <div className="container flex mx-auto w-full items-center justify-center mt-2">
         <ul className="flex flex-col  p-2">{rerenderUsersInfo}</ul>
       </div>
-      {flagModalWindow && (
-        <UserDataCardInfo
-          idOfUser={idForRenderDataCardInfo}
-          info={cardOfUsers[idForRenderDataCardInfo]}
-          setflagModalWindow={setflagModalWindow}
-          flagModalWindow={flagModalWindow}
-        />
+      {flagRenderModalWindow && (
+        <ModalWindow>
+          <UserDataCardInfo
+            idOfUser={idForRenderDataCardInfo}
+            info={cardOfUsers[idForRenderDataCardInfo]}
+          />
+        </ModalWindow>
       )}
     </div>
   )
