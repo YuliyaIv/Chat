@@ -5,11 +5,9 @@ import SideBarView from './SideBarView'
 
 const Sidebar = () => {
   return (
-    <div className="flex flex-row w-96 flex-shrink-0 bg-gray-100 p-4">
-      <div className="flex items-start justify-start">
-        <SideBarNavigate />
-        <SideBarView />
-      </div>
+    <div className="flex flex-row w-1/4 flex-shrink-0 bg-gray-100 p-2 border-r-2 border-gray-300">
+      <SideBarNavigate />
+      <SideBarView />
     </div>
   )
 }

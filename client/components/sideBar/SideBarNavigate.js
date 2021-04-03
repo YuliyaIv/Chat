@@ -7,7 +7,7 @@ import ButtonAddChannel from './NavigateButtons/buttonAddChannel'
 
 const SideBarNavigate = () => {
   return (
-    <div className="flex h-full flex-col items-center py-4 flex-shrink-0 w-20 bg-cyan-800 rounded-3xl">
+    <div className="flex h-full w-1/5 flex-col items-center py-4  w-20 bg-cyan-800 rounded-3xl">
       <a
         href="#"
         className="flex items-center justify-center h-12 w-12 bg-cyan-100 text-cyan-800 rounded-full"

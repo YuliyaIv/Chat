@@ -8,29 +8,27 @@ const UserDataCard = ({
   setIdForRenderDataCardInfo
 }) => {
   return (
-    <button
-      type="button"
-      className="focus:outline-none"
-      key={id}
-      onClick={() => {
-        changeFlagModal()
-        setIdForRenderDataCardInfo(id)
-      }}
-    >
-      <li className="border-gray-400 flex flex-row mb-2">
-        <div className="select-none cursor-pointer bg-gray-200 rounded-md flex flex-1 items-center p-4  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+    <li className="border-gray-400 flex flex-row w-full mt-2">
+      <button
+        type="button"
+        className="focus:outline-none w-full"
+        key={id}
+        onClick={() => {
+          changeFlagModal()
+          setIdForRenderDataCardInfo(id)
+        }}
+      >
+        <div className="flex w-full flex-row rounded-md items-center p-2 transition duration-500 select-none cursor-pointer bg-gray-200 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
           <div className={colorStyle(cardOfUsers[id].userMetaDate.defaultAvatar)}>
             {cardOfUsers[id].nameUser[0]}
           </div>
-          <div className="flex-1 pl-1 mr-16">
-            <div className="font-medium">{cardOfUsers[id].nameUser}</div>
-          </div>
-          <div className="text-gray-600 text-xs">
-            <nobr>1:00 PM</nobr>
-          </div>
+
+          <div className="flex pl-1 w-3/5 font-medium">{cardOfUsers[id].nameUser}</div>
+
+          <div className="flex text-gray-600 w-1/5 text-xs mr-1 whitespace-nowrap">10:00 PM</div>
         </div>
-      </li>
-    </button>
+      </button>
+    </li>
   )
 }
 

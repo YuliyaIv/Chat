@@ -16,10 +16,8 @@ const SideBarView = () => {
   }, [flagRenderSideBarView])
 
   return (
-    <div>
-      <div className="flex flex-col w-full h-full pl-4 pr-4 py-4 -mr-10">
-        <div>{renderComponent}</div>
-      </div>
+    <div className="flex flex-col w-4/5 pl-2 pr-1 py-4 border-4 border-green-600">
+      {renderComponent}
     </div>
   )
 }

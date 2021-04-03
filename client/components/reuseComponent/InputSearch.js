@@ -2,10 +2,10 @@ import React from 'react'
 
 const InputSearch = ({ textPlaceholder }) => {
   return (
-    <div className="flex ml-auto mb-2 bg-gray-200 text-gray-500 rounded-full py-1 px-2">
+    <div className="flex w-full ml-auto mb-2 bg-gray-200 text-gray-500 rounded-full py-1 px-2 border-4 border-cyan-600">
       <input
         type="search"
-        className="flex-grow-0 bg-purple-white shadow rounded-full p-3 h-7 focus:outline-none "
+        className="flex-grow-0 bg-purple-white shadow rounded-full p-3 h-7 focus:outline-none border-4 border-red-600"
         placeholder={textPlaceholder}
       />
       <button

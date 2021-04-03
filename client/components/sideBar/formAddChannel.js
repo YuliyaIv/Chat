@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const FormAddChannel = ({ runDispatchFromAcceptButton }) => {
+const FormAddChannel = ({ runDispatchFromAcceptButton, triggerModal, triggerChannel }) => {
   const [nameChannel, setNameChannel] = useState('')
   const [description, setDescription] = useState('')
 
@@ -11,11 +11,19 @@ const FormAddChannel = ({ runDispatchFromAcceptButton }) => {
     setDescription(e.target.value)
   }
 
-  const createNewChannel = (e) => {
+  const clearForm = (e) => {
     e.preventDefault()
-    runDispatchFromAcceptButton(nameChannel, description)
     setNameChannel('')
     setDescription('')
+    triggerModal()
+    triggerChannel()
+  }
+  const createNewChannel = (event) => {
+    runDispatchFromAcceptButton(nameChannel, description)
+    clearForm(event)
+  }
+  const closeForm = (event) => {
+    clearForm(event)
   }
 
   return (
@@ -63,6 +71,7 @@ const FormAddChannel = ({ runDispatchFromAcceptButton }) => {
                 </button>
 
                 <button
+                  onClick={closeForm}
                   type="button"
                   className="focus:outline-none bg-lime-600 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 >
