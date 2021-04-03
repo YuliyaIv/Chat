@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { getDataChannels } from '../../redux/reducers/reducerDataChannels'
 import ChatHistoryMessages from './ChatHistoryMessages'
 import ChatInput from './ChatInput'
@@ -23,7 +24,7 @@ const ChatMainWindow = () => {
   const messages = dataChannels[dataParticularId].chatDataMessage
 
   return (
-    <div className="z-0 flex flex-col h-full w-full bg-white px-4 py-6">
+    <div className=" bg-gradient-to-r from-gray-50 to-cyan-50 z-0 flex flex-col flex-1 h-screen  bg-white px-4 py-6">
       <ChatPannel channelName={channelName} />
       <ChatHistoryMessages messages={messages} etoSoobshenieNapisalImennoTi={idAdmin} />
       <ChatInput />
