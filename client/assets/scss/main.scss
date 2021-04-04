@@ -6,13 +6,14 @@
 @tailwind utilities;
 
 
-.garfild::-webkit-scrollbar {
+.scroll-bar::-webkit-scrollbar {
     -webkit-appearance: none;
-    width: 7px;
+    width: 5px;
 }
 
-.garfild::-webkit-scrollbar-thumb {
+.scroll-bar::-webkit-scrollbar-thumb {
     border-radius: 4px;
-    background-color: rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    transition-duration: 500ms;
+    background-color:#5EEAD4;
 }
+

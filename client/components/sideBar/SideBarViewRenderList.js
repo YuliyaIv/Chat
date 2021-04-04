@@ -2,7 +2,7 @@ import React from 'react'
 
 const SideBarViewRenderList = ({ forRender }) => {
   return (
-    <ul className="garfild flex flex-col h-full w-full items-center mt-2 p-2 border-4 border-lime-800 overflow-y-auto">
+    <ul className="scroll-bar flex flex-col h-full w-full items-center mt-2 p-2 border-4 border-lime-800 overflow-y-auto">
       {forRender}
     </ul>
   )
