@@ -2,15 +2,15 @@ import React from 'react'
 
 const InputSearch = ({ textPlaceholder }) => {
   return (
-    <div className="flex w-full ml-auto mb-2 bg-gray-200 text-gray-500 rounded-full py-1 px-2 border-4 border-cyan-600">
+    <div className="flex flex-row items-center py-1 px-1 rounded-2xl mb-5 shadow bg-gray-100  ">
       <input
         type="search"
-        className="flex-grow-0 bg-purple-white shadow rounded-full p-3 h-7 focus:outline-none border-4 border-red-600"
+        className="flex flex-grow-0 w-4/5 bg-purple-white shadow py-1 px-1  rounded-2xl  focus:outline-none "
         placeholder={textPlaceholder}
       />
       <button
         type="button"
-        className="focus:outline-none flex flex-grow items-center justify-center  bg-gray-200 text-gray-500 rounded-full focus:outline-none"
+        className="focus:outline-none h-full w-1/5 mr-2 ml-1 flex flex-grow items-center justify-center   bg-gray-200 text-gray-500 rounded-full focus:outline-none "
       >
         <svg
           className="w-4 h-4 stroke-current"
