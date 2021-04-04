@@ -22,7 +22,7 @@ const ChatHistoryMessages = ({ messages, etoSoobshenieNapisalImennoTi }) => {
   }
 
   return (
-    <div className="flex flex-col  h-full overflow-y-auto py-4 flex-1 border justify-end">
+    <div className="flex flex-col h-full overflow-y-auto py-4 flex-1 border  ">
       {renderMessage()}
     </div>
   )

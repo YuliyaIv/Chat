@@ -37,7 +37,7 @@ const UserList = () => {
     <div className="flex flex-col h-full w-full">
       <InputSearch textPlaceholder="Search by name..." />
       <div className="flex flex-row items-center">
-        <div className="text-xl font-semibold mb-5">Users</div>
+        <div className="text-xl font-semibold text-gray-700 mb-5">Users</div>
       </div>
       <hr className="bg-cyan-900 h-0.5" />
       <SideBarViewRenderList forRender={rerenderUsersInfo} />
