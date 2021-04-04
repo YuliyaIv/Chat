@@ -22,15 +22,15 @@ const Channels = () => {
     )
   })
   return (
-    <div className="flex flex-col h-full w-full border-5 border-lime-800">
+    <div className="flex flex-col h-full w-full  ">
       <InputSearch textPlaceholder="Search by message..." />
-      <div className="flex flex-row items-center border-4 border-blue-800">
+      <div className="flex flex-row items-center  ">
         <div className="text-xl text-gray-700   font-semibold">Messages</div>
         <div className="flex items-center justify-center ml-2 text-xs h-5 w-5 text-white bg-red-500 rounded-full font-medium">
           5
         </div>
       </div>
-      <ul className="mt-3 pr-2 pl-2 pt-2 w-full  border-4 border-blue-800  flex flex-row items-center justify-between">
+      <ul className="mt-3 pr-2 pl-2 pt-2 w-full     flex flex-row items-center justify-between">
         <li>
           <a
             href="#"
