@@ -23,7 +23,7 @@ const ChatPreview = ({ message, name, channelId }) => {
             T r
           </div>
           <div className="my-2 flex flex-col min-w-4/6">
-            <span className="pl-1 text-left font-semibold text-base">{name}</span>
+            <span className="pl-1 text-left font-semibold text-base truncate">{name}</span>
             <span className="pl-1 text-gray-700 text-opacity-75 text-left font-medium truncate text-xs">
               {message}
             </span>
