@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import ChatPreview from './ChatPreview'
 import InputSearch from '../reuseComponent/InputSearch'
 import SideBarViewRenderList from './SideBarViewRenderList'
+import ModalWindowMenu from '../reuseComponent/ModalWindowMenu'
 
 const Channels = () => {
   const { dataChannels } = useSelector((s) => s.reducerDataChannels)
+
+  const [contextMenuDataCoord, setContextMenuDataCoord] = useState({
+    x: 0,
+    y: 0
+  })
+  const [contextMenuDataTrigger, setContextMenuDataTrigger] = useState(false)
 
   const renderChat = Object.keys(dataChannels).map((channelId) => {
     const messagesInChat = dataChannels[channelId].chatDataMessage
@@ -18,6 +25,9 @@ const Channels = () => {
         channelId={channelId}
         name={dataChannels[channelId].channelName}
         message={getLastMessage}
+        setContextMenuDataCoord={setContextMenuDataCoord}
+        setContextMenuDataTrigger={setContextMenuDataTrigger}
+        contextMenuDataTrigger={contextMenuDataTrigger}
       />
     )
   })
@@ -52,6 +62,13 @@ const Channels = () => {
         </li>
       </ul>
       <SideBarViewRenderList forRender={renderChat} />
+      {contextMenuDataTrigger && (
+        <ModalWindowMenu
+          contextMenuDataCoord={contextMenuDataCoord}
+          contextMenuDataTrigger={contextMenuDataTrigger}
+          setContextMenuDataTrigger={setContextMenuDataTrigger}
+        />
+      )}
     </div>
   )
 }

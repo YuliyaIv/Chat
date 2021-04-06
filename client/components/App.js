@@ -2,11 +2,7 @@ import React from 'react'
 import Chat from './Chat'
 
 const App = () => {
-  return (
-    <div>
-      <Chat />
-    </div>
-  )
+  return <Chat />
 }
 
 App.propTypes = {}

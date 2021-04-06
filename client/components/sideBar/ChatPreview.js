@@ -2,17 +2,36 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { getDataParticularChannel } from '../../redux/reducers/reducerDataChannels'
 
-const ChatPreview = ({ message, name, channelId }) => {
+const ChatPreview = ({
+  message,
+  name,
+  channelId,
+  setContextMenuDataTrigger,
+  setContextMenuDataCoord,
+  contextMenuDataTrigger
+}) => {
   const dispatch = useDispatch()
+
+  const openContextMenu = (e) => {
+    e.preventDefault()
+    const clickX = e.clientX
+    const clickY = e.clientY
+    console.log(clickX, 'eventX')
+    console.log(clickY, 'eventY')
+    setContextMenuDataCoord({ x: clickX, y: clickY })
+    setContextMenuDataTrigger(!contextMenuDataTrigger)
+  }
 
   const setChannelId = () => {
     return dispatch(getDataParticularChannel(channelId))
   }
+
   return (
-    <li className="shadow-lg rounded-md border-b border-x border-gray-300 flex flex-row w-full mt-2 transition duration-500 hover:bg-gray-300">
+    <li className="z-0 shadow-lg rounded-md border-b border-x border-gray-300 flex flex-row w-full mt-2 transition duration-500 hover:bg-gray-300">
       <button
         type="button"
         onClick={setChannelId}
+        onContextMenu={openContextMenu}
         className="flex w-full flex-row relative focus:outline-none rounded-md"
       >
         <div className="whitespace-nowrap absolute top-0 right-0 text-xs text-gray-700 text-opacity-75 p-1">
