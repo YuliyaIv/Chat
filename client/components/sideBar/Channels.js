@@ -30,7 +30,7 @@ const Channels = () => {
           5
         </div>
       </div>
-      <ul className="mt-3 pr-2 pl-2 pt-2 w-full     flex flex-row items-center justify-between">
+      <ul className="mt-3 pr-2 pl-2 pt-2 w-full flex flex-row items-center justify-between">
         <li>
           <a
             href="#"

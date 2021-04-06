@@ -2,8 +2,8 @@ import React from 'react'
 
 const LoggedUser = ({ objMessage }) => {
   return (
-    <div className="col-start-6 col-end-13 p-3 rounded-lg border">
-      <div className="flex items-center justify-start flex-row-reverse">
+    <div className="flex justify-end p-3 w-3/4 rounded-lg ml-auto">
+      <div className="flex items-center  justify-start flex-row-reverse">
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
           A
         </div>

@@ -34,14 +34,15 @@ const SideBarNavigate = () => {
         <li>
           <ButtonChannels />
         </li>
+
+        <li>
+          <ButtonAddChannel />
+        </li>
         <li>
           <ButtonSettings />
         </li>
         <li>
           <ButtonTheme />
-        </li>
-        <li>
-          <ButtonAddChannel />
         </li>
       </ul>
     </div>

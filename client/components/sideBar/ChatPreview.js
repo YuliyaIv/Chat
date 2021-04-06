@@ -13,14 +13,14 @@ const ChatPreview = ({ message, name, channelId }) => {
       <button
         type="button"
         onClick={setChannelId}
-        className="flex w-full flex-row  relative focus:outline-none rounded-md"
+        className="flex w-full flex-row relative focus:outline-none rounded-md"
       >
-        <div className="whitespace-nowrap absolute top-0 right-0 text-xs text-gray-700 text-opacity-75">
+        <div className="whitespace-nowrap absolute top-0 right-0 text-xs text-gray-700 text-opacity-75 pt-1">
           24 days ago
         </div>
-        <div className="flex w-full flex-row rounded-md items-center  ">
-          <div className="ml-1 flex items-center justify-center min-w-1/6 h-10 mr-1 rounded-full bg-cyan-700 text-gray-300 font-bold flex-shrink-0">
-            T r
+        <div className="flex w-full flex-row rounded-md items-center">
+          <div className="ml-1 flex items-center justify-center min-w-1/6 h-10 mr-1 rounded-full bg-blueGray-500 text-gray-300 font-bold flex-shrink-0">
+            {name[0]}
           </div>
           <div className="my-2 flex flex-col min-w-4/6">
             <span className="pl-1 text-left font-semibold text-base truncate">{name}</span>
