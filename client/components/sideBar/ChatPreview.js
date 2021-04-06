@@ -9,29 +9,29 @@ const ChatPreview = ({ message, name, channelId }) => {
     return dispatch(getDataParticularChannel(channelId))
   }
   return (
-    <li className="border-gray-400 flex flex-row w-full mt-2 border-2 border-red-800 ">
+    <li className="shadow-lg rounded-md border-b border-x border-gray-300 flex flex-row w-full mt-2 transition duration-500 hover:bg-gray-300">
       <button
         type="button"
         onClick={setChannelId}
-        className="flex w-full focus:outline-none border-2 border-lime-800 rounded-md"
+        className="flex w-full flex-row relative focus:outline-none rounded-md"
       >
-        <div className="flex w-full flex-row rounded-md items-center  transition duration-500 hover:bg-gray-300 border-2 border-grey-800">
-          <div className="flex items-center justify-center w-1/6 h-10 mr-1 rounded-full bg-cyan-700 text-gray-300 font-bold flex-shrink-0 ">
-            T r
+        <div className="whitespace-nowrap absolute top-0 right-0 text-xs text-gray-700 text-opacity-75 pt-1">
+          24 days ago
+        </div>
+        <div className="flex w-full flex-row rounded-md items-center">
+          <div className="ml-1 flex items-center justify-center min-w-1/6 h-10 mr-1 rounded-full bg-blueGray-500 text-gray-300 font-bold flex-shrink-0">
+            {name[0]}
           </div>
-          <div className="flex flex-col  w-4/6 border-2 border-yellow-800">
-            <span className=" pl-1 text-left font-medium border-2 text-base border-green-800">
-              {name}
-            </span>
-            <span className=" pl-1 text-left w-full  font-medium truncate text-xs border-2 border-lime-800">
+          <div className="my-2 flex flex-col min-w-4/6">
+            <span className="pl-1 text-left font-semibold text-base truncate">{name}</span>
+            <span className="pl-1 text-gray-700 text-opacity-75 text-left font-medium truncate text-xs">
               {message}
             </span>
           </div>
-          <div className="flex flex-col w-1/6">
-            <span className="whitespace-nowrap text-xs"> 25 min </span>
-            <span className="flex items-center justify-center ml-2  h-7 w-7 bg-red-500 rounded-full font-medium">
-              <span className="flex text-xs justify-center"> 999.. </span>
-            </span>
+          <div className="px-2 pb-2 self-end min-w-1/6">
+            <div className="bg-red-400 h-6 rounded-full">
+              <span className="text-center text-xs font-medium text-opacity-75">9</span>
+            </div>
           </div>
         </div>
       </button>

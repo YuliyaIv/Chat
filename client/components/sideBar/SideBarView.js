@@ -15,11 +15,7 @@ const SideBarView = () => {
     if (flagRenderSideBarView === 'showComponentAddChanel') setRenderComponent(<AddChannel />)
   }, [flagRenderSideBarView])
 
-  return (
-    <div className="flex flex-col w-4/5 pl-2 pr-1 py-4 border-4 border-green-600">
-      {renderComponent}
-    </div>
-  )
+  return <div className="flex flex-col w-4/5 pl-2 pr-1 py-4 ">{renderComponent}</div>
 }
 
 SideBarView.propType = {}

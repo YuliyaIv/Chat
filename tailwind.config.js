@@ -19,7 +19,8 @@ module.exports = {
       fuchsia: colors.fuchsia,
       blueGray: colors.blueGray,
       indigo: colors.indigo,
-      green: colors.emerald
+      green: colors.emerald,
+      violet: colors.violet
     },
     zIndex: {
       0: 0,
@@ -33,6 +34,15 @@ module.exports = {
       75: 75,
       100: 100,
       auto: 'auto'
+    },
+    minWidth: {
+      0: '0',
+      '1/6': '16%',
+      '4/6': '66%',
+      '1/4': '25%',
+      '1/2': '50%',
+      '3/4': '75%',
+      full: '100%'
     }
   }
 }
