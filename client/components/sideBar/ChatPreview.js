@@ -15,7 +15,7 @@ const ChatPreview = ({ message, name, channelId }) => {
         onClick={setChannelId}
         className="flex w-full flex-row relative focus:outline-none rounded-md"
       >
-        <div className="whitespace-nowrap absolute top-0 right-0 text-xs text-gray-700 text-opacity-75 pt-1">
+        <div className="whitespace-nowrap absolute top-0 right-0 text-xs text-gray-700 text-opacity-75 p-1">
           24 days ago
         </div>
         <div className="flex w-full flex-row rounded-md items-center">

@@ -37,50 +37,47 @@ const middleware = [
 
 middleware.forEach((it) => server.use(it))
 
-const readingFile = (file) => {
-  return readFile(`${__dirname}/${file}`, 'utf8')
+const readingFile = async (file) => {
+  const readingData = await readFile(`${__dirname}/${file}`, 'utf8')
+  return JSON.parse(readingData)
 }
 
 const writingFile = (file, newData) => {
   return writeFile(`${__dirname}/${file}`, JSON.stringify(newData), { encoding: 'utf8' })
 }
-server.get('/api/v1/usersData', (req, res) => {
-  readingFile('usersData.json').then((data) => {
-    const dataUsersParsing = JSON.parse(data)
-    res.send(dataUsersParsing)
-  })
+
+server.get('/api/v1/usersData', async (req, res) => {
+  const dataUsers = await readingFile('usersData.json')
+  res.send(dataUsers)
 })
 
-server.get('/api/v1/channelsData', (req, res) => {
-  readingFile('channelsData.json').then((data) => {
-    const dataChannelsParsing = JSON.parse(data)
-    res.send(dataChannelsParsing)
-  })
+server.get('/api/v1/channelsData', async (req, res) => {
+  const dataChannels = await readingFile('channelsData.json')
+  res.send(dataChannels)
 })
 
 server.post('/api/v1/usersData', async (req, res) => {
-  let data
+  const newUser = req.body
+  let users
   try {
-    data = await readingFile('usersData.json')
-    data = JSON.parse(data)
+    users = await readingFile('usersData.json')
   } catch (err) {
-    data = {}
+    users = {}
   }
-  const newData = { ...data, ...req.body }
-  writingFile('usersData.json', newData)
-  res.send(newData)
+  const updateUsers = { ...users, ...newUser }
+  writingFile('usersData.json', updateUsers)
+  res.send(updateUsers)
 })
 
 server.patch('/api/v1/usersData/:userId', async (req, res) => {
-  const { body } = req
+  const {
+    body: newUser,
+    params: { userId }
+  } = req
   try {
     const objectOfUsers = await readingFile('usersData.json')
-    const parseObjectOfUsers = JSON.parse(objectOfUsers)
-    const { userId } = req.params
-    const users = Object.keys(parseObjectOfUsers).includes(userId)
-    const newObjUser = !users
-      ? { ...parseObjectOfUsers, [userId]: body }
-      : { ...parseObjectOfUsers }
+    const users = Object.keys(objectOfUsers).includes(userId)
+    const newObjUser = !users ? { ...objectOfUsers, [userId]: newUser } : { ...objectOfUsers }
     await writingFile('usersData.json', newObjUser)
     res.send({ status: 'user - OK' })
   } catch (err) {
@@ -89,14 +86,14 @@ server.patch('/api/v1/usersData/:userId', async (req, res) => {
 })
 
 server.post('/api/v1/channelsData', async (req, res) => {
-  let data
+  const newChannel = req.body
+  let channels
   try {
-    data = await readingFile('channelsData.json')
-    data = JSON.parse(data)
+    channels = await readingFile('channelsData.json')
   } catch (err) {
-    data = {}
+    channels = {}
   }
-  const newData = { ...data, ...req.body }
+  const newData = { ...channels, ...newChannel }
   writingFile('channelsData.json', newData)
   res.send(newData)
 })
@@ -106,8 +103,7 @@ server.patch('/api/v1/channelsData', async (req, res) => {
     body: { objectFromNewChannel }
   } = req
   try {
-    const dataOfNewChannelAddedFromServer = await readingFile('channelsData.json')
-    const objOlderChannels = JSON.parse(dataOfNewChannelAddedFromServer)
+    const objOlderChannels = await readingFile('channelsData.json')
     const updateChannels = {
       ...objOlderChannels,
       ...objectFromNewChannel
@@ -120,15 +116,13 @@ server.patch('/api/v1/channelsData', async (req, res) => {
 })
 
 server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
-  const { body } = req
-
+  const { body: newChanell } = req
   try {
     const objectOfChannels = await readingFile('channelsData.json')
-    const parseObjectOfChannels = JSON.parse(objectOfChannels)
     const { idChannel } = req.params
-    const channels = Object.keys(parseObjectOfChannels).reduce((a, c) => {
-      return c.includes(idChannel) ? a : { ...a, [idChannel]: body }
-    }, parseObjectOfChannels)
+    const channels = Object.keys(objectOfChannels).reduce((a, c) => {
+      return c.includes(idChannel) ? a : { ...a, [idChannel]: newChanell }
+    }, objectOfChannels)
     await writingFile('channelsData.json', channels)
     res.send({ status: 'channel - OK' })
   } catch (err) {
@@ -137,25 +131,24 @@ server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
 })
 
 server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
-  const { body } = req
+  const {
+    body: newMessage,
+    params: { idChannel }
+  } = req
   try {
-    const { idChannel } = req.params
     const objectOfChannels = await readingFile('channelsData.json')
-
-    const parseObjectOfChannels = JSON.parse(objectOfChannels)
-    const arrayOfMessages = parseObjectOfChannels[idChannel].chatDataMessage
-    const updateArray = [...arrayOfMessages, body]
+    const arrayOfMessages = objectOfChannels[idChannel].chatDataMessage
+    const updateArray = [...arrayOfMessages, newMessage]
 
     const updateObject = {
-      ...parseObjectOfChannels,
+      ...objectOfChannels,
       [idChannel]: {
-        ...parseObjectOfChannels[idChannel],
+        ...objectOfChannels[idChannel],
         chatDataMessage: updateArray
       }
     }
-
     writingFile('channelsData.json', updateObject)
-    res.send({ status: 'sended message', body })
+    res.send({ status: 'sended message', newMessage })
   } catch (err) {
     console.error(new Error(err))
   }
