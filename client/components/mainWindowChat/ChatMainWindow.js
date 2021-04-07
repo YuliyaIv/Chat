@@ -25,7 +25,7 @@ const ChatMainWindow = () => {
   const messages = dataChannels[dataParticularId].chatDataMessage
 
   return (
-    <div className=" bg-gradient-to-r from-gray-50 to-cyan-50 z-0 flex flex-col flex-1 h-screen w-3/4 bg-white px-4 py-6">
+    <div className="bg-gradient-to-r from-gray-50 to-cyan-50  flex flex-col  h-screen w-3/4 bg-white px-4 py-6">
       <ChatPannel channelName={channelName} />
       <ChatHistoryMessages messages={messages} etoSoobshenieNapisalImennoTi={idAdmin} />
       <ChatInput channelName={channelName} />

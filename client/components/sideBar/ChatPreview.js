@@ -18,6 +18,7 @@ const ChatPreview = ({
     const clickY = e.clientY
     console.log(clickX, 'eventX')
     console.log(clickY, 'eventY')
+    console.log(e)
     setContextMenuDataCoord({ x: clickX, y: clickY })
     setContextMenuDataTrigger(!contextMenuDataTrigger)
   }

@@ -23,9 +23,9 @@ const ModalWindowMenu = ({
   return (
     <div
       id="modal"
-      className="z-100 absolute w-screen h-screen top-0 left-0 flex items-center justify-center  bg-gray-200 bg-opacity-80"
+      className=" absolute w-screen h-screen top-0 left-0 flex items-center justify-center  bg-gray-200 bg-opacity-80"
     >
-      <div id="childModal" className="h-20 w-20 bg-red-400">
+      <div id="childModal" className=" h-20 w-20 bg-red-400">
         Hello Modal Window {contextMenuDataCoord.x} {contextMenuDataCoord.y}
       </div>
     </div>

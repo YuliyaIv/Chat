@@ -15,7 +15,7 @@ const Chat = () => {
   }, [])
 
   return (
-    <div className="flex flex-row h-screen w-screen fixed  antialiased text-gray-800">
+    <div className="flex flex-row h-screen w-screen fixed antialiased text-gray-800">
       <SideBar />
       <ChatMainWindow />
     </div>

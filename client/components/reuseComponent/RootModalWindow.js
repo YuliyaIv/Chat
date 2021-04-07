@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 const RootModalWindow = () => {
   console.log('rooooooot')
   return ReactDOM.createPortal(
-    <div className="bg-red-500 h-screen"> Modal !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</div>,
+    <div className="z-100 flex bg-red-500 h-screen"> Modal !!!!!!!!!!!!!!!!!!!!!</div>,
     document.querySelector('#root-modal')
   )
 }

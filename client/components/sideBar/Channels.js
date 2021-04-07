@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 import ChatPreview from './ChatPreview'
 import InputSearch from '../reuseComponent/InputSearch'
 import SideBarViewRenderList from './SideBarViewRenderList'
-import ModalWindowMenu from '../reuseComponent/ModalWindowMenu'
+
+import ShellModal from '../reuseComponent/shellModal'
 
 const Channels = () => {
   const { dataChannels } = useSelector((s) => s.reducerDataChannels)
@@ -34,6 +35,7 @@ const Channels = () => {
   return (
     <div className="flex flex-col h-full w-full  ">
       <InputSearch textPlaceholder="Search by message..." />
+
       <div className="flex flex-row items-center  ">
         <div className="text-xl text-gray-700   font-semibold">Messages</div>
         <div className="flex items-center justify-center ml-2 text-xs h-5 w-5 text-white bg-red-500 rounded-full font-medium">
@@ -63,7 +65,7 @@ const Channels = () => {
       </ul>
       <SideBarViewRenderList forRender={renderChat} />
       {contextMenuDataTrigger && (
-        <ModalWindowMenu
+        <ShellModal
           contextMenuDataCoord={contextMenuDataCoord}
           contextMenuDataTrigger={contextMenuDataTrigger}
           setContextMenuDataTrigger={setContextMenuDataTrigger}
