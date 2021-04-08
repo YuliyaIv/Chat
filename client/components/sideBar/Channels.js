@@ -5,15 +5,17 @@ import InputSearch from '../reuseComponent/InputSearch'
 import SideBarViewRenderList from './SideBarViewRenderList'
 
 import ShellModal from '../reuseComponent/shellModal'
+import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
+import ChangeNameChannel from '../reuseComponent/ChangeNameChannel'
+import DeleteChannel from '../reuseComponent/DeleteChannel'
 
 const Channels = () => {
-  const { dataChannels } = useSelector((s) => s.reducerDataChannels)
-
+  const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
+  const { dataChannels, dataParticularId } = useSelector((s) => s.reducerDataChannels)
   const [contextMenuDataCoord, setContextMenuDataCoord] = useState({
     x: 0,
     y: 0
   })
-  const [contextMenuDataTrigger, setContextMenuDataTrigger] = useState(false)
 
   const renderChat = Object.keys(dataChannels).map((channelId) => {
     const messagesInChat = dataChannels[channelId].chatDataMessage
@@ -27,8 +29,9 @@ const Channels = () => {
         name={dataChannels[channelId].channelName}
         message={getLastMessage}
         setContextMenuDataCoord={setContextMenuDataCoord}
-        setContextMenuDataTrigger={setContextMenuDataTrigger}
-        contextMenuDataTrigger={contextMenuDataTrigger}
+        setFlagRenderContextMenu={setFlagRenderContextMenu}
+        flagRenderContextMenu={flagRenderContextMenu}
+        dataParticularId={dataParticularId}
       />
     )
   })
@@ -64,12 +67,15 @@ const Channels = () => {
         </li>
       </ul>
       <SideBarViewRenderList forRender={renderChat} />
-      {contextMenuDataTrigger && (
+      {flagRenderContextMenu && (
         <ShellModal
           contextMenuDataCoord={contextMenuDataCoord}
-          contextMenuDataTrigger={contextMenuDataTrigger}
-          setContextMenuDataTrigger={setContextMenuDataTrigger}
-        />
+          setFlagRenderContextMenu={setFlagRenderContextMenu}
+          flagRenderContextMenu={flagRenderContextMenu}
+        >
+          <ChangeNameChannel />
+          <DeleteChannel />
+        </ShellModal>
       )}
     </div>
   )

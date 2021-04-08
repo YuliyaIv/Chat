@@ -6,29 +6,31 @@ const ChatPreview = ({
   message,
   name,
   channelId,
-  setContextMenuDataTrigger,
+  dataParticularId,
   setContextMenuDataCoord,
-  contextMenuDataTrigger
+  flagRenderContextMenu,
+  setFlagRenderContextMenu
 }) => {
   const dispatch = useDispatch()
 
   const openContextMenu = (e) => {
     e.preventDefault()
-    const clickX = e.clientX
-    const clickY = e.clientY
-    console.log(clickX, 'eventX')
-    console.log(clickY, 'eventY')
-    console.log(e)
-    setContextMenuDataCoord({ x: clickX, y: clickY })
-    setContextMenuDataTrigger(!contextMenuDataTrigger)
+    setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
+    dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
   }
 
   const setChannelId = () => {
-    return dispatch(getDataParticularChannel(channelId))
+    if (channelId !== dataParticularId) {
+      return dispatch(getDataParticularChannel(channelId))
+    }
+    return dataParticularId
   }
 
   return (
-    <li className="z-0 shadow-lg rounded-md border-b border-x border-gray-300 flex flex-row w-full mt-2 transition duration-500 hover:bg-gray-300">
+    <li
+      id="chatPrev"
+      className=" z-0 shadow-lg rounded-md border-b border-x border-gray-300 flex flex-row w-full mt-2 transition duration-500 hover:bg-gray-300"
+    >
       <button
         type="button"
         onClick={setChannelId}
