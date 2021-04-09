@@ -6,17 +6,17 @@ import SideBarViewRenderList from './SideBarViewRenderList'
 
 import ShellModal from '../reuseComponent/shellModal'
 import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
-import ChangeNameChannel from '../reuseComponent/ChangeNameChannel'
-import DeleteChannel from '../reuseComponent/DeleteChannel'
+import DeleteDataFromDB from '../reuseComponent/DeleteDataFromDB'
+import ChangeDataFromDB from '../reuseComponent/ChangeDataFromDB'
 
 const Channels = () => {
   const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
   const { dataChannels, dataParticularId } = useSelector((s) => s.reducerDataChannels)
+
   const [contextMenuDataCoord, setContextMenuDataCoord] = useState({
     x: 0,
     y: 0
   })
-
   const renderChat = Object.keys(dataChannels).map((channelId) => {
     const messagesInChat = dataChannels[channelId].chatDataMessage
     const indexLastlMessage = messagesInChat.length - 1
@@ -73,8 +73,8 @@ const Channels = () => {
           setFlagRenderContextMenu={setFlagRenderContextMenu}
           flagRenderContextMenu={flagRenderContextMenu}
         >
-          <ChangeNameChannel />
-          <DeleteChannel />
+          <ChangeDataFromDB type="channel" id={dataParticularId} />
+          <DeleteDataFromDB type="channel" id={dataParticularId} />
         </ShellModal>
       )}
     </div>

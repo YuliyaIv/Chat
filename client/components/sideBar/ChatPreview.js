@@ -17,6 +17,7 @@ const ChatPreview = ({
     e.preventDefault()
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
     dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
+    dispatch(getDataParticularChannel(channelId))
   }
 
   const setChannelId = () => {

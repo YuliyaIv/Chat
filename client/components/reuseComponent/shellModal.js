@@ -6,9 +6,7 @@ import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRen
 
 const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
   const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
-
   const dispatch = useDispatch()
-
   const modal = document.createElement('div')
   const rootElement = document.querySelector('#root')
 
@@ -17,45 +15,46 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
     modal.setAttribute('class', 'flex items-center justify-center')
     modal.setAttribute('style', `position: fixed; top: ${y}px; left: ${x}px;`)
     return () => {
-      console.log('remove document Modal')
+      //  console.log('remove document Modal')
       return document.body.removeChild(modal)
     }
   }, [])
 
   const handleClickOutsideFromModal = useCallback((e) => {
     if (!e.path.includes(rootElement)) {
-      console.log('modal element', flagRenderContextMenu)
+      //  console.log('modal element', flagRenderContextMenu)
       dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
     }
   })
 
   const handleClickOutsideFromRoot = useCallback((e) => {
     if (flagRenderContextMenu && e.path.includes(rootElement)) {
-      console.log('rootElement', flagRenderContextMenu)
+      // console.log('rootElement', flagRenderContextMenu)
       dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
     }
   })
+
   useEffect(() => {
     modal.addEventListener('click', handleClickOutsideFromModal)
-    console.log('create modal event')
+    // console.log('create modal event')
     return () => {
       modal.removeEventListener('click', handleClickOutsideFromModal)
-      console.log('remove modal')
+      // console.log('remove modal')
     }
   }, [])
 
   useEffect(() => {
     rootElement.addEventListener('click', handleClickOutsideFromRoot)
-    console.log('add listener rootElement')
+    // console.log('add listener rootElement')
     return () => {
       rootElement.removeEventListener('click', handleClickOutsideFromRoot)
-      console.log('remove rootElement')
+      // console.log('remove rootElement')
     }
   }, [])
 
   return ReactDOM.createPortal(
     <div id="modalWind" className="z-100 border  bg-gray-50 border-gray-400 shadow-lg rounded-md">
-      <div className=" p-1 bg-gray-50 shadow-lg rounded-md  ">{children}</div>
+      <div className="p-1 bg-gray-50 shadow-lg rounded-md">{children}</div>
     </div>,
     modal
   )

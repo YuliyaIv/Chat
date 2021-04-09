@@ -154,6 +154,18 @@ server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async
   }
 })
 
+server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
+  const { idChannel } = req.params
+  try {
+    const objectOfChannels = await readingFile('channelsData.json')
+    delete objectOfChannels[idChannel]
+    writingFile('channelsData.json', objectOfChannels)
+    res.send({ status: 'delete and update channels', objectOfChannels })
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
 server.use('/api/', (req, res) => {
   res.status(404)
   res.end()

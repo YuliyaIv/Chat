@@ -4,6 +4,7 @@ const REDUCER_DATA_CHANNELS = 'REDUCER_DATA_CHANNELS'
 const REDUSER_DATA_PARTICULAR_CHANNEL = 'REDUSER_DATA_PARTICULAR_CHANNEL'
 const NEW_MESSAGE = 'NEW_MESSAGE'
 const ADD_NEW_CHANNEL = 'ADD_NEW_CHANNEL'
+const DELETED_CHANNEL = 'DELETED_CHANNEL'
 
 const initialState = {
   dataChannels: {},
@@ -15,12 +16,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case REDUCER_DATA_CHANNELS: {
-      return {
-        ...state,
-        dataChannels: action.dataChannels
-      }
-    }
     case REDUSER_DATA_PARTICULAR_CHANNEL: {
       return {
         ...state,
@@ -39,6 +34,18 @@ export default (state = initialState, action) => {
         ...state,
         objectFromNewChannel: action.objectFromNewChannel,
         dataChannels: action.updateChannels
+      }
+    }
+    case DELETED_CHANNEL: {
+      return {
+        ...state,
+        dataChannels: action.dataChannels
+      }
+    }
+    case REDUCER_DATA_CHANNELS: {
+      return {
+        ...state,
+        dataChannels: action.dataChannels
       }
     }
     default:
@@ -112,6 +119,22 @@ export function setNewChannelActionCreator(objectFromNewChannel) {
       dispatch({ type: ADD_NEW_CHANNEL, updateChannels, objectFromNewChannel })
     } catch (err) {
       console.error(new Error(err), 'setNewChannel not a send')
+    }
+  }
+}
+
+export function deleteChannel(id) {
+  return async (dispatch) => {
+    try {
+      const {
+        data: { objectOfChannels }
+      } = await axios({
+        method: 'delete',
+        url: `/api/v1/channelsData/${id}`
+      })
+      dispatch({ type: DELETED_CHANNEL, dataChannels: objectOfChannels })
+    } catch (err) {
+      console.error(new Error(`DELETE request by /api/v1/channelsData/${id} faild`))
     }
   }
 }

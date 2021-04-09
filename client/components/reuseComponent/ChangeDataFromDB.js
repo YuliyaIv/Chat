@@ -1,13 +1,13 @@
 import React from 'react'
 
-const ChangeNameChannel = () => {
+const ChangeDataFromDB = ({ type }) => {
   return (
     <div className=" p-1 bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200">
-      Change name
+      Change {type}
     </div>
   )
 }
 
-ChangeNameChannel.propTypes = {}
+ChangeDataFromDB.propTypes = {}
 
-export default React.memo(ChangeNameChannel)
+export default React.memo(ChangeDataFromDB)
