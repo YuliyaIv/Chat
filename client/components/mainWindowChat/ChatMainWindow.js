@@ -19,7 +19,7 @@ const ChatMainWindow = () => {
   if (!dataParticularId || !dataChannels[dataParticularId]) {
     return <WelcomeWindow />
   }
-  console.log('chatMainWindow', dataChannels)
+
   const { channelName } = dataChannels[dataParticularId]
   const idAdmin = dataChannels[dataParticularId].channelAdmin
   const messages = dataChannels[dataParticularId].chatDataMessage

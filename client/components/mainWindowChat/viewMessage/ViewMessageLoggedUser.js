@@ -1,8 +1,26 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
-const LoggedUser = ({ objMessage }) => {
+const LoggedUser = ({
+  objMessage,
+  setIdDeleteMessage,
+  flagRenderContextMenu,
+  setContextMenuDataCoord,
+  setFlagRenderContextMenu
+}) => {
+  const dispatch = useDispatch()
+  const openContextMenu = (e) => {
+    e.preventDefault()
+    setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
+    dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, 'message'))
+    setIdDeleteMessage(objMessage.idMessage)
+  }
   return (
-    <div className="flex justify-end p-3 w-3/4 rounded-lg ml-auto">
+    <button
+      type="button"
+      onContextMenu={openContextMenu}
+      className="focus:outline-none flex justify-end p-3 w-3/4 rounded-lg ml-auto"
+    >
       <div className="flex items-center justify-start flex-row-reverse">
         <div className="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
           A
@@ -11,7 +29,7 @@ const LoggedUser = ({ objMessage }) => {
           <div>{objMessage.textMessage}</div>
         </div>
       </div>
-    </div>
+    </button>
   )
 }
 

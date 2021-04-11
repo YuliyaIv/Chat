@@ -5,6 +5,7 @@ const REDUSER_DATA_PARTICULAR_CHANNEL = 'REDUSER_DATA_PARTICULAR_CHANNEL'
 const NEW_MESSAGE = 'NEW_MESSAGE'
 const ADD_NEW_CHANNEL = 'ADD_NEW_CHANNEL'
 const DELETED_CHANNEL = 'DELETED_CHANNEL'
+const DELETED_MESSAGE = 'DELETED_MESSAGE'
 
 const initialState = {
   dataChannels: {},
@@ -37,6 +38,12 @@ export default (state = initialState, action) => {
       }
     }
     case DELETED_CHANNEL: {
+      return {
+        ...state,
+        dataChannels: action.dataChannels
+      }
+    }
+    case DELETED_MESSAGE: {
       return {
         ...state,
         dataChannels: action.dataChannels
@@ -98,7 +105,7 @@ export function setNewMessage(textMessage) {
           }
         }
       })
-      dispatch({ type: NEW_MESSAGE, data: data.body })
+      dispatch({ type: NEW_MESSAGE, data: data.newMessage })
     } catch (err) {
       console.error(new Error(err), 'error send new message')
     }
@@ -135,6 +142,28 @@ export function deleteChannel(id) {
       dispatch({ type: DELETED_CHANNEL, dataChannels: objectOfChannels })
     } catch (err) {
       console.error(new Error(`DELETE request by /api/v1/channelsData/${id} faild`))
+    }
+  }
+}
+
+export function deleteMessage(idChannel, idMessage) {
+  console.log(idChannel, idMessage, 'idChannel', 'idMessage')
+  return async (dispatch) => {
+    try {
+      const {
+        data: { objectOfChannels }
+      } = await axios({
+        method: 'delete',
+        url: `/api/v1/channelsData/${idChannel}/chatDataMessage/${idMessage}`
+      })
+      console.log('objectOfChannels', objectOfChannels)
+      dispatch({ type: DELETED_MESSAGE, dataChannels: objectOfChannels })
+    } catch (err) {
+      console.error(
+        new Error(
+          `DELETE request by /api/v1/channelsData/${idChannel}/chatDataMessage/${idMessage} faild`
+        )
+      )
     }
   }
 }

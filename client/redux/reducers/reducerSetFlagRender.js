@@ -6,7 +6,7 @@ const initialState = {
   flagRenderSideBarView: '',
   flagRenderModalWindow: false,
   flagRenderShellModalWindow: false,
-  flagRenderContextMenu: false
+  flagRenderContextMenu: { flag: false, typeOfContent: null }
 }
 
 export default (state = initialState, action) => {
@@ -52,6 +52,9 @@ export function setFlagRenderShellModalWindow(flag) {
   return { type: SET_FLAG_SHELL_MODAL_WINDOW, flagRenderShellModalWindow: flag }
 }
 
-export function setFlagRenderContextMenu(flag) {
-  return { type: SET_FLAG_RENDER_CONTEXT_MENU, flagRenderContextMenu: flag }
+export function setFlagRenderContextMenu(flag, typeOfContent) {
+  return {
+    type: SET_FLAG_RENDER_CONTEXT_MENU,
+    flagRenderContextMenu: { flag, typeOfContent }
+  }
 }

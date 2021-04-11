@@ -30,7 +30,7 @@ const Channels = () => {
         message={getLastMessage}
         setContextMenuDataCoord={setContextMenuDataCoord}
         setFlagRenderContextMenu={setFlagRenderContextMenu}
-        flagRenderContextMenu={flagRenderContextMenu}
+        flagRenderContextMenu={flagRenderContextMenu.flag}
         dataParticularId={dataParticularId}
       />
     )
@@ -67,11 +67,11 @@ const Channels = () => {
         </li>
       </ul>
       <SideBarViewRenderList forRender={renderChat} />
-      {flagRenderContextMenu && (
+      {flagRenderContextMenu.flag && flagRenderContextMenu.typeOfContent === 'channel' && (
         <ShellModal
           contextMenuDataCoord={contextMenuDataCoord}
           setFlagRenderContextMenu={setFlagRenderContextMenu}
-          flagRenderContextMenu={flagRenderContextMenu}
+          flagRenderContextMenu={flagRenderContextMenu.flag}
         >
           <ChangeDataFromDB type="channel" id={dataParticularId} />
           <DeleteDataFromDB type="channel" id={dataParticularId} />

@@ -23,14 +23,14 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
   const handleClickOutsideFromModal = useCallback((e) => {
     if (!e.path.includes(rootElement)) {
       //  console.log('modal element', flagRenderContextMenu)
-      dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
+      dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, null))
     }
   })
 
   const handleClickOutsideFromRoot = useCallback((e) => {
     if (flagRenderContextMenu && e.path.includes(rootElement)) {
       // console.log('rootElement', flagRenderContextMenu)
-      dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
+      dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, null))
     }
   })
 

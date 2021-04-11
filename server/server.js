@@ -166,6 +166,22 @@ server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
   }
 })
 
+server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
+  const { idChannel, idMessage } = req.params
+  try {
+    const objectOfChannels = await readingFile('channelsData.json')
+    const filtredArray = objectOfChannels[idChannel].chatDataMessage.filter((obj) => {
+      return obj.idMessage !== +idMessage
+    })
+    const updateChatDataMessage = [...filtredArray]
+    objectOfChannels[idChannel].chatDataMessage = updateChatDataMessage
+    writingFile('channelsData.json', objectOfChannels)
+    res.send({ status: 'delete and update message', objectOfChannels })
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
 server.use('/api/', (req, res) => {
   res.status(404)
   res.end()
