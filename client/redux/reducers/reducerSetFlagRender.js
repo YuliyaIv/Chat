@@ -4,7 +4,7 @@ const SET_FLAG_SHELL_MODAL_WINDOW = 'SET_FLAG_SHELL_MODAL_WINDOW'
 const SET_FLAG_RENDER_CONTEXT_MENU = 'SET_FLAG_RENDER_CONTEXT_MENU'
 const initialState = {
   flagRenderSideBarView: '',
-  flagRenderModalWindow: false,
+  flagRenderModalWindow: { flag: false, whatOpen: null },
   flagRenderShellModalWindow: false,
   flagRenderContextMenu: { flag: false, typeOfContent: null }
 }
@@ -44,8 +44,8 @@ export function setFlagRenderSideBarView(flag) {
   return { type: SET_FLAG_SIDE_BAR, flagRenderSideBarView: flag }
 }
 
-export function setFlagRenderModalWindow(flag) {
-  return { type: SET_FLAG_MODAL_WINDOW, flagRenderModalWindow: flag }
+export function setFlagRenderModalWindow(flag, whatOpen) {
+  return { type: SET_FLAG_MODAL_WINDOW, flagRenderModalWindow: { flag, whatOpen } }
 }
 
 export function setFlagRenderShellModalWindow(flag) {

@@ -17,7 +17,7 @@ const AddChannel = () => {
   const dispatch = useDispatch()
 
   const triggerModal = () => {
-    dispatch(setFlagRenderModalWindow(!flagRenderModalWindow))
+    dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag))
   }
 
   const triggerChannel = () => {

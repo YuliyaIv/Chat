@@ -8,9 +8,13 @@ import ShellModal from '../reuseComponent/shellModal'
 import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
 import DeleteDataFromDB from '../reuseComponent/DeleteDataFromDB'
 import ChangeDataFromDB from '../reuseComponent/ChangeDataFromDB'
+import ModalWindow from '../reuseComponent/ModalWindow'
+import FormChangeDataChannel from '../reuseComponent/FormChangeDataChannel'
 
 const Channels = () => {
-  const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
+  const { flagRenderContextMenu, flagRenderModalWindow } = useSelector(
+    (s) => s.reducerSetFlagRender
+  )
   const { dataChannels, dataParticularId } = useSelector((s) => s.reducerDataChannels)
 
   const [contextMenuDataCoord, setContextMenuDataCoord] = useState({
@@ -77,6 +81,13 @@ const Channels = () => {
           <DeleteDataFromDB type="channel" id={dataParticularId} />
         </ShellModal>
       )}
+      {flagRenderModalWindow.flag &&
+        (flagRenderModalWindow.whatOpen === 'changeChannelName' ||
+          flagRenderModalWindow.whatOpen === 'changeDescription') && (
+          <ModalWindow>
+            <FormChangeDataChannel />
+          </ModalWindow>
+        )}
     </div>
   )
 }

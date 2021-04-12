@@ -15,7 +15,7 @@ const UserList = () => {
   const [idForRenderDataCardInfo, setIdForRenderDataCardInfo] = useState()
 
   const changeFlagModal = () => {
-    dispatch(setFlagRenderModalWindow(!flagRenderModalWindow))
+    dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag, 'userList'))
   }
 
   const rerenderUsersInfo = Object.keys(cardOfUsers).map((id) => {
@@ -42,7 +42,7 @@ const UserList = () => {
       </div>
       <hr className="bg-cyan-900 h-0.5" />
       <SideBarViewRenderList forRender={rerenderUsersInfo} />
-      {flagRenderModalWindow && (
+      {flagRenderModalWindow.flag && flagRenderModalWindow.whatOpen === 'userList' && (
         <ModalWindow>
           <UserDataCardInfo
             idOfUser={idForRenderDataCardInfo}
