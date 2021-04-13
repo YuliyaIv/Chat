@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserActivityStatus } from '../../redux/reducers/reducerDataCard'
+import { getUserActivityStatus } from '../../../redux/reducers/reducerDataCard'
 
 const UserDataCardInfo = ({ info, idOfUser }) => {
   const dispatch = useDispatch()

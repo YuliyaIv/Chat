@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setFlagRenderModalWindow } from '../../redux/reducers/reducerSetFlagRender'
+import { setFlagRenderModalWindow } from '../../../redux/reducers/reducerSetFlagRender'
+import { changeNameChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'
 
 const FormChangeDataChannel = () => {
   const dispatch = useDispatch()
@@ -14,7 +15,7 @@ const FormChangeDataChannel = () => {
   const triggerModal = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag))
   }
-
+  console.log(newNameChannel)
   const changeNameChannel = (e) => {
     setNewNameChannel(e.target.value)
   }
@@ -29,7 +30,7 @@ const FormChangeDataChannel = () => {
     triggerModal()
   }
   const sendDataName = (event) => {
-    /// отправляет измененные данные на сервер имени
+    dispatch(changeNameChannelActionCreator(dataParticularId, newNameChannel))
     clearForm(event)
   }
   // const sendDataDescription = (event) => {

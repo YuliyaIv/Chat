@@ -27,4 +27,4 @@ const ButtonTheme = () => {
 
 ButtonTheme.propType = {}
 
-export default ButtonTheme
+export default React.memo(ButtonTheme)

@@ -6,6 +6,7 @@ const NEW_MESSAGE = 'NEW_MESSAGE'
 const ADD_NEW_CHANNEL = 'ADD_NEW_CHANNEL'
 const DELETED_CHANNEL = 'DELETED_CHANNEL'
 const DELETED_MESSAGE = 'DELETED_MESSAGE'
+const CHANGE_CHANNEL_NAME = 'CHANGE_CHANNEL_NAME'
 
 const initialState = {
   dataChannels: {},
@@ -53,6 +54,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         dataChannels: action.dataChannels
+      }
+    }
+    case CHANGE_CHANNEL_NAME: {
+      return {
+        ...state,
+        dataChannels: action.dataChannels,
+        dataParticularChannel: action.dataParticularChannel
       }
     }
     default:
@@ -147,7 +155,6 @@ export function deleteChannel(id) {
 }
 
 export function deleteMessage(idChannel, idMessage) {
-  console.log(idChannel, idMessage, 'idChannel', 'idMessage')
   return async (dispatch) => {
     try {
       const {
@@ -156,7 +163,6 @@ export function deleteMessage(idChannel, idMessage) {
         method: 'delete',
         url: `/api/v1/channelsData/${idChannel}/chatDataMessage/${idMessage}`
       })
-      console.log('objectOfChannels', objectOfChannels)
       dispatch({ type: DELETED_MESSAGE, dataChannels: objectOfChannels })
     } catch (err) {
       console.error(
@@ -164,6 +170,35 @@ export function deleteMessage(idChannel, idMessage) {
           `DELETE request by /api/v1/channelsData/${idChannel}/chatDataMessage/${idMessage} faild`
         )
       )
+    }
+  }
+}
+
+export function changeNameChannelActionCreator(id, newNameChannel) {
+  return async (dispatch, getState) => {
+    try {
+      const store = getState()
+      const oldParticularChannel = store.reducerDataChannels.dataParticularChannel
+      const updatePartucilarChannel = { ...oldParticularChannel, channelName: newNameChannel }
+
+      const {
+        data: { objectOfChannels }
+      } = await axios({
+        method: 'post',
+        url: `/api/v1/channelsData/${id}/nameChannel`,
+        data: updatePartucilarChannel
+      })
+
+      console.log('id', id)
+      console.log('objectOfChannels', objectOfChannels)
+      console.log('updatePartucilarChannel', updatePartucilarChannel)
+      dispatch({
+        type: CHANGE_CHANNEL_NAME,
+        dataParticularChannel: updatePartucilarChannel,
+        dataChannels: objectOfChannels
+      })
+    } catch (err) {
+      console.error(new Error(err), 'error send new message')
     }
   }
 }

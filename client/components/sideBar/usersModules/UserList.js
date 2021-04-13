@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import InputSearch from '../reuseComponent/InputSearch'
-import { setFlagRenderModalWindow } from '../../redux/reducers/reducerSetFlagRender'
+import { setFlagRenderModalWindow } from '../../../redux/reducers/reducerSetFlagRender'
 import UserDataCardInfo from './UserDataCardInfo'
 import UserDataCard from './UserDataCard'
-import ModalWindow from '../reuseComponent/ModalWindow'
-import SideBarViewRenderList from './SideBarViewRenderList'
+
+import SideBarViewRenderList from '../SideBarViewRenderList'
+import ModalWindow from '../../reuseComponent/ModalWindow'
+import InputSearch from '../../reuseComponent/InputSearch'
 
 const UserList = () => {
   const dispatch = useDispatch()
@@ -19,13 +20,10 @@ const UserList = () => {
   }
 
   const rerenderUsersInfo = Object.keys(cardOfUsers).map((id) => {
-    const colorStyle = (data) =>
-      `flex items-center justify-center w-1/5 h-10 rounded-full bg-${data}-700 text-gray-300 font-bold flex-shrink-0 mr-2`
     return (
       <UserDataCard
         key={id}
         cardOfUsers={cardOfUsers}
-        colorStyle={colorStyle}
         id={id}
         changeFlagModal={changeFlagModal}
         setIdForRenderDataCardInfo={setIdForRenderDataCardInfo}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { deleteChannel, deleteMessage } from '../../redux/reducers/reducerDataChannels'
+import { deleteChannel, deleteMessage } from '../../../redux/reducers/reducerDataChannels'
 
 const DeleteDataFromDB = ({ id, idMessage, dataParticularIdChannel }) => {
   const { typeOfContent } = useSelector((s) => s.reducerSetFlagRender.flagRenderContextMenu)
@@ -18,7 +18,7 @@ const DeleteDataFromDB = ({ id, idMessage, dataParticularIdChannel }) => {
     <button
       type="button"
       onClick={sendActionDelete}
-      className=" p-1  bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200"
+      className="h-full p-1 bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200"
     >
       Delete {idMessage}
     </button>

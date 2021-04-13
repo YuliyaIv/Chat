@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import ChatPreview from './ChatPreview'
-import InputSearch from '../reuseComponent/InputSearch'
-import SideBarViewRenderList from './SideBarViewRenderList'
+import InputSearch from '../../reuseComponent/InputSearch'
+import SideBarViewRenderList from '../SideBarViewRenderList'
 
-import ShellModal from '../reuseComponent/shellModal'
-import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
-import DeleteDataFromDB from '../reuseComponent/DeleteDataFromDB'
-import ChangeDataFromDB from '../reuseComponent/ChangeDataFromDB'
-import ModalWindow from '../reuseComponent/ModalWindow'
-import FormChangeDataChannel from '../reuseComponent/FormChangeDataChannel'
+import ShellModal from '../../reuseComponent/shellModal'
+import { setFlagRenderContextMenu } from '../../../redux/reducers/reducerSetFlagRender'
+
+import ChangeDataFromDB from '../manipulationWithDataFromDB/ChangeDataFromDB'
+import ModalWindow from '../../reuseComponent/ModalWindow'
+
+import DeleteDataFromDB from '../manipulationWithDataFromDB/DeleteDataFromDB'
+import FormChangeDataChannel from '../manipulationWithDataFromDB/FormChangeDataChannel'
 
 const Channels = () => {
   const { flagRenderContextMenu, flagRenderModalWindow } = useSelector(

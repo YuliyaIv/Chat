@@ -42,4 +42,4 @@ const ButtonAddChannel = () => {
 
 ButtonAddChannel.propType = {}
 
-export default ButtonAddChannel
+export default React.memo(ButtonAddChannel)

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { getDataParticularChannel } from '../../redux/reducers/reducerDataChannels'
+import { getDataParticularChannel } from '../../../redux/reducers/reducerDataChannels'
 
 const ChatPreview = ({
   message,

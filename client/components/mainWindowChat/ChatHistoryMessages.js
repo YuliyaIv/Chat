@@ -6,8 +6,8 @@ import OtherUsers from './viewMessage/ViewMessageOtherUsers'
 import ServiceMessage from './viewMessage/ViewMessageServiceBot'
 import ShellModal from '../reuseComponent/shellModal'
 import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
-import DeleteDataFromDB from '../reuseComponent/DeleteDataFromDB'
-import ChangeDataFromDB from '../reuseComponent/ChangeDataFromDB'
+import DeleteDataFromDB from '../sideBar/manipulationWithDataFromDB/DeleteDataFromDB'
+import ChangeDataFromDB from '../sideBar/manipulationWithDataFromDB/ChangeDataFromDB'
 
 const ChatHistoryMessages = ({ messages, etoSoobshenieNapisalImennoTi }) => {
   const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)

@@ -36,4 +36,4 @@ const ButtonUsersList = () => {
 
 ButtonUsersList.propType = {}
 
-export default ButtonUsersList
+export default React.memo(ButtonUsersList)

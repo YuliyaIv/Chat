@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setFlagRenderModalWindow } from '../../redux/reducers/reducerSetFlagRender'
+import { setFlagRenderModalWindow } from '../../../redux/reducers/reducerSetFlagRender'
 
 const ChangeDataFromDB = ({ type }) => {
-  const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
   const dispatch = useDispatch()
+  const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
   const sendDispatchChangeName = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag, 'changeChannelName'))
   }
@@ -13,7 +13,7 @@ const ChangeDataFromDB = ({ type }) => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col ">
       <button
         onClick={sendDispatchChangeName}
         type="button"

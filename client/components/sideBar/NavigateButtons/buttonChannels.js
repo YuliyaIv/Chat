@@ -36,4 +36,4 @@ const ButtonChannels = () => {
 
 ButtonChannels.propType = {}
 
-export default ButtonChannels
+export default React.memo(ButtonChannels)

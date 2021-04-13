@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import AddChannel from './addChannelModules/AddChannel'
 
-import AddChannel from './AddChannel'
-import Channels from './Channels'
-import UserList from './UserList'
+import Channels from './channelsModule/Channels'
+import UserList from './usersModules/UserList'
 
 const SideBarView = () => {
   const { flagRenderSideBarView } = useSelector((s) => s.reducerSetFlagRender)

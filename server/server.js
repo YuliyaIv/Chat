@@ -94,7 +94,7 @@ server.post('/api/v1/channelsData', async (req, res) => {
     channels = {}
   }
   const newData = { ...channels, ...newChannel }
-  writingFile('channelsData.json', newData)
+  await writingFile('channelsData.json', newData)
   res.send(newData)
 })
 
@@ -147,7 +147,7 @@ server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async
         chatDataMessage: updateArray
       }
     }
-    writingFile('channelsData.json', updateObject)
+    await writingFile('channelsData.json', updateObject)
     res.send({ status: 'sended message', newMessage })
   } catch (err) {
     console.error(new Error(err))
@@ -159,7 +159,7 @@ server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
   try {
     const objectOfChannels = await readingFile('channelsData.json')
     delete objectOfChannels[idChannel]
-    writingFile('channelsData.json', objectOfChannels)
+    await writingFile('channelsData.json', objectOfChannels)
     res.send({ status: 'delete and update channels', objectOfChannels })
   } catch (err) {
     console.error(new Error(err))
@@ -175,8 +175,23 @@ server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', asyn
     })
     const updateChatDataMessage = [...filtredArray]
     objectOfChannels[idChannel].chatDataMessage = updateChatDataMessage
-    writingFile('channelsData.json', objectOfChannels)
+    await writingFile('channelsData.json', objectOfChannels)
     res.send({ status: 'delete and update message', objectOfChannels })
+  } catch (err) {
+    console.error(new Error(err))
+  }
+})
+
+server.post('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => {
+  const updatePartucilarChannel = req.body
+  const {
+    params: { idChannel }
+  } = req
+  try {
+    const objectOfChannels = await readingFile('channelsData.json')
+    objectOfChannels[idChannel] = updatePartucilarChannel
+    await writingFile('channelsData.json', objectOfChannels)
+    res.send({ status: 'updated objectChannels with new channelName', objectOfChannels })
   } catch (err) {
     console.error(new Error(err))
   }

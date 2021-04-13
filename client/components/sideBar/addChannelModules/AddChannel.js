@@ -1,20 +1,20 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import ModalWindow from '../reuseComponent/ModalWindow'
+import ModalWindow from '../../reuseComponent/ModalWindow'
 import FormAddChannel from './formAddChannel'
-import NewObjChannel from '../../helperFunction/mainFunctionAddChannel'
+import NewObjChannel from '../../../helperFunction/mainFunctionAddChannel'
 
-import { setNewChannelActionCreator } from '../../redux/reducers/reducerDataChannels'
-import NewObjMessage from '../../helperFunction/mainFunctionCreateMessage'
+import { setNewChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'
+import NewObjMessage from '../../../helperFunction/mainFunctionCreateMessage'
 import {
   setFlagRenderModalWindow,
   setFlagRenderSideBarView
-} from '../../redux/reducers/reducerSetFlagRender'
+} from '../../../redux/reducers/reducerSetFlagRender'
 
 const AddChannel = () => {
-  const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
   const dispatch = useDispatch()
+  const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
 
   const triggerModal = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag))
