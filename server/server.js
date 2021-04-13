@@ -182,7 +182,7 @@ server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', asyn
   }
 })
 
-server.post('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => {
+server.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => {
   const updatePartucilarChannel = req.body
   const {
     params: { idChannel }

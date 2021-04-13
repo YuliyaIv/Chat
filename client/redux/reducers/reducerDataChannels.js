@@ -130,7 +130,6 @@ export function setNewChannelActionCreator(objectFromNewChannel) {
           objectFromNewChannel
         }
       })
-      console.log(updateChannels, 'data')
       dispatch({ type: ADD_NEW_CHANNEL, updateChannels, objectFromNewChannel })
     } catch (err) {
       console.error(new Error(err), 'setNewChannel not a send')
@@ -184,14 +183,11 @@ export function changeNameChannelActionCreator(id, newNameChannel) {
       const {
         data: { objectOfChannels }
       } = await axios({
-        method: 'post',
+        method: 'patch',
         url: `/api/v1/channelsData/${id}/nameChannel`,
         data: updatePartucilarChannel
       })
 
-      console.log('id', id)
-      console.log('objectOfChannels', objectOfChannels)
-      console.log('updatePartucilarChannel', updatePartucilarChannel)
       dispatch({
         type: CHANGE_CHANNEL_NAME,
         dataParticularChannel: updatePartucilarChannel,

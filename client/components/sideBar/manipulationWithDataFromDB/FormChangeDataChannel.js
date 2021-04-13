@@ -15,7 +15,7 @@ const FormChangeDataChannel = () => {
   const triggerModal = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag))
   }
-  console.log(newNameChannel)
+
   const changeNameChannel = (e) => {
     setNewNameChannel(e.target.value)
   }
