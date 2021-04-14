@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 const LoggedUser = ({
   objMessage,
-  setIdDeleteMessage,
+  setIdParticularMessage,
   flagRenderContextMenu,
   setContextMenuDataCoord,
   setFlagRenderContextMenu
@@ -13,7 +13,8 @@ const LoggedUser = ({
     e.preventDefault()
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
     dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, 'message'))
-    setIdDeleteMessage(objMessage.idMessage)
+    setIdParticularMessage(objMessage.idMessage)
+    console.log(objMessage.idMessage)
   }
   return (
     <button

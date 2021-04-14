@@ -1,33 +1,51 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setFlagRenderModalWindow } from '../../../redux/reducers/reducerSetFlagRender'
+import {
+  setFlagRenderChatInput,
+  setFlagRenderModalWindow
+} from '../../../redux/reducers/reducerSetFlagRender'
 
-const ChangeDataFromDB = ({ type }) => {
+const ChangeDataFromDB = () => {
   const dispatch = useDispatch()
-  const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
-  const sendDispatchChangeName = () => {
+  const { flagRenderModalWindow, flagRenderContextMenu, flagRenderChatInput } = useSelector(
+    (s) => s.reducerSetFlagRender
+  )
+  const { typeOfContent } = flagRenderContextMenu
+
+  const sendDispatchChangeNameChannel = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag, 'changeChannelName'))
   }
   const sendDispatchDescription = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag, 'changeDescription'))
   }
+  const sendDispatchChangeMessage = () => {
+    dispatch(setFlagRenderChatInput(!flagRenderChatInput))
+  }
+
+  const actionChangeDataType = () => {
+    if (typeOfContent === 'message') {
+      return sendDispatchChangeMessage()
+    }
+    return sendDispatchChangeNameChannel()
+  }
 
   return (
     <div className="flex flex-col ">
       <button
-        onClick={sendDispatchChangeName}
+        onClick={actionChangeDataType}
         type="button"
         className=" p-1 bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200"
       >
-        Change {type} name
+        Change {typeOfContent} name
       </button>
-      {type === 'channel' && (
+
+      {typeOfContent === 'channel' && (
         <button
           onClick={sendDispatchDescription}
           type="button"
           className=" p-1 bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200"
         >
-          Change {type} descripton
+          Change {typeOfContent} description
         </button>
       )}
     </div>

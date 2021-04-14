@@ -7,6 +7,7 @@ const ADD_NEW_CHANNEL = 'ADD_NEW_CHANNEL'
 const DELETED_CHANNEL = 'DELETED_CHANNEL'
 const DELETED_MESSAGE = 'DELETED_MESSAGE'
 const CHANGE_CHANNEL_NAME = 'CHANGE_CHANNEL_NAME'
+const CHANGE_MESSAGE_NAME = 'CHANGE_MESSAGE_NAME'
 
 const initialState = {
   dataChannels: {},
@@ -57,6 +58,13 @@ export default (state = initialState, action) => {
       }
     }
     case CHANGE_CHANNEL_NAME: {
+      return {
+        ...state,
+        dataChannels: action.dataChannels,
+        dataParticularChannel: action.dataParticularChannel
+      }
+    }
+    case CHANGE_MESSAGE_NAME: {
       return {
         ...state,
         dataChannels: action.dataChannels,
@@ -173,12 +181,16 @@ export function deleteMessage(idChannel, idMessage) {
   }
 }
 
-export function changeNameChannelActionCreator(id, newNameChannel) {
+export function changeNameDescriptionChannelActionCreator(id, newNameChannel, newDescription) {
   return async (dispatch, getState) => {
     try {
       const store = getState()
       const oldParticularChannel = store.reducerDataChannels.dataParticularChannel
-      const updatePartucilarChannel = { ...oldParticularChannel, channelName: newNameChannel }
+      const updatePartucilarChannel = {
+        ...oldParticularChannel,
+        channelName: newNameChannel,
+        description: newDescription
+      }
 
       const {
         data: { objectOfChannels }
@@ -190,6 +202,50 @@ export function changeNameChannelActionCreator(id, newNameChannel) {
 
       dispatch({
         type: CHANGE_CHANNEL_NAME,
+        dataParticularChannel: updatePartucilarChannel,
+        dataChannels: objectOfChannels
+      })
+    } catch (err) {
+      console.error(new Error(err), 'error send new data channel')
+    }
+  }
+}
+
+export function changeNameMessage(idMess, idChannel, newMessage) {
+  console.log('idMess', idMess)
+  console.log('idChannel', idChannel)
+  console.log('newMessage', newMessage)
+
+  return async (dispatch, getState) => {
+    try {
+      const store = getState()
+      const oldParticularChannel = store.reducerDataChannels.dataParticularChannel
+      console.log('oldParticularChannel', oldParticularChannel)
+      const updateParticularMessage = oldParticularChannel.chatDataMessage.map(
+        (objectOfMessage) => {
+          if (objectOfMessage.idMessage === idMess) {
+            return { ...objectOfMessage, textMessage: newMessage }
+          }
+
+          return objectOfMessage
+        }
+      )
+      console.log('updateParticularMessage', updateParticularMessage)
+      const updatePartucilarChannel = {
+        ...oldParticularChannel,
+        chatDataMessage: updateParticularMessage
+      }
+      console.log('updatePartucilarChannel', updatePartucilarChannel)
+      const {
+        data: { objectOfChannels }
+      } = await axios({
+        method: 'patch',
+        url: `/api/v1/channelsData/${idChannel}/chatDataMessage/${idMess}/updateMessage`,
+        data: updatePartucilarChannel
+      })
+      console.log('objectOfChannels', objectOfChannels)
+      dispatch({
+        type: CHANGE_MESSAGE_NAME,
         dataParticularChannel: updatePartucilarChannel,
         dataChannels: objectOfChannels
       })

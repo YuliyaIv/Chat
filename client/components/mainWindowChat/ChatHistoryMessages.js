@@ -9,10 +9,14 @@ import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRen
 import DeleteDataFromDB from '../sideBar/manipulationWithDataFromDB/DeleteDataFromDB'
 import ChangeDataFromDB from '../sideBar/manipulationWithDataFromDB/ChangeDataFromDB'
 
-const ChatHistoryMessages = ({ messages, etoSoobshenieNapisalImennoTi }) => {
+const ChatHistoryMessages = ({
+  messages,
+  etoSoobshenieNapisalImennoTi,
+  idParticularMessage,
+  setIdParticularMessage
+}) => {
   const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
   const { dataParticularId } = useSelector((s) => s.reducerDataChannels)
-  const [idDeleteMessage, setIdDeleteMessage] = useState()
   const [contextMenuDataCoord, setContextMenuDataCoord] = useState({
     x: 0,
     y: 0
@@ -27,12 +31,12 @@ const ChatHistoryMessages = ({ messages, etoSoobshenieNapisalImennoTi }) => {
       if (etoSoobshenieNapisalImennoTi === indexUser) {
         return (
           <LoggedUser
-            setIdDeleteMessage={setIdDeleteMessage}
+            key={idMessage}
+            objMessage={objMessage}
+            setIdParticularMessage={setIdParticularMessage}
             setContextMenuDataCoord={setContextMenuDataCoord}
             contextMenuDataCoord={contextMenuDataCoord}
-            objMessage={objMessage}
             dataParticularIdChannel={dataParticularId}
-            key={idMessage}
             flagRenderContextMenu={flagRenderContextMenu.flag}
             setFlagRenderContextMenu={setFlagRenderContextMenu}
           />
@@ -54,11 +58,10 @@ const ChatHistoryMessages = ({ messages, etoSoobshenieNapisalImennoTi }) => {
           setFlagRenderContextMenu={setFlagRenderContextMenu}
           flagRenderContextMenu={flagRenderContextMenu.flag}
         >
-          <ChangeDataFromDB type="message" id={dataParticularId} />
+          <ChangeDataFromDB id={dataParticularId} idParticularMessage={idParticularMessage} />
           <DeleteDataFromDB
-            type="message"
             id={dataParticularId}
-            idMessage={idDeleteMessage}
+            idParticularMessage={idParticularMessage}
             dataParticularIdChannel={dataParticularId}
           />
         </ShellModal>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ChatPannel = ({ channelName }) => {
+const ChatPannel = ({ channelName, description }) => {
   return (
     <div className="flex flex-col  w-full  px-4 pb-6">
       <div className="flex flex-row items-center py-3 px-3 rounded-2xl bg-gray-50 shadow">
@@ -9,6 +9,7 @@ const ChatPannel = ({ channelName }) => {
         </div>
         <div className="flex flex-col ml-3">
           <div className="font-semibold text-sm">{channelName}</div>
+          <div className="font-semibold text-sm">{description}</div>
         </div>
         <div className="ml-auto">
           <ul className="flex flex-row items-center space-x-2">

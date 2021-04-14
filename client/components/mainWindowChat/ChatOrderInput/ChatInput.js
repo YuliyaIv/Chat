@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setNewMessage } from '../../redux/reducers/reducerDataChannels'
+import { useDispatch, useSelector } from 'react-redux'
+import { setNewMessage } from '../../../redux/reducers/reducerDataChannels'
+import ChatInputChangeMessage from './ChatInputChangeMessage'
 
-const ChatInput = () => {
+const ChatInput = ({ idParticularMessage }) => {
+  const { flagRenderChatInput } = useSelector((s) => s.reducerSetFlagRender)
   const dispatch = useDispatch()
   const [textMessage, setTextMessage] = useState('')
 
@@ -20,6 +22,29 @@ const ChatInput = () => {
       dispatch(setNewMessage(textMessage))
       setTextMessage('')
     }
+  }
+
+  const showInput = () => {
+    if (flagRenderChatInput) {
+      return (
+        <ChatInputChangeMessage
+          textMessage={textMessage}
+          handleKeyPress={handleKeyPress}
+          textOfInput={textOfInput}
+          idParticularMessage={idParticularMessage}
+        />
+      )
+    }
+    return (
+      <input
+        value={textMessage}
+        onKeyPress={handleKeyPress}
+        onChange={textOfInput}
+        type="text"
+        className="border border-transparent w-full focus:outline-none text-sm h-10 flex items-center"
+        placeholder=" Type your message..."
+      />
+    )
   }
 
   return (
@@ -44,16 +69,7 @@ const ChatInput = () => {
             />
           </svg>
         </button>
-        <div className="w-full">
-          <input
-            value={textMessage}
-            onKeyPress={handleKeyPress}
-            onChange={textOfInput}
-            type="text"
-            className="border border-transparent w-full focus:outline-none text-sm h-10 flex items-center"
-            placeholder=" Type your message...."
-          />
-        </div>
+        <div className="w-full">{showInput()}</div>
         <div className="flex flex-row">
           <button
             type="button"

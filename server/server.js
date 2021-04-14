@@ -197,6 +197,24 @@ server.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => 
   }
 })
 
+server.patch(
+  '/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage/updateMessage',
+  async (req, res) => {
+    const updatePartucilarChannel = req.body
+    const {
+      params: { idChannel }
+    } = req
+    try {
+      const objectOfChannels = await readingFile('channelsData.json')
+      objectOfChannels[idChannel] = updatePartucilarChannel
+      await writingFile('channelsData.json', objectOfChannels)
+      res.send({ status: 'updated objectChannels with change message', objectOfChannels })
+    } catch (err) {
+      console.error(new Error(err))
+    }
+  }
+)
+
 server.use('/api/', (req, res) => {
   res.status(404)
   res.end()

@@ -2,11 +2,14 @@ const SET_FLAG_SIDE_BAR = 'SET_FLAG_SIDE_BAR'
 const SET_FLAG_MODAL_WINDOW = 'SET_FLAG_MODAL_WINDOW'
 const SET_FLAG_SHELL_MODAL_WINDOW = 'SET_FLAG_SHELL_MODAL_WINDOW'
 const SET_FLAG_RENDER_CONTEXT_MENU = 'SET_FLAG_RENDER_CONTEXT_MENU'
+const SET_FLAG_RENDER_CHAT_INPUT = 'SET_FLAG_RENDER_CHAT_INPUT'
+
 const initialState = {
   flagRenderSideBarView: '',
   flagRenderModalWindow: { flag: false, whatOpen: null },
   flagRenderShellModalWindow: false,
-  flagRenderContextMenu: { flag: false, typeOfContent: null }
+  flagRenderContextMenu: { flag: false, typeOfContent: null },
+  flagRenderChatInput: false
 }
 
 export default (state = initialState, action) => {
@@ -35,6 +38,12 @@ export default (state = initialState, action) => {
         flagRenderContextMenu: action.flagRenderContextMenu
       }
     }
+    case SET_FLAG_RENDER_CHAT_INPUT: {
+      return {
+        ...state,
+        flagRenderChatInput: action.flagRenderChatInput
+      }
+    }
     default:
       return state
   }
@@ -57,4 +66,8 @@ export function setFlagRenderContextMenu(flag, typeOfContent) {
     type: SET_FLAG_RENDER_CONTEXT_MENU,
     flagRenderContextMenu: { flag, typeOfContent }
   }
+}
+
+export function setFlagRenderChatInput(flag) {
+  return { type: SET_FLAG_RENDER_CHAT_INPUT, flagRenderChatInput: flag }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFlagRenderModalWindow } from '../../../redux/reducers/reducerSetFlagRender'
-import { changeNameChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'
+import { changeNameDescriptionChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'
 
 const FormChangeDataChannel = () => {
   const dispatch = useDispatch()
@@ -29,21 +29,20 @@ const FormChangeDataChannel = () => {
     setNewDescription('')
     triggerModal()
   }
-  const sendDataName = (event) => {
-    dispatch(changeNameChannelActionCreator(dataParticularId, newNameChannel))
+  const sendDataNameAndDescrition = (event) => {
+    dispatch(
+      changeNameDescriptionChannelActionCreator(dataParticularId, newNameChannel, newDescription)
+    )
     clearForm(event)
   }
-  // const sendDataDescription = (event) => {
-  //   отправляет измененные данные на сервер  дискрипшина
-  //   clearForm(event)
-  // }
+
   const closeForm = (event) => {
     clearForm(event)
   }
 
   const chooseHeader = () => {
-    return `Change ${
-      flagRenderModalWindow.whatOpen === 'changeChannelName' ? 'channel name' : 'description'
+    return `Change channel ${
+      flagRenderModalWindow.whatOpen === 'changeChannelName' ? 'name' : 'description'
     }`
   }
 
@@ -55,7 +54,7 @@ const FormChangeDataChannel = () => {
             value={newNameChannel}
             type="text"
             onChange={changeNameChannel}
-            placeholder=" Channel name"
+            placeholder="Channel name"
             className="focus:outline-none mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
           />
         </div>
@@ -82,14 +81,14 @@ const FormChangeDataChannel = () => {
           <div className="card bg-lime-600 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6" />
           <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
             {chooseHeader()}
-            <form onSubmit={sendDataName} method="#" action="#" className="mt-10">
+            <form onSubmit={sendDataNameAndDescrition} method="#" action="#" className="mt-10">
               {openBlock(flagRenderModalWindow.whatOpen)}
               <div className="flex mt-7 items-center text-center">
                 <hr className="border-gray-300 border-1 w-full rounded-md" />
               </div>
               <div className="flex mt-7 justify-center w-full">
                 <button
-                  onClick={sendDataName}
+                  onClick={sendDataNameAndDescrition}
                   type="button"
                   className="focus:outline-none  mr-5 bg-teal-600 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 >
