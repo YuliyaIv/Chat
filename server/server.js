@@ -148,7 +148,7 @@ server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async
       }
     }
     await writingFile('channelsData.json', updateObject)
-    res.send({ status: 'sended message', newMessage })
+    res.send({ status: 'sended message', newMessage, updateObject })
   } catch (err) {
     console.error(new Error(err))
   }

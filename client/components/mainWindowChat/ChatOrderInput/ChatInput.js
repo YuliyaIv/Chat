@@ -12,13 +12,17 @@ const ChatInput = ({ idParticularMessage }) => {
     setTextMessage(e.target.value)
   }
 
+  const nonEmptyMessage = /^\s*$/g.test(textMessage)
+
   const sendMessageOnClick = () => {
-    dispatch(setNewMessage(textMessage))
-    setTextMessage('')
+    if (!nonEmptyMessage) {
+      dispatch(setNewMessage(textMessage))
+      setTextMessage('')
+    }
   }
 
   function handleKeyPress(e) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !nonEmptyMessage) {
       dispatch(setNewMessage(textMessage))
       setTextMessage('')
     }

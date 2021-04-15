@@ -12,7 +12,7 @@ const ChatMainWindow = () => {
   const { dataParticularId, dataChannels, newMessage } = useSelector((s) => s.reducerDataChannels)
   const [idParticularMessage, setIdParticularMessage] = useState()
   const dispatch = useDispatch()
-
+  // console.log('dataChannels MainWindow', dataChannels[dataParticularId])
   useEffect(() => {
     dispatch(getDataChannels())
   }, [newMessage])

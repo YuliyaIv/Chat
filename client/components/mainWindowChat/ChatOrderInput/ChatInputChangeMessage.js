@@ -5,16 +5,15 @@ import { setFlagRenderChatInput } from '../../../redux/reducers/reducerSetFlagRe
 
 const ChatInputChangeMessage = ({ idParticularMessage }) => {
   const dispatch = useDispatch()
-  const {
-    dataParticularChannel: { chatDataMessage },
-    dataParticularId
-  } = useSelector((s) => s.reducerDataChannels)
+  const { dataParticularId, dataChannels } = useSelector((s) => s.reducerDataChannels)
   const { flagRenderChatInput } = useSelector((s) => s.reducerSetFlagRender)
 
-  const particularObjMessage = chatDataMessage.find((obj) => obj.idMessage === idParticularMessage)
+  const arrayObjMessages = dataChannels[dataParticularId].chatDataMessage
+  const particularObjMessage = arrayObjMessages.find((obj) => obj.idMessage === idParticularMessage)
   const particularMessage = particularObjMessage.textMessage
   const [changeMessage, setChangeMessage] = useState(particularMessage)
 
+  console.log('arrayObjMessages', arrayObjMessages)
   console.log('changeMessage', changeMessage)
   console.log('particularMessage', particularMessage)
 
