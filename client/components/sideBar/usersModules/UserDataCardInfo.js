@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 import { getUserActivityStatus } from '../../../redux/reducers/reducerDataCard'
 
 const UserDataCardInfo = ({ info, idOfUser }) => {
@@ -89,6 +90,19 @@ const UserDataCardInfo = ({ info, idOfUser }) => {
   )
 }
 
-UserDataCardInfo.propType = {}
+UserDataCardInfo.propType = {
+  info: PropTypes.shape({
+    nameUser: PropTypes.string,
+    avatar: PropTypes.string,
+    aboutUser: PropTypes.string,
+    password: PropTypes.string,
+    email: PropTypes.string,
+    phone: PropTypes.string,
+    channelsAccess: PropTypes.arrayOf(PropTypes.string),
+    channelsOvner: PropTypes.arrayOf(PropTypes.string),
+    userMetaDate: PropTypes.objectOf(PropTypes.string)
+  }),
+  idOfUser: PropTypes.string
+}
 
 export default UserDataCardInfo

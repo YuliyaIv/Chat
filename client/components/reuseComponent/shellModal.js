@@ -1,10 +1,13 @@
 import React, { useEffect, useCallback } from 'react'
 import ReactDOM from 'react-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
 
 const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
+  console.log(children)
+
   const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
   const dispatch = useDispatch()
   const modal = document.createElement('div')
@@ -45,6 +48,9 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
   )
 }
 
-ShellModal.propTypes = {}
+ShellModal.propTypes = {
+  contextMenuDataCoord: PropTypes.objectOf(PropTypes.number).isRequired,
+  children: PropTypes.arrayOf(PropTypes.object).isRequired
+}
 
 export default ShellModal

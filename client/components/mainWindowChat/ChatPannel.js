@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const ChatPannel = ({ channelName, description }) => {
   return (
@@ -43,6 +44,13 @@ const ChatPannel = ({ channelName, description }) => {
   )
 }
 
-ChatPannel.propTypes = {}
+ChatPannel.propTypes = {
+  channelName: PropTypes.string.isRequired,
+  description: PropTypes.string
+}
+
+ChatPannel.defaultProps = {
+  description: 'unknown'
+}
 
 export default React.memo(ChatPannel)

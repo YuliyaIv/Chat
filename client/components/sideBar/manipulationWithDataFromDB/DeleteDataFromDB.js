@@ -1,8 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteChannel, deleteMessage } from '../../../redux/reducers/reducerDataChannels'
 
-const DeleteDataFromDB = ({ id, idParticularMessage, dataParticularIdChannel }) => {
+const DeleteDataFromDB = ({ id, idParticularMessage }) => {
   const { typeOfContent } = useSelector((s) => s.reducerSetFlagRender.flagRenderContextMenu)
   const dispatch = useDispatch()
   const sendActionDelete = () => {
@@ -10,7 +11,7 @@ const DeleteDataFromDB = ({ id, idParticularMessage, dataParticularIdChannel }) 
       dispatch(deleteChannel(id))
     }
     if (typeOfContent === 'message') {
-      dispatch(deleteMessage(dataParticularIdChannel, idParticularMessage))
+      dispatch(deleteMessage(id, idParticularMessage))
     }
   }
 
@@ -25,6 +26,13 @@ const DeleteDataFromDB = ({ id, idParticularMessage, dataParticularIdChannel }) 
   )
 }
 
-DeleteDataFromDB.propTypes = {}
+DeleteDataFromDB.propTypes = {
+  id: PropTypes.string.isRequired,
+  idParticularMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+}
+
+DeleteDataFromDB.defaultProps = {
+  idParticularMessage: null
+}
 
 export default React.memo(DeleteDataFromDB)

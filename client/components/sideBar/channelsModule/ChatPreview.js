@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 import { getDataParticularChannel } from '../../../redux/reducers/reducerDataChannels'
 
 const ChatPreview = ({
@@ -62,6 +63,19 @@ const ChatPreview = ({
   )
 }
 
-ChatPreview.propTypes = {}
+ChatPreview.propTypes = {
+  message: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  channelId: PropTypes.string.isRequired,
+  dataParticularId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  setContextMenuDataCoord: PropTypes.func,
+  flagRenderContextMenu: PropTypes.bool.isRequired,
+  setFlagRenderContextMenu: PropTypes.func.isRequired
+}
+
+ChatPreview.defaultProps = {
+  dataParticularId: 'unknown',
+  setContextMenuDataCoord: null
+}
 
 export default React.memo(ChatPreview)

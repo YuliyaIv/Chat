@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 
 const LoggedUser = ({
   objMessage,
@@ -14,7 +15,6 @@ const LoggedUser = ({
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
     dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, 'message'))
     setIdParticularMessage(objMessage.idMessage)
-    console.log(objMessage.idMessage)
   }
   return (
     <button
@@ -34,6 +34,12 @@ const LoggedUser = ({
   )
 }
 
-LoggedUser.propType = {}
+LoggedUser.propType = {
+  objMessage: PropTypes.object,
+  setIdParticularMessage: PropTypes.func,
+  flagRenderContextMenu: PropTypes.bool,
+  setContextMenuDataCoord: PropTypes.func,
+  setFlagRenderContextMenu: PropTypes.func
+}
 
 export default React.memo(LoggedUser)

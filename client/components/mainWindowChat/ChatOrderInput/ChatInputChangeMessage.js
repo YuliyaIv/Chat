@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import PropTypes from 'prop-types'
 import { changeNameMessage } from '../../../redux/reducers/reducerDataChannels'
 import { setFlagRenderChatInput } from '../../../redux/reducers/reducerSetFlagRender'
 
@@ -12,10 +13,6 @@ const ChatInputChangeMessage = ({ idParticularMessage }) => {
   const particularObjMessage = arrayObjMessages.find((obj) => obj.idMessage === idParticularMessage)
   const particularMessage = particularObjMessage.textMessage
   const [changeMessage, setChangeMessage] = useState(particularMessage)
-
-  console.log('arrayObjMessages', arrayObjMessages)
-  console.log('changeMessage', changeMessage)
-  console.log('particularMessage', particularMessage)
 
   function handleKeyPress(e) {
     if (e.key === 'Enter') {
@@ -41,6 +38,8 @@ const ChatInputChangeMessage = ({ idParticularMessage }) => {
   )
 }
 
-ChatInputChangeMessage.propTypes = {}
+ChatInputChangeMessage.propTypes = {
+  idParticularMessage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
+}
 
 export default React.memo(ChatInputChangeMessage)

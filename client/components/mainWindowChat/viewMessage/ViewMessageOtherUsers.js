@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const OtherUsers = ({ objMessage }) => {
   return (
@@ -15,6 +16,8 @@ const OtherUsers = ({ objMessage }) => {
   )
 }
 
-OtherUsers.propType = {}
+OtherUsers.propType = {
+  objMessage: PropTypes.object
+}
 
 export default React.memo(OtherUsers)

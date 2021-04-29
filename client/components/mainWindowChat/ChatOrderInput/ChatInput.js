@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
+
 import { setNewMessage } from '../../../redux/reducers/reducerDataChannels'
 import ChatInputChangeMessage from './ChatInputChangeMessage'
 
@@ -141,6 +143,12 @@ const ChatInput = ({ idParticularMessage }) => {
   )
 }
 
-ChatInput.propTypes = {}
+ChatInput.propTypes = {
+  idParticularMessage: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+}
+
+ChatInput.defaultProps = {
+  idParticularMessage: null
+}
 
 export default React.memo(ChatInput)

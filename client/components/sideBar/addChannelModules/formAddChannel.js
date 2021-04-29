@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const FormAddChannel = ({ runDispatchFromAcceptButton, triggerModal, triggerChannel }) => {
   const [nameChannel, setNameChannel] = useState('')
@@ -86,5 +87,9 @@ const FormAddChannel = ({ runDispatchFromAcceptButton, triggerModal, triggerChan
   )
 }
 
-FormAddChannel.propTypes = {}
+FormAddChannel.propTypes = {
+  runDispatchFromAcceptButton: PropTypes.func.isRequired,
+  triggerModal: PropTypes.func.isRequired,
+  triggerChannel: PropTypes.func.isRequired
+}
 export default React.memo(FormAddChannel)

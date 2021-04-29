@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const InputSearch = ({ textPlaceholder }) => {
   return (
@@ -30,6 +31,8 @@ const InputSearch = ({ textPlaceholder }) => {
     </div>
   )
 }
-InputSearch.propType = {}
+InputSearch.propType = {
+  textPlaceholder: PropTypes.string
+}
 
 export default React.memo(InputSearch)

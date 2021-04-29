@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 import {
   setFlagRenderModalWindow,
   setFlagRenderSideBarView
@@ -43,6 +44,8 @@ const ModalWindow = ({ children }) => {
   )
 }
 
-ModalWindow.propType = {}
+ModalWindow.propType = {
+  children: PropTypes.element.isRequired
+}
 
 export default React.memo(ModalWindow)

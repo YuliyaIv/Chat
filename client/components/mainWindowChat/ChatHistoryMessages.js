@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import LoggedUser from './viewMessage/ViewMessageLoggedUser'
 import OtherUsers from './viewMessage/ViewMessageOtherUsers'
@@ -58,18 +59,26 @@ const ChatHistoryMessages = ({
           setFlagRenderContextMenu={setFlagRenderContextMenu}
           flagRenderContextMenu={flagRenderContextMenu.flag}
         >
-          <ChangeDataFromDB id={dataParticularId} idParticularMessage={idParticularMessage} />
-          <DeleteDataFromDB
-            id={dataParticularId}
-            idParticularMessage={idParticularMessage}
-            dataParticularIdChannel={dataParticularId}
-          />
+          <ChangeDataFromDB />
+          <DeleteDataFromDB id={dataParticularId} idParticularMessage={idParticularMessage} />
         </ShellModal>
       )}
     </div>
   )
 }
 
-ChatHistoryMessages.propTypes = {}
+ChatHistoryMessages.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.object),
+  etoSoobshenieNapisalImennoTi: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+    .isRequired,
+  idParticularMessage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  setIdParticularMessage: PropTypes.func
+}
+
+ChatHistoryMessages.defaultProps = {
+  messages: [],
+  idParticularMessage: null,
+  setIdParticularMessage: () => {}
+}
 
 export default React.memo(ChatHistoryMessages)

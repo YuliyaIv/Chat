@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const SideBarViewRenderList = ({ forRender }) => {
   return (
@@ -8,6 +9,12 @@ const SideBarViewRenderList = ({ forRender }) => {
   )
 }
 
-SideBarViewRenderList.propTypes = {}
+SideBarViewRenderList.propTypes = {
+  forRender: PropTypes.arrayOf(PropTypes.object)
+}
+
+SideBarViewRenderList.defaultProps = {
+  forRender: []
+}
 
 export default React.memo(SideBarViewRenderList)

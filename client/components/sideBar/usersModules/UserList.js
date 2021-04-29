@@ -23,7 +23,8 @@ const UserList = () => {
     return (
       <UserDataCard
         key={id}
-        cardOfUsers={cardOfUsers}
+        nameUser={cardOfUsers[id].nameUser}
+        metaDate={cardOfUsers[id].userMetaDate}
         id={id}
         changeFlagModal={changeFlagModal}
         setIdForRenderDataCardInfo={setIdForRenderDataCardInfo}

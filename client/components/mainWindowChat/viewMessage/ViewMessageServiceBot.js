@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const ServiceMessage = ({ objMessage }) => {
   return (
@@ -12,6 +13,8 @@ const ServiceMessage = ({ objMessage }) => {
   )
 }
 
-ServiceMessage.propType = {}
+ServiceMessage.propType = {
+  objMessage: PropTypes.object
+}
 
 export default React.memo(ServiceMessage)
