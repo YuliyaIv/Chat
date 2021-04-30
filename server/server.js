@@ -5,10 +5,12 @@ import bodyParser from 'body-parser'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
+import mongoose from 'mongoose'
 
 import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
+import User from './modelsDB/userModel'
 
 const { readFile, writeFile } = require('fs').promises
 
@@ -21,6 +23,17 @@ try {
 } catch {
   console.log('SSR not found. Please run "yarn run build:ssr"'.red)
 }
+
+const DB = config.dataBase
+
+mongoose
+  .connect(DB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('DB connection successful!!!!!!!'))
 
 let connections = []
 
@@ -54,6 +67,21 @@ server.get('/api/v1/usersData', async (req, res) => {
 server.get('/api/v1/channelsData', async (req, res) => {
   const dataChannels = await readingFile('channelsData.json')
   res.send(dataChannels)
+})
+
+server.post('/api/v2/user', async (req, res) => {
+  try {
+    const newUser = await User.create(req.body)
+    res.status(200).json({
+      status: 'success',
+      data: {
+        newUser
+      }
+    })
+    res.send(newUser)
+  } catch (err) {
+    console.error(new Error(err))
+  }
 })
 
 server.post('/api/v1/usersData', async (req, res) => {
