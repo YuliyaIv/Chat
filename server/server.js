@@ -10,7 +10,8 @@ import mongoose from 'mongoose'
 import cookieParser from 'cookie-parser'
 import config from './config'
 import Html from '../client/html'
-import User from './modelsDB/userModel'
+import routeUser from './routes/routeUser'
+import routeChannel from './routes/routeChannel'
 
 const { readFile, writeFile } = require('fs').promises
 
@@ -67,21 +68,6 @@ server.get('/api/v1/usersData', async (req, res) => {
 server.get('/api/v1/channelsData', async (req, res) => {
   const dataChannels = await readingFile('channelsData.json')
   res.send(dataChannels)
-})
-
-server.post('/api/v2/user', async (req, res) => {
-  try {
-    const newUser = await User.create(req.body)
-    res.status(200).json({
-      status: 'success',
-      data: {
-        newUser
-      }
-    })
-    res.send(newUser)
-  } catch (err) {
-    console.error(new Error(err))
-  }
 })
 
 server.post('/api/v1/usersData', async (req, res) => {
@@ -242,6 +228,9 @@ server.patch(
     }
   }
 )
+
+server.use('/api/v2/user', routeUser)
+server.use('/api/v2/channel', routeChannel)
 
 server.use('/api/', (req, res) => {
   res.status(404)
