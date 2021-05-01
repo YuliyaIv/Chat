@@ -60,16 +60,19 @@ const writingFile = (file, newData) => {
   return writeFile(`${__dirname}/${file}`, JSON.stringify(newData), { encoding: 'utf8' })
 }
 
+// done
 server.get('/api/v1/usersData', async (req, res) => {
   const dataUsers = await readingFile('usersData.json')
   res.send(dataUsers)
 })
 
+// done
 server.get('/api/v1/channelsData', async (req, res) => {
   const dataChannels = await readingFile('channelsData.json')
   res.send(dataChannels)
 })
 
+// done
 server.post('/api/v1/usersData', async (req, res) => {
   const newUser = req.body
   let users
@@ -83,6 +86,7 @@ server.post('/api/v1/usersData', async (req, res) => {
   res.send(updateUsers)
 })
 
+//возможно не используется
 server.patch('/api/v1/usersData/:userId', async (req, res) => {
   const {
     body: newUser,
@@ -99,6 +103,7 @@ server.patch('/api/v1/usersData/:userId', async (req, res) => {
   }
 })
 
+//done
 server.post('/api/v1/channelsData', async (req, res) => {
   const newChannel = req.body
   let channels
@@ -112,6 +117,7 @@ server.post('/api/v1/channelsData', async (req, res) => {
   res.send(newData)
 })
 
+//done
 server.patch('/api/v1/channelsData', async (req, res) => {
   const {
     body: { objectFromNewChannel }
@@ -129,6 +135,7 @@ server.patch('/api/v1/channelsData', async (req, res) => {
   }
 })
 
+// обновление описания и названия канала
 server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { body: newChanell } = req
   try {
