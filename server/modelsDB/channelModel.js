@@ -38,13 +38,11 @@ const channelSchema = new mongoose.Schema({
       type: String
     }
   },
-
   chatDataMessage: {
     type: [
       {
         idMessage: {
           type: Number,
-          unique: true,
           required: [true, 'Id message must be']
         },
         idUserPostedMessage: {
