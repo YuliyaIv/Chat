@@ -4,6 +4,6 @@ import channelsController from '../controller/channelController'
 
 const router = express.Router()
 
-router.route('/').post(channelsController.createChannel)
+router.route('/').post(channelsController.createChannel).get(channelsController.getChannels)
 
 module.exports = router
