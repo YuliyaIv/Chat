@@ -135,7 +135,7 @@ server.patch('/api/v1/channelsData', async (req, res) => {
   }
 })
 
-// обновление описания и названия канала
+// done  обновление описания и названия канала
 server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { body: newChanell } = req
   try {
@@ -186,7 +186,7 @@ server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
     console.error(new Error(err))
   }
 })
-
+// done
 server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
   const { idChannel, idMessage } = req.params
   try {
@@ -218,6 +218,7 @@ server.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => 
   }
 })
 
+// done
 server.patch(
   '/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage/updateMessage',
   async (req, res) => {

@@ -30,7 +30,74 @@ exports.getChannels = async (req, res) => {
   }
 }
 
-// server.get('/api/v1/channelsData', async (req, res) => {
-//   const dataChannels = await readingFile('channelsData.json')
-//   res.send(dataChannels)
-// })
+exports.changeNameOrDescription = async (req, res) => {
+  try {
+    const { body: updatedData } = req
+    const { id } = req.params
+
+    const channel = await Channel.findByIdAndUpdate(id, updatedData, {
+      new: true,
+      runValidators: true
+    })
+    res.status(200).json({
+      status: 'success',
+      data: {
+        channel
+      }
+    })
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      error: err.message
+    })
+  }
+}
+
+exports.changeMessage = async (req, res) => {
+  try {
+    const { id, idMess } = req.params
+    const { newMessageText } = req.body
+    const message = await Channel.findOneAndUpdate(
+      { _id: id, 'chatDataMessage._id': idMess },
+      { $set: { 'chatDataMessage.$.textMessage': newMessageText } },
+      {
+        new: true,
+        runValidators: true
+      }
+    )
+    console.log(message)
+    res.status(200).json({
+      status: 'success',
+      data: {
+        message
+      }
+    })
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      error: err.message
+    })
+  }
+}
+
+exports.deleteMessage = async (req, res) => {
+  try {
+    const { id, idMess } = req.params
+    const message = await Channel.findOneAndUpdate(
+      { _id: id },
+      { $pull: { chatDataMessage: { _id: idMess } } }
+    )
+    console.log(message)
+    res.status(200).json({
+      status: 'success',
+      data: {
+        message
+      }
+    })
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      error: err.message
+    })
+  }
+}
