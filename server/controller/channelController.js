@@ -1,32 +1,38 @@
 import Channel from '../modelsDB/channelModel'
 
+const errAnswer = (response, err, statusCode) => {
+  return response.status(statusCode).json({
+    status: 'fail',
+    error: err.message
+  })
+}
+
+const successfulAnswer = (response, dataName, statusCode) => {
+  return response.status(statusCode).json({
+    status: 'success',
+    data: {
+      dataName
+    }
+  })
+}
+
 exports.createChannel = async (req, res) => {
   try {
     const newChannel = await Channel.create(req.body)
-    res.status(200).json({
-      status: 'success',
-      data: {
-        newChannel
-      }
-    })
+    successfulAnswer(res, newChannel, 200)
     res.send(newChannel)
   } catch (err) {
-    console.error(new Error(err))
+    errAnswer(res, err, 404)
   }
 }
 
 exports.getChannels = async (req, res) => {
   try {
     const channels = await Channel.find()
-    res.status(200).json({
-      status: 'success',
-      data: {
-        channels
-      }
-    })
+    successfulAnswer(res, channels, 200)
     res.send(channels)
   } catch (err) {
-    console.error(new Error(err))
+    errAnswer(res, err, 404)
   }
 }
 
@@ -39,17 +45,35 @@ exports.changeNameOrDescription = async (req, res) => {
       new: true,
       runValidators: true
     })
-    res.status(200).json({
-      status: 'success',
-      data: {
-        channel
-      }
-    })
+    successfulAnswer(res, channel, 200)
   } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      error: err.message
+    errAnswer(res, err, 404)
+  }
+}
+
+exports.deleteChannel = async (req, res) => {
+  try {
+    const { id } = req.params
+    const channel = await Channel.deleteOne({
+      _id: id
     })
+    successfulAnswer(res, channel, 200)
+  } catch (err) {
+    errAnswer(res, err, 404)
+  }
+}
+
+exports.createMessage = async (req, res) => {
+  try {
+    const { id } = req.params
+    const createMessage = req.body
+    const message = await Channel.findOneAndUpdate(
+      { _id: id },
+      { $push: { chatDataMessage: createMessage } }
+    )
+    successfulAnswer(res, message, 200)
+  } catch (err) {
+    errAnswer(res, err, 404)
   }
 }
 
@@ -66,17 +90,9 @@ exports.changeMessage = async (req, res) => {
       }
     )
     console.log(message)
-    res.status(200).json({
-      status: 'success',
-      data: {
-        message
-      }
-    })
+    successfulAnswer(res, message, 200)
   } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      error: err.message
-    })
+    errAnswer(res, err, 404)
   }
 }
 
@@ -87,17 +103,8 @@ exports.deleteMessage = async (req, res) => {
       { _id: id },
       { $pull: { chatDataMessage: { _id: idMess } } }
     )
-    console.log(message)
-    res.status(200).json({
-      status: 'success',
-      data: {
-        message
-      }
-    })
+    successfulAnswer(res, message, 200)
   } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      error: err.message
-    })
+    errAnswer(res, err, 404)
   }
 }
