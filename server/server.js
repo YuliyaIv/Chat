@@ -60,19 +60,19 @@ const writingFile = (file, newData) => {
   return writeFile(`${__dirname}/${file}`, JSON.stringify(newData), { encoding: 'utf8' })
 }
 
-// done
+// done get all users
 server.get('/api/v1/usersData', async (req, res) => {
   const dataUsers = await readingFile('usersData.json')
   res.send(dataUsers)
 })
 
-// done
+// done get all chanells
 server.get('/api/v1/channelsData', async (req, res) => {
   const dataChannels = await readingFile('channelsData.json')
   res.send(dataChannels)
 })
 
-// done
+// done add new user
 server.post('/api/v1/usersData', async (req, res) => {
   const newUser = req.body
   let users
@@ -103,7 +103,7 @@ server.patch('/api/v1/usersData/:userId', async (req, res) => {
   }
 })
 
-//done
+//done create new channels
 server.post('/api/v1/channelsData', async (req, res) => {
   const newChannel = req.body
   let channels
@@ -117,7 +117,7 @@ server.post('/api/v1/channelsData', async (req, res) => {
   res.send(newData)
 })
 
-//done
+//done create new channel
 server.patch('/api/v1/channelsData', async (req, res) => {
   const {
     body: { objectFromNewChannel }
@@ -135,7 +135,7 @@ server.patch('/api/v1/channelsData', async (req, res) => {
   }
 })
 
-// done  обновление описания и названия канала
+// done  update description and channel name
 server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { body: newChanell } = req
   try {
@@ -151,6 +151,7 @@ server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   }
 })
 
+// done create new object message
 server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
   const {
     body: newMessage,
@@ -175,6 +176,7 @@ server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async
   }
 })
 
+//done delete channel
 server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { idChannel } = req.params
   try {
@@ -186,7 +188,8 @@ server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
     console.error(new Error(err))
   }
 })
-// done
+
+// done delete message
 server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
   const { idChannel, idMessage } = req.params
   try {
@@ -202,7 +205,7 @@ server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', asyn
     console.error(new Error(err))
   }
 })
-
+//done change name cgannel
 server.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => {
   const updatePartucilarChannel = req.body
   const {
@@ -218,7 +221,7 @@ server.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => 
   }
 })
 
-// done
+// done update message text
 server.patch(
   '/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage/updateMessage',
   async (req, res) => {
