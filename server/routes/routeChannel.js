@@ -11,6 +11,7 @@ router
   .patch(channelsController.changeNameOrDescription)
   .delete(channelsController.deleteChannel)
   .post(channelsController.createMessage)
+
 router
   .route('/:id/:idMess')
   .patch(channelsController.changeMessage)

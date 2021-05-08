@@ -23,6 +23,7 @@ const Channels = () => {
     x: 0,
     y: 0
   })
+
   const renderChat = Object.keys(dataChannels).map((channelId) => {
     const messagesInChat = dataChannels[channelId].chatDataMessage
     const indexLastlMessage = messagesInChat.length - 1
@@ -41,6 +42,8 @@ const Channels = () => {
       />
     )
   })
+  console.log('Channels', renderChat)
+
   return (
     <div className="flex flex-col h-full w-full  ">
       <InputSearch textPlaceholder="Search by message..." />

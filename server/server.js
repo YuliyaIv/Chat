@@ -5,6 +5,7 @@ import bodyParser from 'body-parser'
 import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
+import http from 'http'
 import mongoose from 'mongoose'
 
 import cookieParser from 'cookie-parser'
@@ -39,7 +40,7 @@ mongoose
 let connections = []
 
 const port = process.env.PORT || 8090
-const server = express()
+const app = express()
 
 const middleware = [
   cors(),
@@ -49,7 +50,7 @@ const middleware = [
   cookieParser()
 ]
 
-middleware.forEach((it) => server.use(it))
+middleware.forEach((it) => app.use(it))
 
 const readingFile = async (file) => {
   const readingData = await readFile(`${__dirname}/${file}`, 'utf8')
@@ -61,19 +62,19 @@ const writingFile = (file, newData) => {
 }
 
 // done get all users
-server.get('/api/v1/usersData', async (req, res) => {
+app.get('/api/v1/usersData', async (req, res) => {
   const dataUsers = await readingFile('usersData.json')
   res.send(dataUsers)
 })
 
 // done get all chanells
-server.get('/api/v1/channelsData', async (req, res) => {
+app.get('/api/v1/channelsData', async (req, res) => {
   const dataChannels = await readingFile('channelsData.json')
   res.send(dataChannels)
 })
 
 // done add new user
-server.post('/api/v1/usersData', async (req, res) => {
+app.post('/api/v1/usersData', async (req, res) => {
   const newUser = req.body
   let users
   try {
@@ -87,7 +88,7 @@ server.post('/api/v1/usersData', async (req, res) => {
 })
 
 //возможно не используется
-server.patch('/api/v1/usersData/:userId', async (req, res) => {
+app.patch('/api/v1/usersData/:userId', async (req, res) => {
   const {
     body: newUser,
     params: { userId }
@@ -104,7 +105,7 @@ server.patch('/api/v1/usersData/:userId', async (req, res) => {
 })
 
 //done create new channels
-server.post('/api/v1/channelsData', async (req, res) => {
+app.post('/api/v1/channelsData', async (req, res) => {
   const newChannel = req.body
   let channels
   try {
@@ -118,7 +119,7 @@ server.post('/api/v1/channelsData', async (req, res) => {
 })
 
 //done create new channel
-server.patch('/api/v1/channelsData', async (req, res) => {
+app.patch('/api/v1/channelsData', async (req, res) => {
   const {
     body: { objectFromNewChannel }
   } = req
@@ -136,7 +137,7 @@ server.patch('/api/v1/channelsData', async (req, res) => {
 })
 
 // done  update description and channel name
-server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
+app.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { body: newChanell } = req
   try {
     const objectOfChannels = await readingFile('channelsData.json')
@@ -152,7 +153,7 @@ server.patch('/api/v1/channelsData/:idChannel', async (req, res) => {
 })
 
 // done create new object message
-server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
+app.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
   const {
     body: newMessage,
     params: { idChannel }
@@ -177,7 +178,7 @@ server.patch('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async
 })
 
 //done delete channel
-server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
+app.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
   const { idChannel } = req.params
   try {
     const objectOfChannels = await readingFile('channelsData.json')
@@ -190,7 +191,7 @@ server.delete('/api/v1/channelsData/:idChannel', async (req, res) => {
 })
 
 // done delete message
-server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
+app.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', async (req, res) => {
   const { idChannel, idMessage } = req.params
   try {
     const objectOfChannels = await readingFile('channelsData.json')
@@ -206,7 +207,7 @@ server.delete('/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage', asyn
   }
 })
 //done change name cgannel
-server.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => {
+app.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => {
   const updatePartucilarChannel = req.body
   const {
     params: { idChannel }
@@ -222,7 +223,7 @@ server.patch('/api/v1/channelsData/:idChannel/nameChannel', async (req, res) => 
 })
 
 // done update message text
-server.patch(
+app.patch(
   '/api/v1/channelsData/:idChannel/chatDataMessage/:idMessage/updateMessage',
   async (req, res) => {
     const updatePartucilarChannel = req.body
@@ -240,10 +241,10 @@ server.patch(
   }
 )
 
-server.use('/api/v2/user', routeUser)
-server.use('/api/v2/channel', routeChannel)
+app.use('/api/v2/user', routeUser)
+app.use('/api/v2/channel', routeChannel)
 
-server.use('/api/', (req, res) => {
+app.use('/api/', (req, res) => {
   res.status(404)
   res.end()
 })
@@ -253,7 +254,7 @@ const [htmlStart, htmlEnd] = Html({
   title: 'Skillcrucial'
 }).split('separator')
 
-server.get('/', (req, res) => {
+app.get('/', (req, res) => {
   const appStream = renderToStaticNodeStream(<Root location={req.url} context={{}} />)
   res.write(htmlStart)
   appStream.pipe(res, { end: false })
@@ -263,7 +264,7 @@ server.get('/', (req, res) => {
   })
 })
 
-server.get('/*', (req, res) => {
+app.get('/*', (req, res) => {
   const appStream = renderToStaticNodeStream(<Root location={req.url} context={{}} />)
   res.write(htmlStart)
   appStream.pipe(res, { end: false })
@@ -273,18 +274,25 @@ server.get('/*', (req, res) => {
   })
 })
 
-const app = server.listen(port)
+// const app = app.listen(port)
+const server = http.createServer(app)
 
-if (config.isSocketsEnabled) {
-  const echo = sockjs.createServer()
-  echo.on('connection', (conn) => {
-    connections.push(conn)
-    conn.on('data', async () => {})
+const io = require('socket.io')(server)
+io.on('connection', () => {
+  console.log('connection')
+})
+server.listen(port)
+// if (config.isSocketsEnabled) {
+//   const echo = sockjs.createServer()
+//   echo.on('connection', (conn) => {
+//     connections.push(conn)
+//     conn.on('data', async () => {})
 
-    conn.on('close', () => {
-      connections = connections.filter((c) => c.readyState !== 3)
-    })
-  })
-  echo.installHandlers(app, { prefix: '/ws' })
-}
+//     conn.on('close', () => {
+//       connections = connections.filter((c) => c.readyState !== 3)
+//     })
+//   })
+//   echo.installHandlers(app, { prefix: '/ws' })
+// }
+
 console.log(`Serving at http://localhost:${port}`)

@@ -6,8 +6,6 @@ import PropTypes from 'prop-types'
 import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
 
 const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
-  console.log(children)
-
   const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
   const dispatch = useDispatch()
   const modal = document.createElement('div')

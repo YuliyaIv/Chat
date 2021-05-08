@@ -102,6 +102,8 @@
         "redux": "^4.0.5",
         "redux-devtools-extension": "^2.13.8",
         "redux-thunk": "^2.3.0",
+        "socket.io": "^4.0.2",
+        "socket.io-client": "^4.0.2",
         "sockjs": "^0.3.21",
         "sockjs-client": "^1.5.0",
         "string-replace-webpack-plugin": "^0.1.3",

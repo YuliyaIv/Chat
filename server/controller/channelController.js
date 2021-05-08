@@ -89,7 +89,6 @@ exports.changeMessage = async (req, res) => {
         runValidators: true
       }
     )
-    console.log(message)
     successfulAnswer(res, message, 200)
   } catch (err) {
     errAnswer(res, err, 404)
