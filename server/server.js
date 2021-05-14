@@ -6,19 +6,28 @@ import sockjs from 'sockjs'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import React from 'react'
 import http from 'http'
-import mongoose from 'mongoose'
+import passport from 'passport'
+
+// import mongoose from 'mongoose'
 
 import cookieParser from 'cookie-parser'
-import config from './config'
+// import config from './config'
 import Html from '../client/html'
 import routeUser from './routes/routeUser'
 import routeChannel from './routes/routeChannel'
+import routeAuth from './routes/routeAuth'
+import routeUserInfo from './routes/routeUserInfo'
+import mongooseServices from './services/mongoose'
+import passportJWT from './services/passport'
 
 const { readFile, writeFile } = require('fs').promises
 
 require('colors')
 
 let Root
+
+mongooseServices.connect()
+
 try {
   // eslint-disable-next-line import/no-unresolved
   Root = require('../dist/assets/js/ssr/root.bundle').default
@@ -26,29 +35,29 @@ try {
   console.log('SSR not found. Please run "yarn run build:ssr"'.red)
 }
 
-const DB = config.dataBase
+// const DB = config.dataBase
 
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log('DB connection successful!!!!!!!'))
-
-let connections = []
+// mongoose
+//   .connect(DB, {
+//     useNewUrlParser: true,
+//     useCreateIndex: true,
+//     useFindAndModify: false,
+//     useUnifiedTopology: true
+//   })
+//   .then(() => console.log('DB connection successful!!!!!!!'))
 
 const port = process.env.PORT || 8090
 const app = express()
 
 const middleware = [
   cors(),
+  passport.initialize(),
   express.static(path.resolve(__dirname, '../dist/assets')),
   bodyParser.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }),
   bodyParser.json({ limit: '50mb', extended: true }),
   cookieParser()
 ]
+passport.use('jwt', passportJWT.jwt)
 
 middleware.forEach((it) => app.use(it))
 
@@ -241,6 +250,8 @@ app.patch(
   }
 )
 
+app.use('/api/v2/user-info', routeUserInfo)
+app.use('/api/v2/auth', routeAuth)
 app.use('/api/v2/user', routeUser)
 app.use('/api/v2/channel', routeChannel)
 
@@ -274,13 +285,28 @@ app.get('/*', (req, res) => {
   })
 })
 
-// const app = app.listen(port)
 const server = http.createServer(app)
 
 const io = require('socket.io')(server)
-io.on('connection', () => {
-  console.log('connection')
+let connections = []
+/* у нас есть массив соединений и каждое соединение это объект связи с браузером
+ (это пока не связано с конкретным юзером, просто связь между клиентом и сервером),
+  на каждую связь генерируется уникальный айди и пока он с ни чем никак не связан
+   */
+io.on('connection', (connection) => {
+  // const user = getUserByToken(connection.handshake.auth.token) // для авторизации
+  // connection.userId = user.id     // для авторизации
+  connections.push(connection.userId)
+
+  connection.emit('chatMessage', JSON.stringify({ text: 'Hello' }))
+  connection.on('disconnect', () => {
+    connections = connections.filter((it) => it !== connection)
+  })
 })
+/* Вместо токена мы можем отправлять куку(проверка на то, что токен не авторизирован),
+ в идеале это делает через миддлвэр io.use
+В connections у нас будут храниться активные соединения */
+
 server.listen(port)
 // if (config.isSocketsEnabled) {
 //   const echo = sockjs.createServer()
@@ -294,5 +320,4 @@ server.listen(port)
 //   })
 //   echo.installHandlers(app, { prefix: '/ws' })
 // }
-
 console.log(`Serving at http://localhost:${port}`)

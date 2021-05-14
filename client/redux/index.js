@@ -3,15 +3,11 @@ import { routerMiddleware } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { io } from 'socket.io-client'
-// import SockJS from 'sockjs-client'
 
 import rootReducer from './reducers'
 import createHistory from './history'
-// import socketActions from './sockets'
 
 export const history = createHistory()
-
-// const isBrowser = typeof window !== 'undefined'
 
 const initialState = {}
 const enhancers = []
@@ -23,38 +19,16 @@ const composedEnhancers = composeFunc(applyMiddleware(...middleware), ...enhance
 
 const store = createStore(rootReducer(history), initialState, composedEnhancers)
 
-const socket = io('/')
-socket.on('connection', () => {
-  console.log('hi')
+const socket = io('/', {
+  auth: {
+    token: 'my token from reducer index.js'
+  }
 })
-// let socket
+socket.on('connect', () => {
+  console.log('hi', socket.id)
+})
+socket.on('chatMessage', (message) => console.log(message))
+/* каждому сокету присваивается свой айдишник, когда видим id в консоли - значит в этот момент случилось соединение,
+   при закрытии вкладки у нас обрывается соединение */
 
-// if (typeof ENABLE_SOCKETS !== 'undefined' && ENABLE_SOCKETS) {
-//   const initSocket = () => {
-//     socket = new SockJS(`${isBrowser ? window.location.origin : 'http://localhost'}/ws`)
-
-//     socket.onopen = () => {
-//       store.dispatch(socketActions.connected)
-//     }
-
-//     socket.onmessage = (message) => {
-//       // eslint-disable-next-line no-console
-//       console.log(message)
-
-//       // socket.close();
-//     }
-
-//     socket.onclose = () => {
-//       store.dispatch(socketActions.disconnected)
-//       setTimeout(() => {
-//         initSocket()
-//       }, 2000)
-//     }
-//   }
-
-//   initSocket()
-// }
-// export function getSocket() {
-//   return socket
-// }
 export default store

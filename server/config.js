@@ -5,7 +5,8 @@ const options = {
   app: process.env.APP,
   env: process.env.NODE_ENV,
   isSocketsEnabled: process.env.ENABLE_SOCKETS,
-  dataBase: process.env.DATABASE
+  dataBase: process.env.DATABASE,
+  secret: process.env.SECRET || 'secretKey'
 }
 
 export default options

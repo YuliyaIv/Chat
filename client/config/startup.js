@@ -1,8 +1,18 @@
 import { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { trySignIn, tryGetUserInfo } from '../redux/reducers/reducerAuth'
 
 const Startup = (props) => {
-  useEffect(() => {}, [])
+  const dispatch = useDispatch()
+  const { token } = useSelector((s) => s.reducerAuth)
+  useEffect(() => {
+    if (token) {
+      dispatch(trySignIn())
+    }
+    dispatch(tryGetUserInfo())
+  }, [])
 
   return props.children
 }

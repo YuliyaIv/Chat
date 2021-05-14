@@ -9,7 +9,6 @@ exports.createUser = async (req, res) => {
         newUser
       }
     })
-    res.send(newUser)
   } catch (err) {
     console.error(new Error(err))
   }
@@ -24,7 +23,6 @@ exports.getUsers = async (req, res) => {
         users
       }
     })
-    res.send(users)
   } catch (err) {
     console.error(new Error(err))
   }

@@ -11,17 +11,23 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
   const modal = document.createElement('div')
   const rootElement = document.querySelector('#root')
 
-  const handleClickOutsideFromModal = useCallback((e) => {
-    if (!e.path.includes(rootElement)) {
-      dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
-    }
-  })
+  const handleClickOutsideFromModal = useCallback(
+    (e) => {
+      if (!e.path.includes(rootElement)) {
+        dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
+      }
+    },
+    [flagRenderContextMenu, rootElement]
+  )
 
-  const handleClickOutsideFromRoot = useCallback((e) => {
-    if (flagRenderContextMenu && e.path.includes(rootElement)) {
-      dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
-    }
-  })
+  const handleClickOutsideFromRoot = useCallback(
+    (e) => {
+      if (flagRenderContextMenu && e.path.includes(rootElement)) {
+        dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
+      }
+    },
+    [rootElement, flagRenderContextMenu]
+  )
 
   useEffect(() => {
     document.body.appendChild(modal)
@@ -30,11 +36,9 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
     modal.setAttribute('class', 'flex items-center justify-center')
     modal.setAttribute('style', `position: fixed; top: ${y}px; left: ${x}px;`)
     return () => {
-      return [
-        document.body.removeChild(modal),
-        modal.removeEventListener('click', handleClickOutsideFromModal),
-        rootElement.removeEventListener('click', handleClickOutsideFromRoot)
-      ]
+      document.body.removeChild(modal)
+      modal.removeEventListener('click', handleClickOutsideFromModal)
+      rootElement.removeEventListener('click', handleClickOutsideFromRoot)
     }
   }, [])
 

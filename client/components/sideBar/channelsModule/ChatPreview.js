@@ -13,7 +13,7 @@ const ChatPreview = ({
   setFlagRenderContextMenu
 }) => {
   const dispatch = useDispatch()
-
+  console.log('data')
   const openContextMenu = (e) => {
     e.preventDefault()
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
