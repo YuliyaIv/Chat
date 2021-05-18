@@ -42,4 +42,3 @@ const ButtonSettings = () => {
 ButtonSettings.propType = {}
 
 export default React.memo(ButtonSettings)
-

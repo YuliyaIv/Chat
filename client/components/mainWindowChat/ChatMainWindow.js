@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getDataChannels } from '../../redux/reducers/reducerDataChannels'
 import ChatHistoryMessages from './ChatHistoryMessages'
-import ChatInput from './ChatOrderInput/ChatInput'
+import ChatInput from './chatOrderInput/ChatInput'
 
 import ChatPannel from './ChatPannel'
 import WelcomeWindow from './WelcomeWindow'

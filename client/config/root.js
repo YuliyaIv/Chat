@@ -76,7 +76,6 @@ const RootComponent = (props) => {
         <Startup>
           <Switch>
             <Route exact path="/" component={() => <LoginForm />} />
-
             <Route exact path="/dashboard" component={() => <App />} />
             <Route exact path="/auth" component={() => <LoginForm />} />
             <OnlyAnonymousRoute exact path="/login" component={() => <LoginForm />} />
