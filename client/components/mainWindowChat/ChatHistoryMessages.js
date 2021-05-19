@@ -5,10 +5,11 @@ import PropTypes from 'prop-types'
 import LoggedUser from './viewMessage/ViewMessageLoggedUser'
 import OtherUsers from './viewMessage/ViewMessageOtherUsers'
 import ServiceMessage from './viewMessage/ViewMessageServiceBot'
-import ShellModal from '../reuseComponent/shellModal'
+
 import { setFlagRenderContextMenu } from '../../redux/reducers/reducerSetFlagRender'
 import DeleteDataFromDB from '../sideBar/manipulationWithDataFromDB/DeleteDataFromDB'
 import ChangeDataFromDB from '../sideBar/manipulationWithDataFromDB/ChangeDataFromDB'
+import ShellModal from '../reuseComponent/ShellModal'
 
 const ChatHistoryMessages = ({
   messages,
@@ -17,7 +18,6 @@ const ChatHistoryMessages = ({
   setIdParticularMessage
 }) => {
   const { flagRenderContextMenu } = useSelector((s) => s.reducerSetFlagRender)
-  const { dataParticularId } = useSelector((s) => s.reducerDataChannels)
   const [contextMenuDataCoord, setContextMenuDataCoord] = useState({
     x: 0,
     y: 0
@@ -37,7 +37,6 @@ const ChatHistoryMessages = ({
             setIdParticularMessage={setIdParticularMessage}
             setContextMenuDataCoord={setContextMenuDataCoord}
             contextMenuDataCoord={contextMenuDataCoord}
-            dataParticularIdChannel={dataParticularId}
             flagRenderContextMenu={flagRenderContextMenu.flag}
             setFlagRenderContextMenu={setFlagRenderContextMenu}
           />
@@ -60,7 +59,7 @@ const ChatHistoryMessages = ({
           flagRenderContextMenu={flagRenderContextMenu.flag}
         >
           <ChangeDataFromDB />
-          <DeleteDataFromDB id={dataParticularId} idParticularMessage={idParticularMessage} />
+          <DeleteDataFromDB idParticularMessage={idParticularMessage} />
         </ShellModal>
       )}
     </div>

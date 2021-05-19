@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import ModalWindow from '../../reuseComponent/ModalWindow'
-import FormAddChannel from './formAddChannel'
+import FormAddChannel from './FormAddChannel'
 import NewObjChannel from '../../../helperFunction/mainFunctionAddChannel'
 
 import { setNewChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'

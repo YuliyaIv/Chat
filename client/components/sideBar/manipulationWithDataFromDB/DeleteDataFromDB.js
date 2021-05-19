@@ -3,15 +3,16 @@ import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteChannel, deleteMessage } from '../../../redux/reducers/reducerDataChannels'
 
-const DeleteDataFromDB = ({ id, idParticularMessage }) => {
+const DeleteDataFromDB = ({ idParticularMessage }) => {
+  const { dataParticularId } = useSelector((s) => s.reducerDataChannels)
   const { typeOfContent } = useSelector((s) => s.reducerSetFlagRender.flagRenderContextMenu)
   const dispatch = useDispatch()
   const sendActionDelete = () => {
     if (typeOfContent === 'channel') {
-      dispatch(deleteChannel(id))
+      dispatch(deleteChannel(dataParticularId))
     }
     if (typeOfContent === 'message') {
-      dispatch(deleteMessage(id, idParticularMessage))
+      dispatch(deleteMessage(dataParticularId, idParticularMessage))
     }
   }
 
@@ -27,7 +28,6 @@ const DeleteDataFromDB = ({ id, idParticularMessage }) => {
 }
 
 DeleteDataFromDB.propTypes = {
-  id: PropTypes.string.isRequired,
   idParticularMessage: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
 }
 

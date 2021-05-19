@@ -10,6 +10,7 @@ const LoggedUser = ({
   setFlagRenderContextMenu
 }) => {
   const dispatch = useDispatch()
+
   const openContextMenu = (e) => {
     e.preventDefault()
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })

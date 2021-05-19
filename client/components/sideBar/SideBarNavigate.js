@@ -1,9 +1,9 @@
 import React from 'react'
-import ButtonUsersList from './NavigateButtons/buttonUsersList'
-import ButtonChannels from './NavigateButtons/buttonChannels'
-import ButtonSettings from './NavigateButtons/buttonSettings'
-import ButtonTheme from './NavigateButtons/buttonTheme'
-import ButtonAddChannel from './NavigateButtons/buttonAddChannel'
+import ButtonUsersList from './navigateButtons/ButtonUsersList'
+import ButtonChannels from './navigateButtons/ButtonChannels'
+import ButtonSettings from './navigateButtons/ButtonSettings'
+import ButtonTheme from './navigateButtons/ButtonTheme'
+import ButtonAddChannel from './navigateButtons/ButtonAddChannel'
 
 const SideBarNavigate = () => {
   return (

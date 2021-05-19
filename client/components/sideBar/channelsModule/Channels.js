@@ -4,7 +4,7 @@ import ChatPreview from './ChatPreview'
 import InputSearch from '../../reuseComponent/InputSearch'
 import SideBarViewRenderList from '../SideBarViewRenderList'
 
-import ShellModal from '../../reuseComponent/shellModal'
+import ShellModal from '../../reuseComponent/ShellModal'
 import { setFlagRenderContextMenu } from '../../../redux/reducers/reducerSetFlagRender'
 
 import ChangeDataFromDB from '../manipulationWithDataFromDB/ChangeDataFromDB'
@@ -82,8 +82,10 @@ const Channels = () => {
           setFlagRenderContextMenu={setFlagRenderContextMenu}
           flagRenderContextMenu={flagRenderContextMenu.flag}
         >
-          <ChangeDataFromDB type="channel" id={dataParticularId} />
-          <DeleteDataFromDB type="channel" id={dataParticularId} />
+          <ChangeDataFromDB />
+          {/* deleted type="channel" id={dataParticularId} */}
+          <DeleteDataFromDB />
+          {/* deleted type="channel" id={dataParticularId} */}
         </ShellModal>
       )}
       {flagRenderModalWindow.flag &&
