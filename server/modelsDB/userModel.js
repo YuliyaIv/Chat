@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema(
     },
     passwordConfirm: {
       type: String,
-      required: [true, 'Please confirm ypur password']
+      required: [true, 'Please confirm ypur password'] // must be  deletet after confirm
     },
     email: {
       type: String,
