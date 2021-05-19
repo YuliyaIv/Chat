@@ -24,11 +24,11 @@ const channelSchema = new mongoose.Schema({
   metaDataChannel: {
     timeCreateChannel: {
       type: String
-      // Date
+      // must be  Date
     },
     timeDeleteChannel: {
       type: String
-      // Date
+      // must be  Date
     },
     defaultAvatartChannel: {
       type: String,
@@ -37,36 +37,6 @@ const channelSchema = new mongoose.Schema({
     avatarChannel: {
       type: String
     }
-  },
-  chatDataMessage: {
-    type: [
-      {
-        idMessage: {
-          type: Number,
-          required: [true, 'Id message must be']
-        },
-        idUserPostedMessage: {
-          type: String,
-          required: [true, 'Id user posted message must be']
-        },
-        textMessage: {
-          type: String,
-          maxlength: [1500, 'The text message must have less or equal then 1500 characters'],
-          minlength: [1, 'The text message must have more or equal then 1 characters'],
-          trim: true
-        },
-        metaDataMessage: {
-          timeCreateMessage: {
-            type: String
-            // Date
-          },
-          timeDeleteMessage: {
-            type: String
-            // Date
-          }
-        }
-      }
-    ]
   }
 })
 const Channel = mongoose.model('Channel', channelSchema)
