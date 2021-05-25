@@ -4,6 +4,7 @@ import reducerDataCard from './reducerDataCard'
 import reducerDataChannels from './reducerDataChannels'
 import reducerSetFlagRender from './reducerSetFlagRender'
 import reducerAuth from './reducerAuth'
+import reducerDBDataChannel from './reducerDBDataChannel'
 
 const createRootReducer = (history) =>
   combineReducers({
@@ -11,7 +12,8 @@ const createRootReducer = (history) =>
     reducerDataCard,
     reducerSetFlagRender,
     reducerDataChannels,
-    reducerAuth
+    reducerAuth,
+    reducerDBDataChannel
   })
 
 export default createRootReducer
