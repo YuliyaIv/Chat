@@ -1,6 +1,7 @@
 import Cookies from 'universal-cookie'
-
+import axios from 'axios'
 import { history } from '..'
+import { getChannelsDataDb } from './reducerDBDataChannel'
 
 const UPDATE_LOGIN = 'UPDATE_LOGIN'
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
@@ -50,24 +51,25 @@ export function updatePasswordField(password) {
 }
 
 export function signIn() {
-  return (dispatch, getState) => {
-    const { email, password } = getState().reducerAuth
-    fetch('/api/v2/auth', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        password
+  return async (dispatch, getState) => {
+    try {
+      const { email, password } = getState().reducerAuth
+      const { data } = await axios.post('/api/v2/auth', {
+        data: {
+          email,
+          password
+        }
       })
-    })
-      .then((r) => r.json())
-      .then((data) => {
-        dispatch({ type: LOGIN, token: data.token, user: data.user })
-        history.push('/private')
-      })
+      dispatch({ type: LOGIN, token: data.token, user: data.user })
+      dispatch(getChannelsDataDb(data.user.channelsAccess))
+      history.push('/private')
+    } catch (err) {
+      console.error(new Error(err), 'setNewChannel not a send')
+    }
   }
 }
 
+// revrite on axios
 export function trySignIn() {
   return (dispatch) => {
     fetch('/api/v2/auth')
@@ -79,6 +81,7 @@ export function trySignIn() {
   }
 }
 
+// revrite on axios
 export function tryGetUserInfo() {
   return () => {
     fetch('/api/v2/user-info')
