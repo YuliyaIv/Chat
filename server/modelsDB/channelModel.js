@@ -21,6 +21,12 @@ const channelSchema = new mongoose.Schema({
     type: [String],
     required: [true, 'At least must be admin']
   },
+  chatDataMessage: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Message'
+    }
+  ],
   metaDataChannel: {
     timeCreateChannel: {
       type: String
