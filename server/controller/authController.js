@@ -4,14 +4,14 @@ import User from '../modelsDB/userModel'
 
 exports.auth = async (req, res) => {
   try {
-    const user = await User.findAndValidateUser(req.body)
+    const user = await User.findAndValidateUser(req.body.data)
     const payload = { uid: user.id }
     const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })
     delete user.password
     res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 48 })
     res.json({ status: 'ok', token, user })
   } catch (err) {
-    res.json({ status: 'error', err })
+    res.json({ status: 'error auth', err })
   }
 }
 

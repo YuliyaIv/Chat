@@ -81,6 +81,7 @@ export function getDataChannels() {
   return async (dispatch) => {
     try {
       const { data } = await axios('/api/v1/channelsData')
+
       dispatch({ type: REDUCER_DATA_CHANNELS, dataChannels: data })
     } catch (err) {
       console.error(new Error(err), 'error dataChannels')

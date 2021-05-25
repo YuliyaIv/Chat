@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SideBar from './sideBar/SideBar'
 import ChatMainWindow from './mainWindowChat/ChatMainWindow'
 
@@ -10,6 +10,7 @@ const Chat = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // file json
     dispatch(getDataCard())
     dispatch(getDataChannels())
   }, [])

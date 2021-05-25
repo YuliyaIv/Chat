@@ -27,7 +27,7 @@ exports.createChannel = async (req, res) => {
 
 exports.getChannels = async (req, res) => {
   try {
-    const channels = await Channel.find()
+    const channels = await Channel.find().populate('chatDataMessage')
     successfulAnswer(res, channels, 200)
   } catch (err) {
     errAnswer(res, err, 404)
@@ -61,20 +61,22 @@ exports.deleteChannel = async (req, res) => {
   }
 }
 
-exports.createMessage = async (req, res) => {
+// delete / have new schema for message
+exports.addIdMessage = async (req, res) => {
   try {
     const { id } = req.params
-    const createMessage = req.body
+    const { messId } = req.body
     const message = await Channel.findOneAndUpdate(
       { _id: id },
-      { $push: { chatDataMessage: createMessage } }
+      { $push: { chatDataMessage: messId } }
     )
     successfulAnswer(res, message, 200)
   } catch (err) {
     errAnswer(res, err, 404)
   }
 }
-
+// useFindAndModify
+// delete / have new schema for message
 exports.changeMessage = async (req, res) => {
   try {
     const { id, idMess } = req.params
@@ -93,6 +95,7 @@ exports.changeMessage = async (req, res) => {
   }
 }
 
+// delete / have new schema for message
 exports.deleteMessage = async (req, res) => {
   try {
     const { id, idMess } = req.params

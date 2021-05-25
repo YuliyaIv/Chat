@@ -16,6 +16,7 @@ import Html from '../client/html'
 import routeUser from './routes/routeUser'
 import routeChannel from './routes/routeChannel'
 import routeAuth from './routes/routeAuth'
+import routeMessage from './routes/routeMessage'
 import routeUserInfo from './routes/routeUserInfo'
 import mongooseServices from './services/mongoose'
 import passportJWT from './services/passport'
@@ -254,6 +255,7 @@ app.use('/api/v2/user-info', routeUserInfo)
 app.use('/api/v2/auth', routeAuth)
 app.use('/api/v2/user', routeUser)
 app.use('/api/v2/channel', routeChannel)
+app.use('/api/v2/message', routeMessage)
 
 app.use('/api/', (req, res) => {
   res.status(404)
