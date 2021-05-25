@@ -6,12 +6,14 @@ const router = express.Router()
 
 router.route('/').post(channelsController.createChannel).get(channelsController.getChannels)
 
+// need new method 'add message id'
 router
   .route('/:id')
   .patch(channelsController.changeNameOrDescription)
   .delete(channelsController.deleteChannel)
-  .post(channelsController.createMessage)
+  .post(channelsController.addIdMessage)
 
+// delete / have new schema and route for message
 router
   .route('/:id/:idMess')
   .patch(channelsController.changeMessage)
