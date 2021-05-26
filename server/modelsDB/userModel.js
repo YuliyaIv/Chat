@@ -43,7 +43,12 @@ const userSchema = new mongoose.Schema(
       // required: [true, 'Please provide a phone'],
       minlength: 11
     },
-    channelsAccess: [String],
+    channelsAccess: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Channel'
+      }
+    ],
     channelsOvner: [String],
     userMetaDate: {
       defaultAvatar: String,
@@ -52,6 +57,10 @@ const userSchema = new mongoose.Schema(
   },
   {
     timestamp: true
+  },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true }
   }
 )
 
@@ -92,6 +101,14 @@ userSchema.statics = {
     return user
   }
 }
+
+userSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'channelsAccess'
+  })
+
+  next()
+})
 
 const User = mongoose.model('User', userSchema)
 
