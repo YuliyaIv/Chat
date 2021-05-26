@@ -9,6 +9,7 @@ router.route('/').post(channelsController.createChannel).get(channelsController.
 // need new method 'add message id'
 router
   .route('/:id')
+  .get(channelsController.getChannel)
   .patch(channelsController.changeNameOrDescription)
   .delete(channelsController.deleteChannel)
   .post(channelsController.addIdMessage)
