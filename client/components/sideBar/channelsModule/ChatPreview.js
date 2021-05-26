@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import { getDataParticularChannel } from '../../../redux/reducers/reducerDataChannels'
+import { getParticularChannelDb } from '../../../redux/reducers/reducerDBDataChannel'
 
 const ChatPreview = ({
   message,
@@ -13,17 +14,19 @@ const ChatPreview = ({
   setFlagRenderContextMenu
 }) => {
   const dispatch = useDispatch()
-  console.log('data')
+
   const openContextMenu = (e) => {
     e.preventDefault()
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
     dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, 'channel'))
-    dispatch(getDataParticularChannel(channelId))
+    // dispatch(getDataParticularChannel(channelId))
+    dispatch(getParticularChannelDb(channelId))
   }
 
   const setChannelId = () => {
     if (channelId !== dataParticularId) {
-      return dispatch(getDataParticularChannel(channelId))
+      return dispatch(getParticularChannelDb(channelId))
+      //  return dispatch(getDataParticularChannel(channelId))
     }
     return dataParticularId
   }
