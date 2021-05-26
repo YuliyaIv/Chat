@@ -76,6 +76,7 @@ export function trySignIn() {
       .then((r) => r.json())
       .then((data) => {
         dispatch({ type: LOGIN, token: data.token, user: data.user })
+        dispatch(getChannelsDataDb(data.user.channelsAccess))
         history.push('/private')
       })
   }
