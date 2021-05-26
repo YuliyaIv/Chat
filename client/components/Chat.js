@@ -7,6 +7,7 @@ import { getDataChannels } from '../redux/reducers/reducerDataChannels'
 import { getDataCard } from '../redux/reducers/reducerDataCard'
 
 const Chat = () => {
+  // delete all in the end
   const dispatch = useDispatch()
 
   useEffect(() => {
