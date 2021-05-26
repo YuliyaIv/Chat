@@ -25,9 +25,19 @@ exports.createChannel = async (req, res) => {
   }
 }
 
+exports.getChannel = async (req, res) => {
+  const { id } = req.params
+  try {
+    const channels = await Channel.findOne({ _id: id })
+    successfulAnswer(res, channels, 200)
+  } catch (err) {
+    errAnswer(res, err, 404)
+  }
+}
+
 exports.getChannels = async (req, res) => {
   try {
-    const channels = await Channel.find().populate('chatDataMessage')
+    const channels = await Channel.find()
     successfulAnswer(res, channels, 200)
   } catch (err) {
     errAnswer(res, err, 404)
