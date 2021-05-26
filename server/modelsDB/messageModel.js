@@ -18,9 +18,6 @@ const messageSchema = new mongoose.Schema({
     maxlength: [1500, 'The text message must have less or equal then 1500 characters'],
     minlength: [1, 'The text message must have more or equal then 1 characters'],
     trim: true
-  },
-  channelOvner: {
-    type: String
   }
 })
 
