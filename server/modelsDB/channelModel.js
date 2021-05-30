@@ -60,6 +60,13 @@ channelSchema.pre(/^find/, function (next) {
   next()
 })
 
+// virtual data
+// channelSchema.virtual('message', {
+//   ref: 'Message',
+//   foreignField: '_id',
+//   localField: 'chatDataMessage'
+// })
+
 const Channel = mongoose.model('Channel', channelSchema)
 
 module.exports = Channel
