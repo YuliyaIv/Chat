@@ -27,8 +27,20 @@ exports.createChannel = async (req, res) => {
 
 exports.getChannel = async (req, res) => {
   const { id } = req.params
+  console.log('id', id)
   try {
     const channels = await Channel.findOne({ _id: id })
+    successfulAnswer(res, channels, 200)
+  } catch (err) {
+    errAnswer(res, err, 404)
+  }
+}
+
+exports.getUserChannels = async (req, res) => {
+  const { idUser } = req.params
+  console.log('idUser', idUser)
+  try {
+    const channels = await Channel.find({ listUsersAccess: { $in: idUser } })
     successfulAnswer(res, channels, 200)
   } catch (err) {
     errAnswer(res, err, 404)
