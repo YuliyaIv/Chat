@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { setNewMessage } from '../../../redux/reducers/reducerDataChannels'
+// import { setNewMessage } from '../../../redux/reducers/reducerDataChannels'
+import { setNewMessageDB } from '../../../redux/reducers/reducerDBDataChannel'
 import ChatInputChangeMessage from './ChatInputChangeMessage'
 
-const ChatInput = ({ idParticularMessage }) => {
+const ChatInput = ({ idParticularMessage, particularChannelId, idLoggedUser }) => {
   const { flagRenderChatInput } = useSelector((s) => s.reducerSetFlagRender)
   const dispatch = useDispatch()
   const [textMessage, setTextMessage] = useState('')
@@ -14,18 +15,26 @@ const ChatInput = ({ idParticularMessage }) => {
     setTextMessage(e.target.value)
   }
 
+  // not full regular express
   const nonEmptyMessage = /^\s*$/g.test(textMessage)
+
+  // const sendMessageOnClick = () => {
+  //   if (!nonEmptyMessage) {
+  //     dispatch(setNewMessage(textMessage))
+  //     setTextMessage('')
+  //   }
+  // }
 
   const sendMessageOnClick = () => {
     if (!nonEmptyMessage) {
-      dispatch(setNewMessage(textMessage))
+      dispatch(setNewMessageDB(textMessage, particularChannelId, idLoggedUser))
       setTextMessage('')
     }
   }
 
   function handleKeyPress(e) {
     if (e.key === 'Enter' && !nonEmptyMessage) {
-      dispatch(setNewMessage(textMessage))
+      dispatch(setNewMessageDB(textMessage, particularChannelId, idLoggedUser))
       setTextMessage('')
     }
   }

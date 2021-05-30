@@ -13,7 +13,7 @@ import ShellModal from '../reuseComponent/ShellModal'
 
 const ChatHistoryMessages = ({
   messages,
-  etoSoobshenieNapisalImennoTi,
+  idLoggedUser,
   idParticularMessage,
   setIdParticularMessage
 }) => {
@@ -25,11 +25,11 @@ const ChatHistoryMessages = ({
 
   const renderMessage = () => {
     return messages.map((objMessage) => {
-      const indexUser = objMessage.idUserPostedMessage
+      const { idUserPostedMessage } = objMessage
 
-      const { idMessage } = objMessage
+      const idMessage = objMessage._id
 
-      if (etoSoobshenieNapisalImennoTi === indexUser) {
+      if (idLoggedUser === idUserPostedMessage) {
         return (
           <LoggedUser
             key={idMessage}
@@ -42,7 +42,7 @@ const ChatHistoryMessages = ({
           />
         )
       }
-      if (indexUser === 'serviceBot') {
+      if (idUserPostedMessage === 'serviceBot') {
         return <ServiceMessage objMessage={objMessage} key={idMessage} />
       }
       return <OtherUsers objMessage={objMessage} key={idMessage} />
@@ -68,8 +68,7 @@ const ChatHistoryMessages = ({
 
 ChatHistoryMessages.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.object),
-  etoSoobshenieNapisalImennoTi: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-    .isRequired,
+  idLoggedUser: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   idParticularMessage: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   setIdParticularMessage: PropTypes.func
 }
