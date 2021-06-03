@@ -1,4 +1,5 @@
 import Channel from '../modelsDB/channelModel'
+import Message from '../modelsDB/messageModel'
 
 const errAnswer = (response, err, statusCode) => {
   return response.status(statusCode).json({
@@ -18,8 +19,11 @@ const successfulAnswer = (response, dataName, statusCode) => {
 
 exports.createChannel = async (req, res) => {
   try {
-    const newChannel = await Channel.create(req.body)
-    successfulAnswer(res, newChannel, 200)
+    const newChannel = await Channel.create(req.body.newChannel)
+    // must delete this method and add populate for document which was created
+    const findChan = await Channel.findOne({ _id: newChannel._id })
+
+    successfulAnswer(res, findChan, 200)
   } catch (err) {
     errAnswer(res, err, 404)
   }
@@ -27,7 +31,7 @@ exports.createChannel = async (req, res) => {
 
 exports.getChannel = async (req, res) => {
   const { id } = req.params
-  console.log('id', id)
+
   try {
     const channels = await Channel.findOne({ _id: id })
     successfulAnswer(res, channels, 200)
@@ -38,7 +42,7 @@ exports.getChannel = async (req, res) => {
 
 exports.getUserChannels = async (req, res) => {
   const { idUser } = req.params
-  console.log('idUser', idUser)
+
   try {
     const channels = await Channel.find({ listUsersAccess: { $in: idUser } })
     successfulAnswer(res, channels, 200)
