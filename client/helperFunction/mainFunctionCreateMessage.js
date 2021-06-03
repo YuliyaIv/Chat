@@ -1,11 +1,7 @@
-const NewObjMessage = function (idMessage, idUserPostedMessage, textMessage) {
-  this.idMessage = idMessage
+const NewObjMessage = function (idUserPostedMessage, textMessage, channelOvner = 'new channel') {
   this.idUserPostedMessage = idUserPostedMessage
   this.textMessage = textMessage
-  this.metaDataMessage = {
-    timeCreateMessage: 'itd',
-    timeDeleteMessage: 'itd'
-  }
+  this.channelOvner = channelOvner
 }
 
 export default NewObjMessage

@@ -26,7 +26,7 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
         dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
       }
     },
-    [rootElement, flagRenderContextMenu]
+    [flagRenderContextMenu, rootElement]
   )
 
   useEffect(() => {

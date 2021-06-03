@@ -6,7 +6,7 @@ const router = express.Router()
 
 router.route('/').post(channelsController.createChannel).get(channelsController.getChannels)
 
-router.route('/userlist/:idUser').get(channelsController.getUserChannels)
+router.route('/channellist/:idUser').get(channelsController.getUserChannels)
 
 // need new method 'add message id'
 router

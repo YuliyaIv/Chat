@@ -39,8 +39,7 @@ const Channels = () => {
         setContextMenuDataCoord={setContextMenuDataCoord}
         setFlagRenderContextMenu={setFlagRenderContextMenu}
         flagRenderContextMenu={flagRenderContextMenu.flag}
-        // dataParticularId={dataParticularId}
-        dataParticularId={particularChannelId}
+        particularChannelId={particularChannelId}
       />
     )
   })

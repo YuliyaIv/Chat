@@ -5,8 +5,9 @@ import ModalWindow from '../../reuseComponent/ModalWindow'
 import FormAddChannel from './FormAddChannel'
 import NewObjChannel from '../../../helperFunction/mainFunctionAddChannel'
 
-import { setNewChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'
-import NewObjMessage from '../../../helperFunction/mainFunctionCreateMessage'
+import { setNewChannelDB } from '../../../redux/reducers/reducerDBDataChannel'
+// import { setNewChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'
+// import NewObjMessage from '../../../helperFunction/mainFunctionCreateMessage'
 import {
   setFlagRenderModalWindow,
   setFlagRenderSideBarView
@@ -15,6 +16,8 @@ import {
 const AddChannel = () => {
   const dispatch = useDispatch()
   const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
+  // const { particularChannelId } = useSelector((s) => s.reducerDBDataChannel)
+  const { user } = useSelector((s) => s.reducerAuth)
 
   const triggerModal = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag))
@@ -25,20 +28,8 @@ const AddChannel = () => {
   }
 
   const runDispatchFromAcceptButton = (channelNameFromForm, descriptionFromForm) => {
-    const serviceMessage = new NewObjMessage('1', 'serviceBot', 'You create the channel')
-
-    const channel = new NewObjChannel(
-      channelNameFromForm,
-      'idUser11111',
-      descriptionFromForm,
-      serviceMessage
-    )
-
-    function getRandomArbitrary(min, max) {
-      return Math.floor(Math.random() * (max - min) + min)
-    }
-    const idNewChannel = getRandomArbitrary(0, 10000000)
-    dispatch(setNewChannelActionCreator({ [idNewChannel]: channel }))
+    const newChannel = new NewObjChannel(channelNameFromForm, user._id, descriptionFromForm)
+    dispatch(setNewChannelDB(newChannel))
   }
 
   return (

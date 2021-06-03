@@ -8,7 +8,7 @@ const ChatPreview = ({
   message,
   name,
   channelId,
-  dataParticularId,
+  particularChannelId,
   setContextMenuDataCoord,
   flagRenderContextMenu,
   setFlagRenderContextMenu
@@ -17,18 +17,22 @@ const ChatPreview = ({
 
   const openContextMenu = (e) => {
     e.preventDefault()
+
+    console.log('openContextMenu e', e.clientX, e.clientY, e)
+    console.log('openContextMenu channelId', channelId)
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
     dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, 'channel'))
     // dispatch(getDataParticularChannel(channelId))
     dispatch(getParticularChannelDb(channelId))
   }
 
-  const setChannelId = () => {
-    if (channelId !== dataParticularId) {
+  const setChannelId = (e) => {
+    console.log('setChannelId e', e.clientX, e.clientY)
+    if (channelId !== particularChannelId) {
       return dispatch(getParticularChannelDb(channelId))
       //  return dispatch(getDataParticularChannel(channelId))
     }
-    return dataParticularId
+    return particularChannelId
   }
 
   return (
@@ -38,8 +42,8 @@ const ChatPreview = ({
     >
       <button
         type="button"
+        onContextMenu={(e) => openContextMenu(e)}
         onClick={setChannelId}
-        onContextMenu={openContextMenu}
         className="flex w-full flex-row relative focus:outline-none rounded-md"
       >
         <div className="whitespace-nowrap absolute top-0 right-0 text-xs text-gray-700 text-opacity-75 p-1">
@@ -70,14 +74,14 @@ ChatPreview.propTypes = {
   message: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   channelId: PropTypes.string.isRequired,
-  dataParticularId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  particularChannelId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   setContextMenuDataCoord: PropTypes.func,
   flagRenderContextMenu: PropTypes.bool.isRequired,
   setFlagRenderContextMenu: PropTypes.func.isRequired
 }
 
 ChatPreview.defaultProps = {
-  dataParticularId: 'unknown',
+  particularChannelId: 'unknown',
   setContextMenuDataCoord: null
 }
 

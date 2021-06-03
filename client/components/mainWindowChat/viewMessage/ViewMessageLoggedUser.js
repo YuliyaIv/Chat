@@ -12,11 +12,14 @@ const LoggedUser = ({
   const dispatch = useDispatch()
 
   const openContextMenu = (e) => {
+    console.log(e)
     e.preventDefault()
+    console.log('objMessage', objMessage._id)
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
     dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, 'message'))
-    setIdParticularMessage(objMessage.idMessage)
+    setIdParticularMessage(objMessage._id)
   }
+
   return (
     <button
       type="button"

@@ -15,7 +15,7 @@ const successfulAnswer = (response, dataName, statusCode) => {
   })
 }
 
-// i dont know why i return newMessage
+// i dont know why i return newMessage and updatedChannel,must check it later=)
 exports.createMessage = async (req, res) => {
   try {
     const newMessage = await Message.create(req.body)
@@ -27,13 +27,14 @@ exports.createMessage = async (req, res) => {
         runValidators: true
       }
     )
-    successfulAnswer(res, { updatedChannel, newMessage }, 200)
+    const channels = await Channel.find({
+      listUsersAccess: { $in: req.body.idUserPostedMessage }
+    })
+    successfulAnswer(res, { updatedChannel, newMessage, channels }, 200)
   } catch (err) {
     errAnswer(res, err, 404)
   }
 }
-
-// Channel.findOneAndUpdate({ _id: id }, { $push: { chatDataMessage: messId } })
 
 // must be with filter {mess, mess, mess ...}
 exports.getMessages = async (req, res) => {
