@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import Message from './messageModel'
 
 const channelSchema = new mongoose.Schema(
   {
@@ -30,8 +31,8 @@ const channelSchema = new mongoose.Schema(
     ],
     metaDataChannel: {
       timeCreateChannel: {
-        type: String
-        // must be  Date
+        type: Date,
+        default: Date.now()
       },
       timeDeleteChannel: {
         type: String
@@ -56,6 +57,17 @@ channelSchema.pre(/^find/, function (next) {
   this.populate({
     path: 'chatDataMessage'
   })
+
+  next()
+})
+
+channelSchema.pre('save', async function (next) {
+  const firstMessage = await Message.create({
+    idUserPostedMessage: 'serviceBot',
+    textMessage: 'You create the channel',
+    channelOvner: this._id
+  })
+  this.chatDataMessage = [firstMessage.id]
 
   next()
 })
