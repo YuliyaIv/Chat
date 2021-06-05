@@ -27,16 +27,13 @@ exports.createMessage = async (req, res) => {
         runValidators: true
       }
     )
-    const channels = await Channel.find({
-      listUsersAccess: { $in: req.body.idUserPostedMessage }
-    })
-    successfulAnswer(res, { updatedChannel, newMessage, channels }, 200)
+    successfulAnswer(res, { updatedChannel, newMessage }, 200)
   } catch (err) {
     errAnswer(res, err, 404)
   }
 }
 
-// must be with filter {mess, mess, mess ...}
+// must be with filter {mess, mess, mess ...} or delete it
 exports.getMessages = async (req, res) => {
   try {
     const messages = await Message.find()
