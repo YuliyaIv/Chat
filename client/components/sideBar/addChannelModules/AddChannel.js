@@ -29,7 +29,7 @@ const AddChannel = () => {
 
   const runDispatchFromAcceptButton = (channelNameFromForm, descriptionFromForm) => {
     const newChannel = new NewObjChannel(channelNameFromForm, user._id, descriptionFromForm)
-    dispatch(setNewChannelDB(newChannel))
+    dispatch(setNewChannelDB({ newChannel, userId: user._id }))
   }
 
   return (

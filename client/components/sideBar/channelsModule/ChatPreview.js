@@ -18,8 +18,6 @@ const ChatPreview = ({
   const openContextMenu = (e) => {
     e.preventDefault()
 
-    console.log('openContextMenu e', e.clientX, e.clientY, e)
-    console.log('openContextMenu channelId', channelId)
     setContextMenuDataCoord({ x: e.clientX, y: e.clientY })
     dispatch(setFlagRenderContextMenu(!flagRenderContextMenu, 'channel'))
     // dispatch(getDataParticularChannel(channelId))
@@ -27,7 +25,6 @@ const ChatPreview = ({
   }
 
   const setChannelId = (e) => {
-    console.log('setChannelId e', e.clientX, e.clientY)
     if (channelId !== particularChannelId) {
       return dispatch(getParticularChannelDb(channelId))
       //  return dispatch(getDataParticularChannel(channelId))

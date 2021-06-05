@@ -60,6 +60,7 @@ export function signIn() {
           password
         }
       })
+
       dispatch({ type: LOGIN, token: data.token, user: data.user })
       dispatch(getChannelsDataDb(data.user.channelsAccess))
       history.push('/private')

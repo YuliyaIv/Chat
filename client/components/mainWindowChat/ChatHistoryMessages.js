@@ -23,7 +23,6 @@ const ChatHistoryMessages = ({
     y: 0
   })
 
-  console.log('contextMenuDataCoord', contextMenuDataCoord)
   const renderMessage = () => {
     return messages.map((objMessage) => {
       const { idUserPostedMessage } = objMessage
