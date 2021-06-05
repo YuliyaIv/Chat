@@ -1,5 +1,6 @@
 import Channel from '../modelsDB/channelModel'
 import Message from '../modelsDB/messageModel'
+import User from '../modelsDB/userModel'
 
 const errAnswer = (response, err, statusCode) => {
   return response.status(statusCode).json({
@@ -20,6 +21,18 @@ const successfulAnswer = (response, dataName, statusCode) => {
 exports.createChannel = async (req, res) => {
   try {
     const newChannel = await Channel.create(req.body.newChannel)
+    const channelId = newChannel._id
+    const { userId } = req.body
+
+    await User.findOneAndUpdate(
+      { _id: userId },
+      { $push: { channelsAccess: channelId, channelsOvner: channelId } },
+      {
+        new: true,
+        runValidators: true
+      }
+    )
+
     // must delete this method and add populate for document which was created
     const findChan = await Channel.findOne({ _id: newChannel._id })
 
@@ -51,6 +64,7 @@ exports.getUserChannels = async (req, res) => {
   }
 }
 
+// maybe must delete it
 exports.getChannels = async (req, res) => {
   try {
     const channels = await Channel.find()
@@ -60,6 +74,7 @@ exports.getChannels = async (req, res) => {
   }
 }
 
+// didnt change for new db schema
 exports.changeNameOrDescription = async (req, res) => {
   try {
     const { body: updatedData } = req
@@ -78,10 +93,13 @@ exports.changeNameOrDescription = async (req, res) => {
 exports.deleteChannel = async (req, res) => {
   try {
     const { id } = req.params
-    const channel = await Channel.deleteOne({
+    await Message.deleteMany({
+      channelOvner: { $in: id }
+    })
+    await Channel.deleteOne({
       _id: id
     })
-    successfulAnswer(res, channel, 200)
+    successfulAnswer(res, id, 200)
   } catch (err) {
     errAnswer(res, err, 404)
   }
