@@ -1,15 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
+import { setFlagChangeMessage } from '../../../redux/reducers/reducerSetFlagRender'
+import { setNewMessageDB, changeMessageDB } from '../../../redux/reducers/reducerDBDataChannel'
 
-// import { setNewMessage } from '../../../redux/reducers/reducerDataChannels'
-import { setNewMessageDB } from '../../../redux/reducers/reducerDBDataChannel'
-import ChatInputChangeMessage from './ChatInputChangeMessage'
-
-const ChatInput = ({ idParticularMessage, particularChannelId, idLoggedUser }) => {
-  const { flagRenderChatInput } = useSelector((s) => s.reducerSetFlagRender)
+// must be full regular expression, event listener for closing change block, visual effect for text for change, little button for close change
+const ChatInput = ({
+  idParticularMessage,
+  particularChannelId,
+  idLoggedUser,
+  particularChannelData
+}) => {
+  const { flagChangeMessage } = useSelector((s) => s.reducerSetFlagRender)
   const dispatch = useDispatch()
   const [textMessage, setTextMessage] = useState('')
+
+  useEffect(() => {
+    if (flagChangeMessage) {
+      const listOfMessages = particularChannelData.chatDataMessage
+      const objMessage = listOfMessages.find((message) => message._id === idParticularMessage)
+      const prevTextMessage = objMessage.textMessage
+      setTextMessage(prevTextMessage)
+    } else if (!flagChangeMessage) {
+      setTextMessage('')
+    }
+  }, [idParticularMessage, flagChangeMessage])
 
   const textOfInput = (e) => {
     setTextMessage(e.target.value)
@@ -18,42 +33,29 @@ const ChatInput = ({ idParticularMessage, particularChannelId, idLoggedUser }) =
   // not full regular express
   const nonEmptyMessage = /^\s*$/g.test(textMessage)
 
-  // const sendMessageOnClick = () => {
-  //   if (!nonEmptyMessage) {
-  //     dispatch(setNewMessage(textMessage))
-  //     setTextMessage('')
-  //   }
-  // }
+  const actionСhoice = () => {
+    const chooseAction = flagChangeMessage
+      ? dispatch(changeMessageDB(textMessage, idParticularMessage, particularChannelId))
+      : dispatch(setNewMessageDB(textMessage, particularChannelId, idLoggedUser))
+    return chooseAction && dispatch(setFlagChangeMessage(false)) && setTextMessage('')
+  }
 
   const sendMessageOnClick = () => {
     if (!nonEmptyMessage) {
-      dispatch(setNewMessageDB(textMessage, particularChannelId, idLoggedUser))
-      setTextMessage('')
+      actionСhoice()
     }
   }
-
-  function handleKeyPress(e) {
+  function sendMessageKeyPress(e) {
     if (e.key === 'Enter' && !nonEmptyMessage) {
-      dispatch(setNewMessageDB(textMessage, particularChannelId, idLoggedUser))
-      setTextMessage('')
+      actionСhoice()
     }
   }
 
   const showInput = () => {
-    if (flagRenderChatInput) {
-      return (
-        <ChatInputChangeMessage
-          textMessage={textMessage}
-          handleKeyPress={handleKeyPress}
-          textOfInput={textOfInput}
-          idParticularMessage={idParticularMessage}
-        />
-      )
-    }
     return (
       <input
         value={textMessage}
-        onKeyPress={handleKeyPress}
+        onKeyPress={sendMessageKeyPress}
         onChange={textOfInput}
         type="text"
         className="border border-transparent w-full focus:outline-none text-sm h-10 flex items-center"
