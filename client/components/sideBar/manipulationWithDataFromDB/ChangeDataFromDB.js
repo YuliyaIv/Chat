@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  setFlagRenderChatInput,
+  setFlagChangeMessage,
   setFlagRenderModalWindow
 } from '../../../redux/reducers/reducerSetFlagRender'
 
@@ -19,7 +19,7 @@ const ChangeDataFromDB = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag, 'changeDescription'))
   }
   const sendDispatchChangeMessage = () => {
-    dispatch(setFlagRenderChatInput(!flagRenderChatInput))
+    dispatch(setFlagChangeMessage(true))
   }
 
   const actionChangeDataType = () => {

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-// import { getDataChannels } from '../../redux/reducers/reducerDataChannels'
 import ChatHistoryMessages from './ChatHistoryMessages'
 import ChatInput from './chatOrderInput/ChatInput'
 
@@ -9,27 +8,13 @@ import ChatPannel from './ChatPannel'
 import WelcomeWindow from './WelcomeWindow'
 
 const ChatMainWindow = () => {
-  //  const { dataParticularId, dataChannels, newMessage } = useSelector((s) => s.reducerDataChannels)
   const { particularChannelId, particularChannelData } = useSelector((s) => s.reducerDBDataChannel)
   const userData = useSelector((s) => s.reducerAuth.user)
   const [idParticularMessage, setIdParticularMessage] = useState()
-  // const dispatch = useDispatch()
-
-  // useEffect(() => {
-  //   dispatch(getDataChannels())
-  // }, [newMessage])
-
-  // if (!dataParticularId || !dataChannels[dataParticularId]) {
-  //   return <WelcomeWindow />
-  // }
 
   if (!particularChannelId || !particularChannelData) {
     return <WelcomeWindow />
   }
-  // const { channelName } = dataChannels[dataParticularId]
-  // const { description } = dataChannels[dataParticularId]
-  // const idAdmin = dataChannels[dataParticularId].channelAdmin
-  // const messages = dataChannels[dataParticularId].chatDataMessage
 
   const { channelName } = particularChannelData
   const { description } = particularChannelData
@@ -48,6 +33,7 @@ const ChatMainWindow = () => {
       <ChatInput
         idParticularMessage={idParticularMessage}
         // channelName={channelName}
+        particularChannelData={particularChannelData}
         particularChannelId={particularChannelId}
         idLoggedUser={idLoggedUser}
       />
