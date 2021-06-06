@@ -60,3 +60,21 @@ exports.deleteMessage = async (req, res) => {
     errAnswer(res, err, 404)
   }
 }
+
+exports.changeMessage = async (req, res) => {
+  try {
+    const { idMessage } = req.params
+    const newMessageText = req.body.textMessage
+    const updatedMessage = await Message.findOneAndUpdate(
+      { _id: idMessage },
+      { $set: { textMessage: newMessageText } },
+      {
+        new: true,
+        runValidators: true
+      }
+    )
+    successfulAnswer(res, updatedMessage, 200)
+  } catch (err) {
+    errAnswer(res, err, 404)
+  }
+}
