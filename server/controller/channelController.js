@@ -138,17 +138,3 @@ exports.changeMessage = async (req, res) => {
     errAnswer(res, err, 404)
   }
 }
-
-// delete / have new schema for message
-exports.deleteMessage = async (req, res) => {
-  try {
-    const { id, idMess } = req.params
-    const message = await Channel.findOneAndUpdate(
-      { _id: id },
-      { $pull: { chatDataMessage: { _id: idMess } } }
-    )
-    successfulAnswer(res, message, 200)
-  } catch (err) {
-    errAnswer(res, err, 404)
-  }
-}
