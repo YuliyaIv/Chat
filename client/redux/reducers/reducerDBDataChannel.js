@@ -5,6 +5,7 @@ const GET_DATA_PARTICULAR_CHANNEL = 'GET_DATA_PARTICULAR_CHANNEL'
 const SET_NEW_MESSAGE = 'SET_NEW_MESSAGE'
 const SET_NEW_CHANNEL = 'SET_NEW_CHANNEL'
 const DELETE_CHANNEL_WITH_MESSAGES = 'DELETE_CHANNEL_WITH_MESSAGES'
+const DELETE_MESSAGE = 'DELETE_MESSAGE'
 
 const initialState = {
   channels: null,
@@ -45,7 +46,13 @@ export default (state = initialState, action) => {
         channels: action.channels
       }
     }
-
+    case DELETE_MESSAGE: {
+      return {
+        ...state,
+        channels: action.channels,
+        particularChannelData: action.particularChannelData
+      }
+    }
     default:
       return state
   }
@@ -139,6 +146,30 @@ export function deleteChannelDB(channelId) {
       })
     } catch (err) {
       console.error(new Error(err), 'error: send new message')
+    }
+  }
+}
+
+export function deleteMessageDB(idChannel, idMessage) {
+  return async (dispatch, getState) => {
+    try {
+      const store = getState()
+      const {
+        data: { data: updateChannel }
+      } = await axios.delete(`/api/v2/message/${idChannel}/${idMessage}`)
+
+      const channelsList = store.reducerDBDataChannel.channels
+      const updateChannelsList = channelsList.map((channel) =>
+        channel._id === updateChannel._id ? updateChannel : channel
+      )
+
+      dispatch({
+        type: DELETE_MESSAGE,
+        particularChannelData: updateChannel,
+        channels: updateChannelsList
+      })
+    } catch (err) {
+      console.error(new Error(err), 'error: delete message')
     }
   }
 }
