@@ -42,3 +42,21 @@ exports.getMessages = async (req, res) => {
     errAnswer(res, err, 404)
   }
 }
+
+exports.deleteMessage = async (req, res) => {
+  try {
+    const { idChannel, idMessage } = req.params
+    const updateChannel = await Channel.findOneAndUpdate(
+      { _id: idChannel },
+      { $pull: { chatDataMessage: idMessage } },
+      {
+        new: true,
+        runValidators: true
+      }
+    )
+    await Message.deleteOne({ _id: idMessage })
+    successfulAnswer(res, updateChannel, 200)
+  } catch (err) {
+    errAnswer(res, err, 404)
+  }
+}
