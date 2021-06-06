@@ -6,4 +6,6 @@ const router = express.Router()
 
 router.route('/').get(messageController.getMessages).post(messageController.createMessage)
 
+router.route('/:idChannel/:idMessage').delete(messageController.deleteMessage)
+
 module.exports = router
