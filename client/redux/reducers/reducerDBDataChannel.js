@@ -6,6 +6,7 @@ const SET_NEW_MESSAGE = 'SET_NEW_MESSAGE'
 const SET_NEW_CHANNEL = 'SET_NEW_CHANNEL'
 const DELETE_CHANNEL_WITH_MESSAGES = 'DELETE_CHANNEL_WITH_MESSAGES'
 const DELETE_MESSAGE = 'DELETE_MESSAGE'
+const CHANGE_MESSAGE = 'CHANGE_MESSAGE'
 
 const initialState = {
   channels: null,
@@ -46,6 +47,7 @@ export default (state = initialState, action) => {
         channels: action.channels
       }
     }
+    case CHANGE_MESSAGE:
     case DELETE_MESSAGE: {
       return {
         ...state,
@@ -53,6 +55,7 @@ export default (state = initialState, action) => {
         particularChannelData: action.particularChannelData
       }
     }
+
     default:
       return state
   }
@@ -170,6 +173,38 @@ export function deleteMessageDB(idChannel, idMessage) {
       })
     } catch (err) {
       console.error(new Error(err), 'error: delete message')
+    }
+  }
+}
+
+export function changeMessageDB(textMessage, idMessage, channelId) {
+  return async (dispatch, getState) => {
+    try {
+      const store = getState()
+      const { channels, particularChannelData, particularChannelId } = store.reducerDBDataChannel
+      const {
+        data: { data: updatedMessage }
+      } = await axios.patch(`/api/v2/message/${channelId}/${idMessage}`, {
+        textMessage
+      })
+      const updateArrayMessage = particularChannelData.chatDataMessage.map((message) =>
+        message._id === updatedMessage._id ? updatedMessage : message
+      )
+      const updateChannel = { ...particularChannelData, chatDataMessage: updateArrayMessage }
+      const updateChannels = channels.map((channel) =>
+        channel._id === updateChannel._id ? updateChannel : channel
+      )
+      if (particularChannelId === channelId) {
+        dispatch({
+          type: CHANGE_MESSAGE,
+          channels: updateChannels,
+          particularChannelData: updateChannel
+        })
+      } else if (particularChannelId !== channelId) {
+        dispatch({ type: CHANGE_MESSAGE, channels: updateChannels, particularChannelData })
+      }
+    } catch (err) {
+      console.error(new Error(err), 'error: change message')
     }
   }
 }
