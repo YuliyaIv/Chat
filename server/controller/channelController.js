@@ -9,12 +9,10 @@ const errAnswer = (response, err, statusCode) => {
   })
 }
 
-const successfulAnswer = (response, dataName, statusCode) => {
+const successfulAnswer = (response, responseData, statusCode) => {
   return response.status(statusCode).json({
     status: 'success',
-    data: {
-      dataName
-    }
+    responseData
   })
 }
 
@@ -75,15 +73,33 @@ exports.getChannels = async (req, res) => {
 }
 
 // didnt change for new db schema
+// exports.changeNameOrDescription = async (req, res) => {
+//   try {
+//     const { body: updatedData } = req
+//     const { id } = req.params
+
+//     const channel = await Channel.findByIdAndUpdate(id, updatedData, {
+//       new: true,
+//       runValidators: true
+//     })
+//     successfulAnswer(res, channel, 200)
+//   } catch (err) {
+//     errAnswer(res, err, 404)
+//   }
+// }
+
 exports.changeNameOrDescription = async (req, res) => {
   try {
-    const { body: updatedData } = req
     const { id } = req.params
-
-    const channel = await Channel.findByIdAndUpdate(id, updatedData, {
-      new: true,
-      runValidators: true
-    })
+    const { whatСhange, text } = req.body
+    const channel = await Channel.findOneAndUpdate(
+      { _id: id },
+      { [whatСhange]: text },
+      {
+        new: true,
+        runValidators: true
+      }
+    )
     successfulAnswer(res, channel, 200)
   } catch (err) {
     errAnswer(res, err, 404)
