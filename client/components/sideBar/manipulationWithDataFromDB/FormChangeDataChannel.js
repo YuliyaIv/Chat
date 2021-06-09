@@ -1,38 +1,38 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFlagRenderModalWindow } from '../../../redux/reducers/reducerSetFlagRender'
-import { changeNameDescriptionChannelActionCreator } from '../../../redux/reducers/reducerDataChannels'
+import { changeChannelNameOrDescriptionDB } from '../../../redux/reducers/reducerDBDataChannel'
 
 const FormChangeDataChannel = () => {
+  // must be input validation with reg express
   const dispatch = useDispatch()
   const { flagRenderModalWindow } = useSelector((s) => s.reducerSetFlagRender)
-  const { dataChannels, dataParticularId } = useSelector((s) => s.reducerDataChannels)
-  const currentName = dataChannels[dataParticularId].channelName
-  const currentDesription = dataChannels[dataParticularId].description
-  const [newNameChannel, setNewNameChannel] = useState(currentName)
-  const [newDescription, setNewDescription] = useState(currentDesription)
+  const { particularChannelData, particularChannelId } = useSelector((s) => s.reducerDBDataChannel)
+  const [inputText, setInputText] = useState({ text: '', whatСhange: '' })
+
+  useEffect(() => {
+    if (flagRenderModalWindow.whatOpen === 'changeChannelName') {
+      setInputText({ text: particularChannelData.channelName, whatСhange: 'channelName' })
+    } else if (flagRenderModalWindow.whatOpen === 'changeDescription') {
+      setInputText({ text: particularChannelData.description, whatСhange: 'description' })
+    }
+  }, [flagRenderModalWindow])
 
   const triggerModal = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag))
   }
 
-  const changeNameChannel = (e) => {
-    setNewNameChannel(e.target.value)
-  }
-  const changeDescription = (e) => {
-    setNewDescription(e.target.value)
+  const changeData = (e) => {
+    setInputText((state) => ({ ...state, text: e.target.value }))
   }
 
   const clearForm = (e) => {
     e.preventDefault()
-    setNewNameChannel('')
-    setNewDescription('')
+    setInputText({ whatСhange: '', text: '' })
     triggerModal()
   }
-  const sendDataNameAndDescrition = (event) => {
-    dispatch(
-      changeNameDescriptionChannelActionCreator(dataParticularId, newNameChannel, newDescription)
-    )
+  const sendDataNameOrDescrition = (event) => {
+    dispatch(changeChannelNameOrDescriptionDB(particularChannelId, inputText))
     clearForm(event)
   }
 
@@ -40,38 +40,8 @@ const FormChangeDataChannel = () => {
     clearForm(event)
   }
 
-  const chooseHeader = () => {
-    return `Change channel ${
-      flagRenderModalWindow.whatOpen === 'changeChannelName' ? 'name' : 'description'
-    }`
-  }
-
-  const openBlock = (arg) => {
-    if (arg === 'changeChannelName') {
-      return (
-        <div>
-          <input
-            value={newNameChannel}
-            type="text"
-            onChange={changeNameChannel}
-            placeholder="Channel name"
-            className="focus:outline-none mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-          />
-        </div>
-      )
-    }
-    return (
-      <div>
-        <input
-          value={newDescription}
-          onChange={changeDescription}
-          type="text"
-          placeholder="Description"
-          className="focus:outline-none mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
-        />
-      </div>
-    )
-  }
+  const selectPlaceholder =
+    flagRenderModalWindow.whatOpen === 'changeChannelName' ? 'channel name' : 'description'
 
   return (
     <div className="font-sans container mx-auto px-4">
@@ -80,15 +50,23 @@ const FormChangeDataChannel = () => {
           <div className="card bg-teal-600 shadow-lg  w-full h-full rounded-3xl absolute  transform -rotate-6" />
           <div className="card bg-lime-600 shadow-lg  w-full h-full rounded-3xl absolute  transform rotate-6" />
           <div className="relative w-full rounded-3xl  px-6 py-4 bg-gray-100 shadow-md">
-            {chooseHeader()}
-            <form onSubmit={sendDataNameAndDescrition} method="#" action="#" className="mt-10">
-              {openBlock(flagRenderModalWindow.whatOpen)}
+            {selectPlaceholder}
+            <form onSubmit={sendDataNameOrDescrition} method="#" action="#" className="mt-10">
+              <div>
+                <input
+                  value={inputText.text}
+                  onChange={changeData}
+                  type="text"
+                  placeholder={`enter new ${selectPlaceholder}`}
+                  className="focus:outline-none mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0"
+                />
+              </div>
               <div className="flex mt-7 items-center text-center">
                 <hr className="border-gray-300 border-1 w-full rounded-md" />
               </div>
               <div className="flex mt-7 justify-center w-full">
                 <button
-                  onClick={sendDataNameAndDescrition}
+                  onClick={sendDataNameOrDescrition}
                   type="button"
                   className="focus:outline-none  mr-5 bg-teal-600 border-none px-4 py-2 rounded-xl cursor-pointer text-white shadow-xl hover:shadow-inner transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105"
                 >
