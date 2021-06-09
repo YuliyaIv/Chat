@@ -7,7 +7,7 @@ import {
 
 const ChangeDataFromDB = () => {
   const dispatch = useDispatch()
-  const { flagRenderModalWindow, flagRenderContextMenu, flagRenderChatInput } = useSelector(
+  const { flagRenderModalWindow, flagRenderContextMenu } = useSelector(
     (s) => s.reducerSetFlagRender
   )
   const { typeOfContent } = flagRenderContextMenu

@@ -26,6 +26,14 @@ const ChatInput = ({
     }
   }, [idParticularMessage, flagChangeMessage])
 
+  // useEffect(() => {
+  //   const win = document.querySelector('#root')
+  //   win.addEventListener('click', (e) => console.log(e.path))
+  //   return () => {
+  //     win.removeEventListener('click', () => console.log(' remoove'))
+  //   }
+  // }, [])
+
   const textOfInput = (e) => {
     setTextMessage(e.target.value)
   }
@@ -65,7 +73,7 @@ const ChatInput = ({
   }
 
   return (
-    <div className="bottom-0 w-full flex flex-row items-center">
+    <div id="input" className="bottom-0 w-full flex flex-row items-center">
       <div className=" bg-cyan-800 text-grey-800 hover:bg-cyan-700 flex flex-row items-center w-full border rounded-3xl h-12 px-2">
         <button
           type="button"
