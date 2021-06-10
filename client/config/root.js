@@ -13,6 +13,7 @@ import NotFound from '../components/404'
 import Startup from './startup'
 import LoginForm from '../components/LoginForm'
 import PrivateComponent from '../components/PrivateRout'
+import RegistrationForm from '../components/RegistrationForm'
 
 const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
   const auth = useSelector((s) => s.reducerAuth)
@@ -77,6 +78,7 @@ const RootComponent = (props) => {
           <Switch>
             <Route exact path="/" component={() => <LoginForm />} />
             <Route exact path="/dashboard" component={() => <App />} />
+            <Route exact path="/regis" component={() => <RegistrationForm />} />
             <Route exact path="/auth" component={() => <LoginForm />} />
             <OnlyAnonymousRoute exact path="/login" component={() => <LoginForm />} />
             <PrivateRoute exact path="/private" component={() => <App />} />
