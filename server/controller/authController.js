@@ -30,3 +30,14 @@ exports.verify = async (req, res) => {
     res.json({ status: 'error', err })
   }
 }
+
+exports.verifyEmail = async (req, res) => {
+  try {
+    const email = req.params.validEmail
+    const findEmail = await User.findOne({ email })
+    const isEmail = findEmail ? 'Email already been taken' : 'Email available'
+    res.json({ msg: isEmail })
+  } catch (err) {
+    res.json({ status: 'error', err })
+  }
+}
