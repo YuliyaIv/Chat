@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
 
@@ -23,6 +23,12 @@ const ChatHistoryMessages = ({
     y: 0
   })
 
+  const scrollRef = useRef()
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
+
   const renderMessage = () => {
     return messages.map((objMessage) => {
       const { idUserPostedMessage } = objMessage
@@ -31,21 +37,27 @@ const ChatHistoryMessages = ({
 
       if (idLoggedUser === idUserPostedMessage) {
         return (
-          <LoggedUser
-            key={idMessage}
-            objMessage={objMessage}
-            setIdParticularMessage={setIdParticularMessage}
-            setContextMenuDataCoord={setContextMenuDataCoord}
-            contextMenuDataCoord={contextMenuDataCoord}
-            flagRenderContextMenu={flagRenderContextMenu.flag}
-            setFlagRenderContextMenu={setFlagRenderContextMenu}
-          />
+          <div ref={scrollRef} key={idMessage}>
+            <LoggedUser
+              key={idMessage}
+              objMessage={objMessage}
+              setIdParticularMessage={setIdParticularMessage}
+              setContextMenuDataCoord={setContextMenuDataCoord}
+              contextMenuDataCoord={contextMenuDataCoord}
+              flagRenderContextMenu={flagRenderContextMenu.flag}
+              setFlagRenderContextMenu={setFlagRenderContextMenu}
+            />
+          </div>
         )
       }
       if (idUserPostedMessage === 'serviceBot') {
         return <ServiceMessage objMessage={objMessage} key={idMessage} />
       }
-      return <OtherUsers objMessage={objMessage} key={idMessage} />
+      return (
+        <div ref={scrollRef} key={idMessage}>
+          <OtherUsers objMessage={objMessage} />
+        </div>
+      )
     })
   }
 
