@@ -12,7 +12,7 @@ const Startup = (props) => {
       dispatch(trySignIn())
     }
     dispatch(tryGetUserInfo())
-  }, [])
+  }, [dispatch, token])
 
   return props.children
 }

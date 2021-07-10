@@ -32,7 +32,7 @@ const ModalWindow = ({ children }) => {
     return () => {
       return modal.removeEventListener('click', (e) => handleClickOutside(e))
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div

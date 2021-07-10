@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import ChatHistoryMessages from './ChatHistoryMessages'
-import ChatInput from './chatOrderInput/ChatInput'
+import ChatInput from './ChatOrderInput/ChatInput'
 
 import ChatPannel from './ChatPannel'
 import WelcomeWindow from './WelcomeWindow'

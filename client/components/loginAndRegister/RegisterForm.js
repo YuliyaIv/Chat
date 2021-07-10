@@ -23,7 +23,7 @@ const RegisterForm = () => {
       .max(15, 'name can be maximum 15 characters')
       .required('name is required'),
     email: Yup.string()
-      .test('check email', 'err email', async function (value) {
+      .test('check email', 'err email', async function check(value) {
         const { path, createError } = this
         if (/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
           const checkEmail = await axios(`/api/v2/auth/register/${value}`)

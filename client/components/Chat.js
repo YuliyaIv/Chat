@@ -14,7 +14,7 @@ const Chat = () => {
     // file json
     dispatch(getDataCard())
     dispatch(getDataChannels())
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="flex flex-row h-screen w-screen fixed antialiased text-gray-800">

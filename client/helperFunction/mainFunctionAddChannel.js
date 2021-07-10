@@ -1,4 +1,4 @@
-const NewObjChannel = function (channelName, channelAdmin, description) {
+function NewObjChannel(channelName, channelAdmin, description) {
   this.channelName = channelName
   this.channelAdmin = channelAdmin
   this.description = description

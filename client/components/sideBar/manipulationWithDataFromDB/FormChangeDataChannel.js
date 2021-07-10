@@ -16,7 +16,7 @@ const FormChangeDataChannel = () => {
     } else if (flagRenderModalWindow.whatOpen === 'changeDescription') {
       setInputText({ text: particularChannelData.description, whatСhange: 'description' })
     }
-  }, [flagRenderModalWindow])
+  }, [flagRenderModalWindow, particularChannelData.channelName, particularChannelData.description])
 
   const triggerModal = () => {
     dispatch(setFlagRenderModalWindow(!flagRenderModalWindow.flag))

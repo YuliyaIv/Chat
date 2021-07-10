@@ -20,7 +20,6 @@ const UsersList = () => {
   }
 
   const rerenderUsersInfo = Object.keys(cardOfUsers).map((id) => {
-    console.log('cardOfUsers[id]._id', cardOfUsers[id])
     return (
       <UserDataCard
         key={cardOfUsers[id]._id}

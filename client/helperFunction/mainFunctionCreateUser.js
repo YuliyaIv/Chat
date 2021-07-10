@@ -1,4 +1,4 @@
-const NewObjUser = function ({ name, password, confirmPassword, email }) {
+function NewObjUser({ name, password, confirmPassword, email }) {
   this.role = ['user']
   this.channelsAccess = []
   this.channelsOvner = []
