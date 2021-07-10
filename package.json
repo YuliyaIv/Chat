@@ -4,7 +4,7 @@
     "description": "Boilerplate SkillCrucial",
     "main": "index.js",
     "engines": {
-      "node": "14.x"
+        "node": "14.x"
     },
     "scripts": {
         "docker-start-dev": "docker-compose -f \"docker\\DEV.docker-compose.yml\" up",
@@ -96,6 +96,7 @@
         "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "formik": "^2.2.9",
+        "heroku": "^7.56.0",
         "history": "^4.10.1",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.12.7",
