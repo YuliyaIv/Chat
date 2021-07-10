@@ -3,18 +3,25 @@ import { useField } from 'formik'
 
 const CustomInputUnit = (props) => {
   const [field, meta] = useField(props)
-  const { validationRequirementStyle, validationRequirement, errorStyle, ...separatedProps } = props
+  const {
+    labelText,
+    validationRequirementStyle,
+    validationRequirement,
+    errorStyle,
+    ...separatedProps
+  } = props
 
   return (
     <>
       <label htmlFor={props.name}>
+        {labelText}
         <input {...field} {...separatedProps} />
       </label>
 
       {meta.error && meta.touched ? (
-        <p className={errorStyle}>{meta.error}</p>
+        <div className={errorStyle}>{meta.error}</div>
       ) : (
-        <p className={validationRequirementStyle}>{validationRequirement}</p>
+        <div className={validationRequirementStyle}>{validationRequirement}</div>
       )}
     </>
   )
