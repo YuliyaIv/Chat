@@ -17,7 +17,7 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
         dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
       }
     },
-    [flagRenderContextMenu, rootElement]
+    [flagRenderContextMenu, rootElement, dispatch]
   )
 
   const handleClickOutsideFromRoot = useCallback(
@@ -26,22 +26,22 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
         dispatch(setFlagRenderContextMenu(!flagRenderContextMenu))
       }
     },
-    [flagRenderContextMenu, rootElement]
+    [flagRenderContextMenu, rootElement, dispatch]
   )
 
   useEffect(() => {
+    // waant to see this code in git
     document.body.appendChild(modal)
     modal.addEventListener('click', handleClickOutsideFromModal)
     rootElement.addEventListener('click', handleClickOutsideFromRoot)
     modal.setAttribute('class', 'flex items-center justify-center')
     modal.setAttribute('style', `position: fixed; top: ${y}px; left: ${x}px;`)
-    console.log(window.innerHeight, window.innerWidth)
     return () => {
       document.body.removeChild(modal)
       modal.removeEventListener('click', handleClickOutsideFromModal)
       rootElement.removeEventListener('click', handleClickOutsideFromRoot)
     }
-  }, [])
+  }, [dispatch, handleClickOutsideFromModal, handleClickOutsideFromRoot])
 
   return ReactDOM.createPortal(
     <div id="modalWind" className="z-100 border  bg-gray-50 border-gray-300  rounded-md">
