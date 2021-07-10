@@ -1,37 +1,39 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PropTypes from 'prop-types'
-import { getUserActivityStatus } from '../../../redux/reducers/reducerDataCard'
+import defaultAvatar from '../../../assets/images/defaultAvatar.jpg'
+// import { getUserActivityStatus } from '../../../redux/reducers/reducerDataCard'
 
 const UserDataCardInfo = ({ info, idOfUser }) => {
-  const dispatch = useDispatch()
-  const { userActivityStatus } = useSelector((s) => s.reducerDataCard)
+  // const dispatch = useDispatch()
+  // const { userActivityStatus } = useSelector((s) => s.reducerDataCard)
 
-  useEffect(() => {
-    dispatch(getUserActivityStatus(idOfUser))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(getUserActivityStatus(idOfUser))
+  // }, [])
 
-  const statusOfUser = (status) => {
-    switch (status) {
-      case 'Online':
-        return 'green'
-      case 'Offline':
-        return 'gray'
-      case 'Not disturb':
-        return 'red'
-      default:
-        return 'yellow'
-    }
-  }
+  // const statusOfUser = (status) => {
+  //   switch (status) {
+  //     case 'Online':
+  //       return 'green'
+  //     case 'Offline':
+  //       return 'gray'
+  //     case 'Not disturb':
+  //       return 'red'
+  //     default:
+  //       return 'yellow'
+  //   }
+  // }
 
-  const stylesOfActivityStatus = `bg-${statusOfUser(
-    userActivityStatus
-  )}-500 rounded-full w-2.5 h-2.5 block mx-2`
+  // const stylesOfActivityStatus = `bg-${statusOfUser(
+  //   userActivityStatus
+  // )}-500 rounded-full w-2.5 h-2.5 block mx-2`
   return (
     <div className="max-w-sm bg-blueGray-300 shadow-lg rounded-lg  my-4  ">
       <img
-        className="w-full h-56 object-cover object-center"
-        src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
+        className="w-full h-72 object-cover object-center"
+        src={defaultAvatar}
+        // src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80"
         alt="avatar"
       />
       <div className="flex items-center justify-center px-6 py-3 bg-blueGray-800">
@@ -49,10 +51,10 @@ const UserDataCardInfo = ({ info, idOfUser }) => {
           <h2 className="text-xl font-semibold text-gray-800 flex justify-center mr-3">
             {info.nameUser}
           </h2>
-          <span className="flex items-center justify-center content-center border rounded-full h-5 pr-2">
+          {/* <span className="flex items-center justify-center content-center border rounded-full h-5 pr-2">
             <div className={stylesOfActivityStatus} />
             {userActivityStatus}
-          </span>
+           </span> */}
         </div>
 
         <p className="py-2 text-lg text-gray-700">{info.aboutUser}</p>

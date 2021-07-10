@@ -1,19 +1,23 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react'
+import React, { Suspense } from 'react'
 import PropTypes from 'prop-types'
 import { Provider, useSelector } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import { Switch, Route, Redirect, StaticRouter } from 'react-router-dom'
-
 import store, { history } from '../redux'
-
 import App from '../components/App'
-import NotFound from '../components/404'
 
+import NotFound from '../components/404'
 import Startup from './startup'
-import LoginForm from '../components/LoginForm'
-import PrivateComponent from '../components/PrivateRout'
-import RegistrationForm from '../components/RegistrationForm'
+import RegisterWrapper from '../components/loginAndRegister/RegisterWrapper'
+import LoginWrapper from '../components/loginAndRegister/LoginWrapper'
+
+// const Register = React.lazy(() => import('../components/loginAndRegister/RegisterWrapper'))
+// const Test = (
+//   <Suspense fallback={<h1>Loading profile...</h1>}>
+//     <Register />
+//   </Suspense>
+// )
 
 const OnlyAnonymousRoute = ({ component: Component, ...rest }) => {
   const auth = useSelector((s) => s.reducerAuth)
@@ -76,11 +80,11 @@ const RootComponent = (props) => {
       <RouterSelector history={history} location={props.location} context={props.context}>
         <Startup>
           <Switch>
-            <Route exact path="/" component={() => <LoginForm />} />
+            <Route exact path="/" component={() => <LoginWrapper />} />
             <Route exact path="/dashboard" component={() => <App />} />
-            <Route exact path="/regis" component={() => <RegistrationForm />} />
-            <Route exact path="/auth" component={() => <LoginForm />} />
-            <OnlyAnonymousRoute exact path="/login" component={() => <LoginForm />} />
+            <Route exact path="/regis" component={() => <RegisterWrapper />} />
+            <Route exact path="/auth" component={() => <LoginWrapper />} />
+            <OnlyAnonymousRoute exact path="/login" component={() => <LoginWrapper />} />
             <PrivateRoute exact path="/private" component={() => <App />} />
             <Route component={() => <NotFound />} />
           </Switch>

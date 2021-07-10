@@ -32,7 +32,6 @@ const ChatMainWindow = () => {
       />
       <ChatInput
         idParticularMessage={idParticularMessage}
-        // channelName={channelName}
         particularChannelData={particularChannelData}
         particularChannelId={particularChannelId}
         idLoggedUser={idLoggedUser}

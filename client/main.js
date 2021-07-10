@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import Root from './config/root'
-
+import './assets/fonts/logo.svg'
 import './assets/scss/main.scss'
 
 const target = document.getElementById('root')

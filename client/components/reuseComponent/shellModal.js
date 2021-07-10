@@ -35,6 +35,7 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
     rootElement.addEventListener('click', handleClickOutsideFromRoot)
     modal.setAttribute('class', 'flex items-center justify-center')
     modal.setAttribute('style', `position: fixed; top: ${y}px; left: ${x}px;`)
+    console.log(window.innerHeight, window.innerWidth)
     return () => {
       document.body.removeChild(modal)
       modal.removeEventListener('click', handleClickOutsideFromModal)
@@ -43,8 +44,8 @@ const ShellModal = ({ contextMenuDataCoord: { x, y }, children }) => {
   }, [])
 
   return ReactDOM.createPortal(
-    <div id="modalWind" className="z-100 border  bg-gray-50 border-gray-400 shadow-lg rounded-md">
-      <div className="flex flex-col p-1 bg-gray-50 shadow-lg rounded-md">{children}</div>
+    <div id="modalWind" className="z-100 border  bg-gray-50 border-gray-300  rounded-md">
+      <div className="flex flex-col shadow-lg text-sm">{children}</div>
     </div>,
     modal
   )

@@ -295,6 +295,7 @@ let connections = []
  (это пока не связано с конкретным юзером, просто связь между клиентом и сервером),
   на каждую связь генерируется уникальный айди и пока он с ни чем никак не связан
    */
+
 io.on('connection', (connection) => {
   // const user = getUserByToken(connection.handshake.auth.token) // для авторизации
   // connection.userId = user.id     // для авторизации

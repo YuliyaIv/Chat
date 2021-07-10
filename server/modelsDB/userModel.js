@@ -7,11 +7,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       unique: [true, 'A name must be unique'],
       required: [true, 'User must have a name'],
-      maxlength: [40, 'The name must have less or equal then 40 characters']
+      maxlength: [15, 'The name must have less or equal than 15 characters'],
+      minlength: [5, 'The name must be at least 5 characters']
     },
 
     avatar: {
-      type: String
+      type: String,
+      default: 'default'
     },
     role: {
       type: [String],
@@ -24,8 +26,8 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: [true, 'Please provide a password'],
-      maxlength: [40, 'max 40 symbols'],
-      minlength: [8, 'min 8 symbols']
+      maxlength: [10, 'max 10 symbols'],
+      minlength: [6, 'min 6 symbols']
     },
     passwordConfirm: {
       type: String,
@@ -40,7 +42,6 @@ const userSchema = new mongoose.Schema(
     },
     phone: {
       type: String,
-      // required: [true, 'Please provide a phone'],
       minlength: 11
     },
     channelsAccess: [
@@ -50,9 +51,8 @@ const userSchema = new mongoose.Schema(
       }
     ],
     channelsOvner: [String],
-    userMetaDate: {
-      defaultAvatar: String,
-      statusActivity: String
+    statusActivity: {
+      type: String
     }
   },
   {

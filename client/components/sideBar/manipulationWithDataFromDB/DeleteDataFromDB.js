@@ -21,9 +21,9 @@ const DeleteDataFromDB = ({ idParticularMessage }) => {
     <button
       type="button"
       onClick={sendActionDelete}
-      className="h-full p-1 bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200"
+      className="h-full  bg-gray-50 shadow-lg px-3 py-1 duration-500 border border-gray-100 hover:bg-gray-200"
     >
-      Delete {idParticularMessage}
+      Delete
     </button>
   )
 }

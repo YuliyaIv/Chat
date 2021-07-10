@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import NewObjUser from '../../client/helperFunction/mainFunctionCreateUser'
 import config from '../config'
 import User from '../modelsDB/userModel'
 

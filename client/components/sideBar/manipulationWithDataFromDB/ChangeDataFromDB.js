@@ -34,18 +34,18 @@ const ChangeDataFromDB = () => {
       <button
         onClick={actionChangeDataType}
         type="button"
-        className=" p-1 bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200"
+        className=" bg-gray-50 shadow-lg px-3 py-1 duration-500 border border-gray-200 hover:bg-gray-200"
       >
-        Change {typeOfContent} name
+        Change name
       </button>
 
       {typeOfContent === 'channel' && (
         <button
           onClick={sendDispatchDescription}
           type="button"
-          className=" p-1 bg-gray-50 shadow-lg rounded-md duration-500 border border-gray-300 hover:bg-gray-200"
+          className=" bg-gray-50 shadow-lg px-3 py-1 duration-500 border border-gray-2200 hover:bg-gray-200"
         >
-          Change {typeOfContent} description
+          Change description
         </button>
       )}
     </div>

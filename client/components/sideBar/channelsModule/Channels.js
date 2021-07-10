@@ -17,15 +17,11 @@ const Channels = () => {
   const { flagRenderContextMenu, flagRenderModalWindow } = useSelector(
     (s) => s.reducerSetFlagRender
   )
-  //  const { dataChannels, dataParticularId } = useSelector((s) => s.reducerDataChannels)
   const { channels, particularChannelId } = useSelector((s) => s.reducerDBDataChannel)
   const [contextMenuDataCoord, setContextMenuDataCoord] = useState({
     x: 0,
     y: 0
   })
-
-  // console.log('channels', channels)
-  // console.log('dataChannels', dataChannels)
 
   const renderChat = channels?.map((channel) => {
     const indexLastlMessage = channel.chatDataMessage.length - 1
@@ -43,25 +39,6 @@ const Channels = () => {
       />
     )
   })
-
-  // const renderChat = Object.keys(dataChannels).map((channelId) => {
-  //   const messagesInChat = dataChannels[channelId].chatDataMessage
-  //   const indexLastlMessage = messagesInChat.length - 1
-  //   const getLastMessage = messagesInChat[indexLastlMessage].textMessage
-
-  //   return (
-  //     <ChatPreview
-  //       key={channelId}
-  //       channelId={channelId}
-  //       name={dataChannels[channelId].channelName}
-  //       message={getLastMessage}
-  //       setContextMenuDataCoord={setContextMenuDataCoord}
-  //       setFlagRenderContextMenu={setFlagRenderContextMenu}
-  //       flagRenderContextMenu={flagRenderContextMenu.flag}
-  //       dataParticularId={dataParticularId}
-  //     />
-  //   )
-  // })
 
   return (
     <div className="flex flex-col h-full w-full  ">

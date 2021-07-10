@@ -151,13 +151,13 @@ const config = {
       {
         test: /\.svg$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          },
+          // {
+          //   loader: 'file-loader',
+          //   options: {
+          //     name: '[name].[ext]',
+          //     outputPath: 'fonts/'
+          //   }
+          // },
           {
             loader: 'svg-url-loader',
             options: {

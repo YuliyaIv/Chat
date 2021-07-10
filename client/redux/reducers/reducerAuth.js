@@ -6,13 +6,15 @@ import { getChannelsDataDb } from './reducerDBDataChannel'
 const UPDATE_LOGIN = 'UPDATE_LOGIN'
 const UPDATE_PASSWORD = 'UPDATE_PASSWORD'
 const LOGIN = 'LOGIN'
+const LOGGING_RESULT = 'LOGGING_STATUS'
 
 const cookies = new Cookies()
 const initialState = {
   email: '',
   password: '',
   token: cookies.get('token'),
-  user: {}
+  user: {},
+  loggingResult: null
 }
 
 export default (state = initialState, action) => {
@@ -37,6 +39,12 @@ export default (state = initialState, action) => {
         user: action.user
       }
     }
+    case LOGGING_RESULT: {
+      return {
+        ...state,
+        loggingStatus: action.loggingStatus
+      }
+    }
     default:
       return state
   }
@@ -50,25 +58,26 @@ export function updatePasswordField(password) {
   return { type: UPDATE_PASSWORD, password }
 }
 
-export function signIn() {
-  return async (dispatch, getState) => {
-    try {
-      const { email, password } = getState().reducerAuth
-      const { data } = await axios.post('/api/v2/auth', {
-        data: {
-          email,
-          password
-        }
-      })
+// old function
+// export function signIn() {
+//   return async (dispatch, getState) => {
+//     try {
+//       const { email, password } = getState().reducerAuth
+//       const { data } = await axios.post('/api/v2/auth', {
+//         data: {
+//           email,
+//           password
+//         }
+//       })
 
-      dispatch({ type: LOGIN, token: data.token, user: data.user })
-      dispatch(getChannelsDataDb(data.user.channelsAccess))
-      history.push('/private')
-    } catch (err) {
-      console.error(new Error(err), 'setNewChannel not a send')
-    }
-  }
-}
+//       dispatch({ type: LOGIN, token: data.token, user: data.user })
+//       dispatch(getChannelsDataDb(data.user.channelsAccess))
+//       history.push('/private')
+//     } catch (err) {
+//       console.error(new Error(err), 'setNewChannel not a send')
+//     }
+//   }
+// }
 
 // revrite on axios
 export function trySignIn() {
@@ -91,5 +100,31 @@ export function tryGetUserInfo() {
       .then((data) => {
         console.log(data)
       })
+  }
+}
+
+export function signIn({ email, password }) {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post('/api/v2/auth', {
+        data: {
+          email,
+          password
+        }
+      })
+      console.log(data.status)
+      if (data.status !== 'error auth') {
+        dispatch({ type: LOGIN, token: data.token, user: data.user })
+        dispatch(getChannelsDataDb(data.user.channelsAccess))
+        history.push('/private')
+      } else if (data.status === 'error auth') {
+        dispatch({
+          type: LOGGING_RESULT,
+          loggingResult: 'login not possible, invalid password or email'
+        })
+      }
+    } catch (err) {
+      console.error(new Error(err), 'setNewChannel not a send')
+    }
   }
 }

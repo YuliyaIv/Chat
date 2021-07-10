@@ -1,26 +1,31 @@
 import User from '../modelsDB/userModel'
 
-exports.createUser = async (req, res) => {
+// dont know what is this
+exports.getUsers = async (req, res) => {
   try {
-    const newUser = await User.create(req.body)
-    res.status(200).json({
-      status: 'success',
-      data: {
-        newUser
-      }
+    await User.find({}, (err, result) => {
+      if (err) throw new Error(err)
+      const updatedResult = result.reduce((acc, rec) => {
+        return { ...acc, [rec._id]: rec }
+      }, {})
+      res.status(200).json({
+        status: 'success',
+        updatedResult
+      })
     })
   } catch (err) {
     console.error(new Error(err))
   }
 }
 
-exports.getUsers = async (req, res) => {
+exports.createUser = async (req, res) => {
   try {
-    const users = await User.find().populate('channelsAccess')
-    res.status(200).json({
-      status: 'success',
-      data: {
-        users
+    await User.create(req.body, (err, result) => {
+      if (err) res.send(err)
+      else {
+        res.status(200).send({
+          status: 'success'
+        })
       }
     })
   } catch (err) {

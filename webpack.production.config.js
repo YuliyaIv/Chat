@@ -37,8 +37,6 @@ const config = {
     main: './main.js'
   },
   resolve: {
-
-
     alias: {
       d3: 'd3/index.js',
       './setPrototypeOf': './setPrototypeOf.js',
@@ -150,13 +148,14 @@ const config = {
       {
         test: /\.svg$/,
         use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'fonts/'
-            }
-          },
+          // {
+          //   loader: 'file-loader',
+          //   options: {
+          //     name: '[name].[ext]',
+          //     outputPath: 'fonts/'
+          //   }
+          // }
+          // ,
           {
             loader: 'svg-url-loader',
             options: {
@@ -174,7 +173,6 @@ const config = {
     new CopyWebpackPlugin(
       {
         patterns: [
-
           { from: 'assets/images', to: 'images' },
           { from: 'assets/fonts', to: 'fonts' },
           { from: 'assets/manifest.json', to: 'manifest.json' },
