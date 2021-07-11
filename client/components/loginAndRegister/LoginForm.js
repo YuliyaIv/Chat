@@ -23,6 +23,7 @@ const LoginForm = ({ loggingResult }) => {
   })
 
   const submit = (values, { setSubmitting, resetForm }) => {
+    console.log('values LoginForm submit', values)
     dispatch(signIn(values))
     setSubmitting(false)
     resetForm()
