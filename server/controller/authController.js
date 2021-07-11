@@ -4,13 +4,17 @@ import config from '../config'
 import User from '../modelsDB/userModel'
 
 exports.auth = async (req, res) => {
+  console.log('exports.auth req.body.data', req.body.data)
+
   try {
     const user = await User.findAndValidateUser(req.body.data)
-
+    console.log('exports.auth user', user)
+    console.log('exports.auth user', user)
     const payload = { uid: user.id }
     const token = jwt.sign(payload, config.secret, { expiresIn: '48h' })
+    console.log('exports.auth token', token)
     delete user.password
-    res.cookie('token', token, { maxAge: 1000 * 60 * 60 * 48 })
+    res.cookie('token', token, { maxAge: 4000 * 60 * 60 * 48 })
     res.json({ status: 'ok', token, user })
   } catch (err) {
     res.json({ status: 'error auth', err })
