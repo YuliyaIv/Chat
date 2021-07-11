@@ -104,6 +104,7 @@ export function tryGetUserInfo() {
 }
 
 export function signIn({ email, password }) {
+  console.log('signIn redux', email, password)
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/v2/auth', {
@@ -120,6 +121,7 @@ export function signIn({ email, password }) {
         dispatch(getChannelsDataDb(data.user.channelsAccess))
         history.push('/private')
       } else if (data.status === 'error auth') {
+        console.log('signIn redux data.status === "error auth"', data)
         dispatch({
           type: LOGGING_RESULT,
           loggingResult: 'login not possible, invalid password or email'
