@@ -4,7 +4,7 @@ import config from '../config'
 import User from '../modelsDB/userModel'
 
 exports.auth = async (req, res) => {
-  console.log('exports.auth req.body.data', req.body.data)
+  console.log('exports.auth controller req.body.data', req.body.data)
 
   try {
     const user = await User.findAndValidateUser(req.body.data)
