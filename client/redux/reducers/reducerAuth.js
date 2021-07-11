@@ -114,9 +114,9 @@ export function signIn({ email, password }) {
         }
       })
       console.log('signIn data', data)
-      console.log('signIn email, password', email, password)
-      console.log(data.status)
+
       if (data.status !== 'error auth') {
+        console.log('signIn !"error auth"', data.token, data.user)
         dispatch({ type: LOGIN, token: data.token, user: data.user })
         dispatch(getChannelsDataDb(data.user.channelsAccess))
         history.push('/private')
