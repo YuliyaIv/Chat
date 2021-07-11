@@ -80,20 +80,20 @@ const RootComponent = (props) => {
       <RouterSelector history={history} location={props.location} context={props.context}>
         <Startup>
           <Switch>
-            {/* <Route exact path="/" component={() => <LoginWrapper />} />
+            <Route exact path="/" component={() => <LoginWrapper />} />
             <Route exact path="/dashboard" component={() => <App />} />
             <Route exact path="/regis" component={() => <RegisterWrapper />} />
             <Route exact path="/auth" component={() => <LoginWrapper />} />
             <OnlyAnonymousRoute exact path="/login" component={() => <LoginWrapper />} />
             <PrivateRoute exact path="/private" component={() => <App />} />
-            <Route component={() => <NotFound />} /> */}
-            <Route exact path="/" component={() => <App />} />
+            <Route component={() => <NotFound />} />
+            {/* <Route exact path="/" component={() => <App />} />
             <Route exact path="/dashboard" component={() => <App />} />
             <Route exact path="/regis" component={() => <App />} />
             <Route exact path="/auth" component={() => <App />} />
             <OnlyAnonymousRoute exact path="/login" component={() => <App />} />
             <PrivateRoute exact path="/private" component={() => <App />} />
-            <Route component={() => <NotFound />} />
+            <Route component={() => <NotFound />} /> */}
           </Switch>
         </Startup>
       </RouterSelector>
