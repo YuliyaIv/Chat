@@ -7,6 +7,7 @@ exports.auth = async (req, res) => {
   console.log('exports.auth controller req.body.data', req.body.data)
 
   try {
+    console.log('exports.auth controller req.body.data', req.body.data)
     const user = await User.findAndValidateUser(req.body.data)
     console.log('exports.auth user', user)
     console.log('exports.auth user', user)
