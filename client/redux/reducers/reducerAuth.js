@@ -112,6 +112,8 @@ export function signIn({ email, password }) {
           password
         }
       })
+      console.log('data signIn', data)
+      console.log('email, password signIn', email, password)
       console.log(data.status)
       if (data.status !== 'error auth') {
         dispatch({ type: LOGIN, token: data.token, user: data.user })
