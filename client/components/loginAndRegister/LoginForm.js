@@ -10,12 +10,12 @@ const LoginForm = ({ loggingResult }) => {
   const dispatch = useDispatch()
 
   const initialValues = {
-    email: '',
+    login: '',
     password: ''
   }
 
   const validationSchema = Yup.object({
-    email: Yup.string().required('email is required'),
+    login: Yup.string().required('login is required'),
     password: Yup.string()
       .min(6, 'password must be at least 6 characters')
       .max(10, 'password can be maximum 10 characters')
@@ -44,10 +44,10 @@ const LoginForm = ({ loggingResult }) => {
             <Form className="flex flex-col pt-3 ">
               <div className="flex flex-col pt-4 text-lg" id="forttt">
                 <CustomInputUnit
-                  id="email"
-                  name="email"
-                  placeholder="email"
-                  labelText="Email"
+                  id="login"
+                  name="login"
+                  placeholder="login"
+                  labelText="Login"
                   errorStyle="text-red-500 text-sm"
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
                 />

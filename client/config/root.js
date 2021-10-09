@@ -11,6 +11,7 @@ import NotFound from '../components/404'
 import Startup from './startup'
 import RegisterWrapper from '../components/loginAndRegister/RegisterWrapper'
 import LoginWrapper from '../components/loginAndRegister/LoginWrapper'
+import TestLogin from '../components/testLog/TestLogin'
 
 // const Register = React.lazy(() => import('../components/loginAndRegister/RegisterWrapper'))
 // const Test = (
@@ -52,7 +53,7 @@ const types = {
   }),
   user: PropTypes.shape({
     name: PropTypes.string,
-    email: PropTypes.string
+    login: PropTypes.string
   }),
   token: PropTypes.string
 }
@@ -84,6 +85,9 @@ const RootComponent = (props) => {
             <Route exact path="/dashboard" component={() => <App />} />
             <Route exact path="/regis" component={() => <RegisterWrapper />} />
             <Route exact path="/auth" component={() => <LoginWrapper />} />
+            {/* delete later */}
+            <Route exact path="/testauth" component={() => <TestLogin />} />
+            {/* delete later */}
             <OnlyAnonymousRoute exact path="/login" component={() => <LoginWrapper />} />
             <PrivateRoute exact path="/private" component={() => <App />} />
             <Route component={() => <NotFound />} />

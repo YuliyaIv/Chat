@@ -10,7 +10,7 @@ const LOGGING_RESULT = 'LOGGING_STATUS'
 
 const cookies = new Cookies()
 const initialState = {
-  email: '',
+  login: '',
   password: '',
   token: cookies.get('token'),
   user: {},
@@ -22,7 +22,7 @@ export default (state = initialState, action) => {
     case UPDATE_LOGIN: {
       return {
         ...state,
-        email: action.email
+        login: action.login
       }
     }
     case UPDATE_PASSWORD: {
@@ -50,8 +50,8 @@ export default (state = initialState, action) => {
   }
 }
 
-export function updateLoginField(email) {
-  return { type: UPDATE_LOGIN, email }
+export function updateLoginField(login) {
+  return { type: UPDATE_LOGIN, login }
 }
 
 export function updatePasswordField(password) {
@@ -103,13 +103,13 @@ export function tryGetUserInfo() {
   }
 }
 
-export function signIn({ email, password }) {
-  console.log('signIn redux', email, password)
+export function signIn({ login, password }) {
+  console.log('signIn redux', login, password)
   return async (dispatch) => {
     try {
       const { data } = await axios.post('/api/v2/auth', {
         data: {
-          email,
+          login,
           password
         }
       })
@@ -124,7 +124,7 @@ export function signIn({ email, password }) {
         console.log('signIn redux data.status === "error auth"', data)
         dispatch({
           type: LOGGING_RESULT,
-          loggingResult: 'login not possible, invalid password or email'
+          loggingResult: 'login not possible, invalid password or login'
         })
       }
     } catch (err) {

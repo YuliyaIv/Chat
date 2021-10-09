@@ -10,7 +10,13 @@ const userSchema = new mongoose.Schema(
       maxlength: [15, 'The name must have less or equal than 15 characters'],
       minlength: [5, 'The name must be at least 5 characters']
     },
-
+    login: {
+      type: String,
+      unique: [true, 'A login must be unique '],
+      required: [true, 'User must have a login'],
+      maxlength: [15, 'The login must have less or equal than 15 characters'],
+      minlength: [5, 'The login must be at least 6 characters']
+    },
     avatar: {
       type: String,
       default: 'default'
@@ -80,15 +86,15 @@ userSchema.method({
 })
 
 userSchema.statics = {
-  async findAndValidateUser({ email, password }) {
-    if (!email) {
-      throw Error('No email')
+  async findAndValidateUser({ login, password }) {
+    if (!login) {
+      throw Error('No login')
     }
     if (!password) {
       throw Error('No password')
     }
 
-    const user = await this.findOne({ email }).exec()
+    const user = await this.findOne({ login }).exec()
     if (!user) {
       throw new Error('No User')
     }

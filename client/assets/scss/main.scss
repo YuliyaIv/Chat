@@ -5,6 +5,20 @@
 
 @tailwind utilities;
 
+@import "../../components/testLog/testLogin.css";
+
+// @layer components {
+//    .customInput{
+//     @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline;
+//   }
+// }
+
+@layer base {
+  .customInput {
+    @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight ;
+  }
+}
+
 
 .scroll-bar::-webkit-scrollbar {
     -webkit-appearance: none;

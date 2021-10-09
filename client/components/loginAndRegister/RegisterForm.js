@@ -12,6 +12,7 @@ const RegisterForm = () => {
 
   const initialValues = {
     name: '',
+    login: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -22,6 +23,10 @@ const RegisterForm = () => {
       .min(5, 'name must be at least 5 characters')
       .max(15, 'name can be maximum 15 characters')
       .required('name is required'),
+    login: Yup.string()
+      .min(5, 'login must be at least 5 characters')
+      .max(15, 'login can be maximum 15 characters')
+      .required('login is required'),
     email: Yup.string()
       .test('check email', 'err email', async function check(value) {
         const { path, createError } = this
@@ -65,6 +70,16 @@ const RegisterForm = () => {
         {(formik, field) => {
           return (
             <Form className="flex flex-col justify-around pt-3 ">
+              <div className="flex flex-col pt-4 text-lg">
+                <CustomInputUnit
+                  id="login"
+                  name="login"
+                  labelText="Login"
+                  placeholder="Login"
+                  errorStyle="text-red-500 text-sm"
+                  className="customInput"
+                />
+              </div>
               <div className="flex flex-col pt-4 text-lg ">
                 <CustomInputUnit
                   id="name"
@@ -75,7 +90,6 @@ const RegisterForm = () => {
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
                 />
               </div>
-
               <div className="flex flex-col pt-4 text-lg">
                 <CustomInputUnit
                   id="email"

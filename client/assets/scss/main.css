@@ -3,6 +3,9 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+
+
+
 .scroll-bar::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 5px;
