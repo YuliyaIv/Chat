@@ -1,0 +1,129 @@
+
+
+
+*, a:focus:active {
+outline-offset: 0;
+outline: none !important;
+font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.main{
+margin: 0;
+padding: 0;
+
+
+display:flex;
+flex-direction: row;
+flex-wrap: wrap;
+
+font-size: 1.125rem;
+line-height: 1.75rem;
+font-family: Helvetica, Arial, sans-serif;
+
+appearance: none;
+color: rgba(55, 65, 81, 1);
+
+outline:none;
+
+}
+
+
+.main-lefthalf{
+  width: 50%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgba(249, 250, 251);
+
+  border: 1px solid red;
+}
+
+.main-lefthalf-header>h1{
+
+font-size: 2rem;
+padding-top: 1rem;
+text-align: center;
+
+border: 1px solid rgb(0, 68, 255);
+}
+
+.main-lefthalf-form{
+height:60% ;
+width: 75%;
+max-width: 100%;
+display:flex;
+flex-direction: column;
+justify-content: flex-start;
+align-self:center;
+
+border: 1px solid rgb(17, 46, 29);
+}
+
+
+
+.main-lefthalf-form input{
+padding: 0.5rem;
+margin: 0.1rem 0 0.7rem 0.1rem;
+border: 1px solid rgba(55, 65, 90,0.2);
+border-radius: 0.25rem;
+box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+line-height: 1.25;
+}
+
+
+.main-lefthalf-form button{
+  margin: 1rem 0 0.7rem 0.1rem;
+  padding: 0.5rem;
+  font-weight: bolder;
+  color: rgb(42, 49, 66);
+  background-color: rgba(229, 231, 235,1);
+  border-radius: 0.25rem;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+}
+
+.main-lefthalf-form button:hover{
+  background-color:rgba(61, 70, 85, 0.8);
+}
+
+.main-lefthalf-footer{
+  width: 75%;
+  display:flex;
+  flex-direction: column;
+  align-self:center;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid rgb(241, 238, 27);
+}
+.main-lefthalf-footer>a{
+ text-decoration: underline;
+  font-weight: bold;
+}
+
+.main-righthalf{
+  width: 50%;
+  height: 100vh;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.40)
+}
+
+.main-righthalf>img{
+  width: 100%;
+  height: 100%;
+}
+
+@media(max-width:990px){
+  .main-righthalf{
+  display:none;
+}
+.main-lefthalf{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(249, 250, 251);
+}
+
+
+}
