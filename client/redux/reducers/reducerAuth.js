@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
     case LOGGING_RESULT: {
       return {
         ...state,
-        loggingStatus: action.loggingStatus
+        loggingResult: action.loggingResult
       }
     }
     default:
