@@ -17,7 +17,6 @@ const CustomInputUnit = (props) => {
         {labelText}
         <input {...field} {...separatedProps} />
       </label>
-
       {meta.error && meta.touched ? (
         <div className={errorStyle}>{meta.error}</div>
       ) : (
