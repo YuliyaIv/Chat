@@ -15,7 +15,10 @@ const LoginForm = ({ loggingResult }) => {
   }
 
   const validationSchema = Yup.object({
-    login: Yup.string().required('login is required'),
+    login: Yup.string()
+      .min(6, 'login must be at least 6 characters')
+      .max(15, 'login can be maximum 15 characters')
+      .required('login is required'),
     password: Yup.string()
       .min(6, 'password must be at least 6 characters')
       .max(10, 'password can be maximum 10 characters')
@@ -31,7 +34,7 @@ const LoginForm = ({ loggingResult }) => {
 
   return (
     <>
-      <div className="text-center text-3xl">Hi !</div>
+      <h1 className="text-center text-3xl">Hi !</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -42,30 +45,29 @@ const LoginForm = ({ loggingResult }) => {
         {(formik, field) => {
           return (
             <Form className="flex flex-col pt-3 ">
-              <div className="flex flex-col pt-4 text-lg" id="forttt">
-                <CustomInputUnit
-                  id="login"
-                  name="login"
-                  placeholder="login"
-                  labelText="Login"
-                  errorStyle="text-red-500 text-sm"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
+              <CustomInputUnit
+                id="login"
+                name="login"
+                placeholder="login"
+                labelText="Login"
+                errorStyle="text-red-500 text-sm"
+                labelStyle="pt-4 text-lg"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+              />
 
-              <div className="flex flex-col pt-4 text-lg">
-                <CustomInputUnit
-                  type="password"
-                  id="password"
-                  name="password"
-                  labelText="Password"
-                  placeholder="password"
-                  validationRequirementStyle="text-sm text-gray-800"
-                  errorStyle="text-red-500 text-sm"
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
-                />
-              </div>
-              <div className="text-center text-red-500 text-sm">{loggingResult}</div>
+              <CustomInputUnit
+                type="password"
+                id="password"
+                name="password"
+                labelText="Password"
+                placeholder="password"
+                validationRequirementStyle="text-sm text-gray-800"
+                errorStyle="text-red-500 text-sm"
+                labelStyle="pt-4 text-lg"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"
+              />
+
+              <p className="text-center text-red-500 text-lg font-semibold">{loggingResult}</p>
               <button
                 type="submit"
                 disabled={formik.isSubmitting}
@@ -77,16 +79,12 @@ const LoginForm = ({ loggingResult }) => {
           )
         }}
       </Formik>
-      <div className="text-center pt-12 pb-12">
-        <div>
-          Don&apos;t have an account?
-          <div className="underline font-semibold">
-            <Link to="/regis" className="underline font-semibold">
-              Register here
-            </Link>
-          </div>
-        </div>
-      </div>
+      <footer className="text-center pt-12 pb-12">
+        <p>Don&apos;t have an account?</p>
+        <Link to="/regis" className="underline font-semibold">
+          Register here
+        </Link>
+      </footer>
     </>
   )
 }

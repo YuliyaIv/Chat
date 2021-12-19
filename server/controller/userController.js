@@ -20,14 +20,21 @@ exports.getUsers = async (req, res) => {
 
 exports.createUser = async (req, res) => {
   try {
-    await User.create(req.body, (err, result) => {
-      if (err) res.send(err)
-      else {
-        res.status(200).send({
-          status: 'success'
-        })
-      }
-    })
+    const validateUniqueUserData = await User.checkUniqueDataUser(req.body)
+    if (validateUniqueUserData === 'success') {
+      await User.create(req.body, (err, result) => {
+        if (err) res.send(err)
+        else {
+          res.status(200).send({
+            status: validateUniqueUserData
+          })
+        }
+      })
+    } else {
+      res.status(200).send({
+        status: validateUniqueUserData
+      })
+    }
   } catch (err) {
     console.error(new Error(err))
   }

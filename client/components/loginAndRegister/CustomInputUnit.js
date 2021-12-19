@@ -8,12 +8,13 @@ const CustomInputUnit = (props) => {
     validationRequirementStyle,
     validationRequirement,
     errorStyle,
+    labelStyle,
     ...separatedProps
   } = props
 
   return (
     <>
-      <label htmlFor={props.name}>
+      <label htmlFor={props.name} className={labelStyle}>
         {labelText}
         <input {...field} {...separatedProps} />
       </label>

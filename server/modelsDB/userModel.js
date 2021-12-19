@@ -8,14 +8,17 @@ const userSchema = new mongoose.Schema(
       unique: [true, 'A name must be unique'],
       required: [true, 'User must have a name'],
       maxlength: [15, 'The name must have less or equal than 15 characters'],
-      minlength: [5, 'The name must be at least 5 characters']
+      minlength: [5, 'The name must be at least 5 characters'],
+      trim: true
     },
     login: {
       type: String,
       unique: [true, 'A login must be unique '],
       required: [true, 'User must have a login'],
       maxlength: [15, 'The login must have less or equal than 15 characters'],
-      minlength: [5, 'The login must be at least 6 characters']
+      minlength: [6, 'The login must be at least 6 characters'],
+      lovercase: true,
+      trim: true
     },
     avatar: {
       type: String,
@@ -74,7 +77,6 @@ userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next()
   }
-
   this.password = await bcrypt.hash(this.password, 12)
   return next()
 })
@@ -105,6 +107,17 @@ userSchema.statics = {
     }
 
     return user
+  }
+}
+
+userSchema.statics = {
+  async checkUniqueDataUser({ login, email }) {
+    console.log(login, email)
+    const userLogin = await this.findOne({ login }).exec()
+    if (userLogin) {
+      return 'login already exists'
+    }
+    return 'success'
   }
 }
 
