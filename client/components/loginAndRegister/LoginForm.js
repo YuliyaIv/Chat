@@ -84,6 +84,9 @@ const LoginForm = ({ loggingResult }) => {
         <Link to="/regis" className="underline font-semibold">
           Register here
         </Link>
+        <div className="pt-2 font-semibold"> or try: </div>
+        <div className=" font-semibold"> login - testtest</div>
+        <div className=" font-semibold"> password - 123456789</div>
       </footer>
     </>
   )
