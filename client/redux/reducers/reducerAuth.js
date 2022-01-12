@@ -128,7 +128,7 @@ export function signIn({ login, password }) {
         })
       }
     } catch (err) {
-      console.error(new Error(err), 'setNewChannel not a send')
+      console.error(new Error(err), 'signIn err')
     }
   }
 }
