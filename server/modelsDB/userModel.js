@@ -89,6 +89,7 @@ userSchema.method({
 
 userSchema.statics = {
   async findAndValidateUser({ login, password }) {
+    console.log('findAndValidateUser login, password', login, password)
     if (!login) {
       throw Error('No login')
     }
@@ -107,10 +108,7 @@ userSchema.statics = {
     }
 
     return user
-  }
-}
-
-userSchema.statics = {
+  },
   async checkUniqueDataUser({ login, email }) {
     console.log(login, email)
     const userLogin = await this.findOne({ login }).exec()
@@ -120,6 +118,7 @@ userSchema.statics = {
     return 'success'
   }
 }
+
 
 userSchema.pre(/^find/, function (next) {
   this.populate({
