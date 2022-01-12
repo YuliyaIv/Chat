@@ -1,7 +1,7 @@
 # Heroku
 
 https://catchychat.herokuapp.com/
-login - test@gmail.com 
+login - testtest
 password - 123456789
 
 
@@ -40,7 +40,8 @@ password - 123456789
 * Babel for old browser support
 * React Router
 * Hot Module Replacement for comfortable development
-
+* MongoDB/ Mongoose
+* Socket.IO ( by half :) )
 
 
 ## Command Line Commands
