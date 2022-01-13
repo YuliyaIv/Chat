@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
+import moment from 'moment'
 import ChatPreview from './ChatPreview'
 import InputSearch from '../../reuseComponent/InputSearch'
 import SideBarViewRenderList from '../SideBarViewRenderList'
-
 import ShellModal from '../../reuseComponent/ShellModal'
 import { setFlagRenderContextMenu } from '../../../redux/reducers/reducerSetFlagRender'
-
 import ChangeDataFromDB from '../manipulationWithDataFromDB/ChangeDataFromDB'
 import ModalWindow from '../../reuseComponent/ModalWindow'
-
 import DeleteDataFromDB from '../manipulationWithDataFromDB/DeleteDataFromDB'
 import FormChangeDataChannel from '../manipulationWithDataFromDB/FormChangeDataChannel'
 
@@ -26,9 +24,12 @@ const Channels = () => {
   const renderChat = channels?.map((channel) => {
     const indexLastlMessage = channel.chatDataMessage.length - 1
     const lastMessage = channel.chatDataMessage[indexLastlMessage].textMessage
+    const lastMessageCreatedAt = channel.chatDataMessage[indexLastlMessage].createdAt
+    const lastMessageRelativeTime = moment(lastMessageCreatedAt).fromNow()
     return (
       <ChatPreview
         key={channel._id}
+        lastMessageRelativeTime={lastMessageRelativeTime}
         channelId={channel._id}
         name={channel.channelName}
         message={lastMessage}
