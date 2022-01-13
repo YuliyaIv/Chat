@@ -1,0 +1,822 @@
+[33mcommit fdebf3e931ec07d5c0c4b3d4cb56321456a1fdbe[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jan 13 21:33:11 2022 +0100
+
+    added library Moment.js
+
+[33mcommit 99fac1004b2a8bb7087f33391e00dd95d4408a62[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jan 13 00:22:02 2022 +0100
+
+    side effect
+
+[33mcommit 5fb212506e26cc146252cf46ec232774d027e821[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jan 13 00:17:30 2022 +0100
+
+    Authorization error fixed. A static object of a model was updated.
+
+[33mcommit 6ff4109920226d7b5f00874208de889d6025c2bb[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jan 13 00:13:37 2022 +0100
+
+    added information about features, changed information about test login
+
+[33mcommit 8c67512d622eb80d9228229aa3fe7b2d9453bc96[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jan 13 00:11:50 2022 +0100
+
+    added information about the test login and test password to the page
+
+[33mcommit 182c598e59c5e6937469cd888b658bb804368ec2[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jan 13 00:09:30 2022 +0100
+
+    not important, error text changed
+
+[33mcommit 9f64328399e2e328d52e34e50ed775ed60db5afe[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Dec 19 17:41:55 2021 +0100
+
+    up
+
+[33mcommit 2bba6240350ddc955a387000f140cbe99cfa101f[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Oct 10 14:26:12 2021 +0200
+
+    without changes
+
+[33mcommit f1ebb6e98d596aae1aafea8b5c901919ac2de0ab[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Oct 10 14:25:24 2021 +0200
+
+    fixed a bug in the case Loggin result
+
+[33mcommit cce3ccabcdefb87480c0d93790c1445634fdb979[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Oct 10 14:23:59 2021 +0200
+
+    document cleaned
+
+[33mcommit 2e05435bce5b23b7e41ae2a6d488433ee0759590[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Oct 10 14:23:05 2021 +0200
+
+    delete
+
+[33mcommit 9ee4e94ba51da7fa793fa5ce21a307d745bb1228[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Oct 10 14:22:28 2021 +0200
+
+    delete
+
+[33mcommit b3373bdd735874da0ddd2f12a0bcf5a750bc3aa8[m
+Merge: 7433b95 940b7fe
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Oct 9 23:24:35 2021 +0200
+
+    Merge branch 'develop'
+
+[33mcommit 7433b9576a7a038b2551ca6c709ce045d7689916[m
+Merge: 14c5541 415080e
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Oct 9 23:22:54 2021 +0200
+
+    Merge branch 'master' of github.com:YuliyaIv/Chat
+
+[33mcommit 940b7feb2f83cd0bdef2f1133e71249b1781a9e2[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Oct 9 23:21:28 2021 +0200
+
+    add test form
+
+[33mcommit 14c55410468212d00596d7c0ea79b2e250911408[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Oct 9 23:19:44 2021 +0200
+
+    change form email for auth
+
+[33mcommit 415080eea6507746d998a4b0099fc15a6cb1685d[m
+Merge: f1d829e 66a9cb0
+Author: Yuliia Smykova <33269446+YuliyaIv@users.noreply.github.com>
+Date:   Tue Sep 14 15:42:34 2021 +0200
+
+    Merge pull request #5 from YuliyaIv/develop
+    
+    test branch
+
+[33mcommit 66a9cb0ea7081d356bb945785384608254dd59a1[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Tue Sep 14 15:40:42 2021 +0200
+
+    test branch
+
+[33mcommit f1d829ed53e7ee41f12fb36e9915f46129aaac5e[m
+Author: Yuliia Smykova <33269446+YuliyaIv@users.noreply.github.com>
+Date:   Wed Aug 18 22:37:34 2021 +0200
+
+    Update README.md
+
+[33mcommit e01526d8483384ae596eeb978e429de9ce7f91af[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 21:16:21 2021 +0200
+
+    test heroku
+
+[33mcommit 678a06483496e584afe58b4212a9896e0488a95c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 18:02:31 2021 +0200
+
+    test heroku
+
+[33mcommit 2544efbff7909803a6bda2d79c0bcf69558448b7[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 17:34:33 2021 +0200
+
+    test heroku
+
+[33mcommit b578d80ed858298cc7c16a1c0fcf8cda34995be2[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 16:29:19 2021 +0200
+
+    added console.log, I want to see the error on heroku
+
+[33mcommit 1c87096c3a7e9c50e81ab152360345a1ecb400ba[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 15:09:03 2021 +0200
+
+    added console.log, I want to see the error on heroku
+
+[33mcommit c1fd044e93e533ef7ba76fb32ab861f06cf2ae48[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 14:57:25 2021 +0200
+
+    added console.log, I want to see the error on heroku
+
+[33mcommit 680ba223ed2ecfb1e3090e8f73a274ee70dba91a[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 14:38:34 2021 +0200
+
+    added console.log, I want to see the error on heroku
+
+[33mcommit a9df798dfc8bdeae81f89cb6eb875840a0291239[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 14:23:49 2021 +0200
+
+    added console.log, I want to see the error on heroku
+
+[33mcommit 5e3fb7e4f7f855304fa6760c8624e09107a5e7df[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 13:25:42 2021 +0200
+
+    naming conflict ide and git on account of uppercase, deleting a component and creating with the same logic
+
+[33mcommit e602b3ff32f1f4c51e6ef3e3308e0c92d574fde4[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 13:23:46 2021 +0200
+
+    naming conflict ide and git on account of uppercase, deleting a component and creating with the same logic
+
+[33mcommit d63a17353e2134939c89e47ffb91a5825e44b540[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 13:12:35 2021 +0200
+
+    naming conflict ide and git on account of uppercase, deleting a component and creating with the same logic
+
+[33mcommit 2b57de4ca9e0ccf47694025359c0f3ce9b368788[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jul 11 13:08:18 2021 +0200
+
+    naming conflict ide and git on account of uppercase, deleting a component and creating with the same logic
+
+[33mcommit 24299a90d1c969b1b4b89ca3dcd44efc2137378a[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 22:21:02 2021 +0200
+
+    test added shellModal
+
+[33mcommit 1ef34fd872d68f68d2717bf047d7f86d2c73de80[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 22:19:45 2021 +0200
+
+    test deleted shellModal
+
+[33mcommit 82558681efc3f749f038a8c439ae04587f70cd81[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 22:16:55 2021 +0200
+
+    test
+
+[33mcommit b02f58b131ae9c417dc0e65023fd5ec857dc9efc[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 21:55:41 2021 +0200
+
+    test
+
+[33mcommit 254463fd168d688c4f8a8e3e5d9966732d61985a[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 18:04:04 2021 +0200
+
+    added heroku
+
+[33mcommit be56f70d91a704976d19f79a2861f9e66e44bbd7[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 17:36:38 2021 +0200
+
+    deleted eslint warnings
+
+[33mcommit 2d8ed10c9bca797d91904615c19fe3f550af37ef[m
+Merge: 36cec49 3ea146c
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 16:55:39 2021 +0200
+
+    Merge branch 'master' of github.com:YuliyaIv/Chat
+
+[33mcommit 36cec496d681c4a35665aef47d61a79c74628423[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 16:53:23 2021 +0200
+
+    delete package-lock.json
+
+[33mcommit 3ea146c6918e944ec6500726e83fb0edaac5032b[m
+Merge: 8e7baf6 025b03c
+Author: Yuliia Smykova <33269446+YuliyaIv@users.noreply.github.com>
+Date:   Sat Jul 10 16:38:53 2021 +0200
+
+    Merge pull request #4 from YuliyaIv/develop
+    
+    Develop
+
+[33mcommit 025b03c980d76da94bb31597b7494f41fd7a0a6c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 16:37:35 2021 +0200
+
+    fdsf
+
+[33mcommit 0c996fb7c8468cfa0fff1f9458711646b25b7229[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 16:36:31 2021 +0200
+
+    dffd
+
+[33mcommit 8e7baf64e1c099a5a5ed3f1e6868c644757a7a23[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 16:23:09 2021 +0200
+
+    com
+
+[33mcommit f726f13ca0d5dc5099434d932c8ae4083823fbdf[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 16:14:57 2021 +0200
+
+    many changes, playing with the code
+
+[33mcommit 8422c7227a53cbbe0b99d496242565f81dfdd5fb[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 16:02:45 2021 +0200
+
+    created a helper function for creating a user
+
+[33mcommit 0ea0040e1ca6d2c533bf1a01b4c38662fa891c41[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 15:56:55 2021 +0200
+
+    created a new structure for logging and registration using Form and Yup
+
+[33mcommit b89b18a004af80ace0ff79992aea8db8958d963b[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 15:53:54 2021 +0200
+
+    components removed and replaced with a different structure
+
+[33mcommit 9af69865e6174e26d40e9c6b25bb9f0628c57f5b[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jul 10 15:50:21 2021 +0200
+
+    added scrolling to the last message
+
+[33mcommit 485b325d1372cef898e61f672bbd2beda91b5624[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed Jun 16 22:44:42 2021 +0200
+
+    added the ability to check for email on the server side
+
+[33mcommit 4a30a44b160bbaaf2ab8de6a2b0d7cb3aa01dc56[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed Jun 16 22:40:43 2021 +0200
+
+    cA new folder has been created for registration and login data. Added logo file, custom input, registration file
+
+[33mcommit 14ebfb69ad862e578f0074201d9f4d10ab09e504[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jun 10 23:32:45 2021 +0200
+
+    nodes version was upgraded and I have no idea what happened here
+
+[33mcommit 42d323454440e58d35de6402cc54674ee338e31c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jun 10 23:29:33 2021 +0200
+
+    add new route for registration form
+
+[33mcommit 28438e21019df5c1299a0c64b2e2a0084661534e[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jun 10 23:28:45 2021 +0200
+
+    was created
+
+[33mcommit c4253ab3c753301e5e73e6f9d2b5f7362a6d6e83[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Jun 10 23:27:53 2021 +0200
+
+    layout was changed
+
+[33mcommit 7d3007b01bda4566aaab8595d55fdd55b6a3dc32[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed Jun 9 21:31:00 2021 +0200
+
+    side changes, nothing important =)
+
+[33mcommit 89a193394532e8742c69ff9dbf6fa11f646f7c9a[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed Jun 9 21:28:51 2021 +0200
+
+    rewritten the code for working with the database, changed the logic
+
+[33mcommit 1f0544d9575be2f992173dcdb3e588255db149e0[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed Jun 9 21:27:43 2021 +0200
+
+    added action creator for change chat name or description, func setNewChannelDB has new answer format from api
+
+[33mcommit e386764043afc2051b94b5162db56ba03402e9b8[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed Jun 9 21:24:16 2021 +0200
+
+    added controller to change chat name or description, updated successfulAnswer and all functions that work with it
+
+[33mcommit 9cd9a26c9c5c2bd3baef8d1714b1b8071b2f1efb[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Jun 7 00:36:15 2021 +0200
+
+    cchanged props and cleaned component
+
+[33mcommit 7c05b3d54bfff1ee3346894f8217c24d9111a41d[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Jun 7 00:34:53 2021 +0200
+
+    updated component for change message
+
+[33mcommit fd3e115f76abb1624e669a57a20791db6bd22e17[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Jun 7 00:33:35 2021 +0200
+
+    deleted component
+
+[33mcommit 33ffdbacef78fe52cfd343d8f256eb32f1449ff0[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Jun 7 00:32:34 2021 +0200
+
+    created a n action for change the message
+
+[33mcommit 70f291cc3d8262f16eb01c919044bfbf6acd725b[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Jun 7 00:31:05 2021 +0200
+
+    deleted action creator and all data about flagInputChange
+
+[33mcommit 45e88000d53ecf17c1b6b18164185760ca5f99e0[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Jun 7 00:29:37 2021 +0200
+
+    created a controller for change the message
+
+[33mcommit 8aad0924ba38f30d83ad9c7e729891cbbb6124ef[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Jun 7 00:28:02 2021 +0200
+
+    created a route to change the message
+
+[33mcommit 8a75fefef11783033b6bfe7cdfe6dc2ae41df677[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jun 6 15:59:10 2021 +0200
+
+    changed the code for working with the database
+
+[33mcommit 398675e38cda5edeb6082dae66472729ae89a49c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jun 6 15:58:16 2021 +0200
+
+    added action creator to delete post
+
+[33mcommit 20bb32a6bf3a3a08e8ed22d8d1a7ba8041c15c8e[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jun 6 15:56:59 2021 +0200
+
+    removed the controller for deleting the message
+
+[33mcommit 1dcc41b14881fe3573168153b45635c7950eaf91[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jun 6 15:55:36 2021 +0200
+
+    created new controllet which removes the message and cleans up the dependency array in the channel
+
+[33mcommit d656e9227741fd12426601d328644a53e5a3a674[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jun 6 15:53:27 2021 +0200
+
+    deleted old route for delete message
+
+[33mcommit 8f55228d2b6546bc07ab58ae53aa42af63f4654e[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun Jun 6 15:52:28 2021 +0200
+
+    created new route for delete message
+
+[33mcommit 1b6bfa42c241e34fd9226300e9d7fb5bbb9dfb61[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jun 5 22:47:48 2021 +0200
+
+    cchanged the code for working with the database
+
+[33mcommit cbdadbb09ad591e668161059384dc74dace018b2[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jun 5 22:46:09 2021 +0200
+
+    created new function with action for delete channel and messages
+
+[33mcommit 113f08bc0e640393334b1289c24a692e46d12fbf[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jun 5 22:44:18 2021 +0200
+
+    changed the controller for creating messages
+
+[33mcommit dcfb51637701f2105d293649d2c605522b8a09fb[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat Jun 5 22:42:09 2021 +0200
+
+    added controller deleteChannel with messeges
+
+[33mcommit df5560045d89a2cae5f60d42345fff5fa759746a[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Jun 4 00:19:54 2021 +0200
+
+    changed code for work with db
+
+[33mcommit e4e4a7ca51acf9278da3d39295e45805edbadad1[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Jun 4 00:18:26 2021 +0200
+
+    added action creator for new channel
+
+[33mcommit 0c58297e7a0d16dd5ba34cb39ce8a0f404c6b4ea[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Jun 4 00:16:59 2021 +0200
+
+    added controller for create new channel
+
+[33mcommit 99fc8eaf89aede9fd53a4a0f4f55852256844144[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Jun 4 00:15:33 2021 +0200
+
+    added middleware for first message in chat
+
+[33mcommit 8c6745ce977289a5b9826f151b8c0d9d9f9bd225[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:41:13 2021 +0200
+
+    updated code for work with DB
+
+[33mcommit 6277e2d9c39bd26a79bbc61cd99d392295471952[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:40:31 2021 +0200
+
+    added object for permission for virtuals data
+
+[33mcommit 9dad888682e2dc48e363156b8cbede21f8f4d203[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:38:54 2021 +0200
+
+    added object for permission for virtuals data
+
+[33mcommit 074f97c04a0d4ddf144af8834422b61522c00620[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:36:15 2021 +0200
+
+    added new actions creator for new message and for get particular channel from db
+
+[33mcommit 4b2b0f005442accee1af7bb0ceaf7a84addf9f58[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:33:47 2021 +0200
+
+    created controller for new message
+
+[33mcommit 4d605547da2cfa3f8d2444898d36b86838b81c05[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:32:22 2021 +0200
+
+    controller for getUserChannels
+
+[33mcommit d8962da56af853d2937ce9d1901e85cdf930bd04[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:31:17 2021 +0200
+
+    added route for getUserChannels
+
+[33mcommit eb382ff915cd25d5bd9993f83f9ba21f8ff6af6f[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sun May 30 23:29:46 2021 +0200
+
+    updated connection options
+
+[33mcommit b999036c6943d8872561fb8e74a0a98f34f1565c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 16:04:57 2021 +0200
+
+    no change
+
+[33mcommit 0512d414b5da0f7828bc3e19d7c0067770447883[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 16:04:05 2021 +0200
+
+    added getChannel
+
+[33mcommit d9935bfecaad837c248dba418d4c87c10fb1c57c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 16:03:00 2021 +0200
+
+    deleted populate method
+
+[33mcommit 8e2a1f0c0ef3275e9146b3872503aa67fa4d53e8[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 16:01:55 2021 +0200
+
+    added action creater getParticularChannelDb
+
+[33mcommit 51e2b94040f8994b7f3bbce1ee8a601b2d1a4e03[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 16:00:44 2021 +0200
+
+    added get method for channel
+
+[33mcommit 39fa686cd032bb13e4047ff091762b2b919cb1a7[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 16:00:01 2021 +0200
+
+    added midlewere pre with populate
+
+[33mcommit 778d0214fe5dd5385a9b00bac6115619fd03b56c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 15:59:24 2021 +0200
+
+    added midlewere pre with populate
+
+[33mcommit 977b197c5981da44eb0cdec4d6dc03f27da642d7[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 15:58:23 2021 +0200
+
+    deleted from schema chat ovner
+
+[33mcommit bd62dfa5017f6ea9b6d5197f97c6efea7758ccfc[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 15:57:21 2021 +0200
+
+    added logic getd data from db
+
+[33mcommit 3aef9042abf6eb81f174d3465b7cc23c750a926e[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 15:56:14 2021 +0200
+
+    added logic getdata from db
+
+[33mcommit 630a9d1e41489e519f8a01c7b6d2e429abaed6d9[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 00:29:35 2021 +0200
+
+    updated and cleaned code
+
+[33mcommit ad61b34a7599cb7b965d46804ac6d03b6a4e6a24[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 00:28:33 2021 +0200
+
+    created reducer
+
+[33mcommit b629041aab217228ed2460f809defde3e60d78e0[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 00:27:27 2021 +0200
+
+    added channelOvner data
+
+[33mcommit 973bb6fed1d79773f7dbe7e3d2db7cdc191e8f2f[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 00:26:19 2021 +0200
+
+    updated post method
+
+[33mcommit 5010ddf45d952812bc0fb33299d2eba0fe87d47c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 00:25:00 2021 +0200
+
+    updated schema for chatDataMessage
+
+[33mcommit 477127010261194b7acedc1a0e2c9a4b696e8b04[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 00:23:02 2021 +0200
+
+    add reducerDbDataChannel
+
+[33mcommit b59086733346d1e8fc4071dc1a036c2e87baf611[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 26 00:22:14 2021 +0200
+
+    update func from getch to axios, add dispatch to get channels data
+
+[33mcommit 374ddfb750fe5e65b81a679f4edf55174cf3154b[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 19 18:51:57 2021 +0200
+
+     deleted small mistakes with import dependency
+
+[33mcommit e409b33a5e201cdb8e32bf7b04641c9213ba2840[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 19 18:50:07 2021 +0200
+
+    deleted part about messages scheme, separeted at another file
+
+[33mcommit 60a7c7ec90d901240d02f36abcd968697743650f[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 19 18:49:27 2021 +0200
+
+    create file with messages scheme for mongoose
+
+[33mcommit 15608964243bcb454c4e6d606d36e90844e4ec3a[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 19 18:47:54 2021 +0200
+
+    deleted part about messages scheme, separeted at another file
+
+[33mcommit 904a6b2409478a4ca502c7a5b1125660594c59ce[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 19 18:46:27 2021 +0200
+
+    add commit
+
+[33mcommit a61f2feadb60c4102da45b75e93169f19dc2a7e4[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Tue May 18 23:00:05 2021 +0200
+
+    components name changet to CamelCase
+
+[33mcommit c79e60923041ce260a527662a82d7dfafef5d861[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri May 14 10:02:40 2021 +0200
+
+    developed authorization
+
+[33mcommit 8926610968820ec96fbfe036db03f1c0c5d6ac8b[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri May 14 09:52:06 2021 +0200
+
+    created component PrivateRout.js
+
+[33mcommit 0c3f67ba38c892299de6b45c8e2989264ff137bd[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri May 14 09:51:06 2021 +0200
+
+    created login form
+
+[33mcommit bfa91a1dc799cfc73b2d98795fdabd17eecebba0[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 8 18:22:48 2021 +0200
+
+    add socket.io
+
+[33mcommit 65c901d64ec7bd4be7be4de4f6b81af1a5e8bbe6[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri May 7 23:23:09 2021 +0200
+
+    add commit what must be delited in the future
+
+[33mcommit b3e15d7c3735ac4bdb4a4f6a18de5af971a0c7b3[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri May 7 23:22:24 2021 +0200
+
+    add route delete and post for message
+
+[33mcommit eea2057b9c08f718d015815d02f4d817c1f42fb3[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri May 7 23:20:57 2021 +0200
+
+    add controller for create message/ delete channel/ .Refactoring code, add helper function for response answer
+
+[33mcommit 0a1518ff54262635c871d09bda8d637be0b8d90e[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Wed May 5 20:21:14 2021 +0200
+
+    rewrote patch and get method for DB -change name channel/change descriptions channel/ delete message/change message
+
+[33mcommit 24c52d9ea79f5ea9ff9d1d5d9b92693afe96a86a[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 21:08:20 2021 +0200
+
+    added commits for request
+
+[33mcommit c59c501a14f9c14d4a3760cce45402c2c9d7bd22[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 21:07:46 2021 +0200
+
+    added get request
+
+[33mcommit 3c0dd2aa5f6738e0c6987deb9d2a9f3c2dafd88d[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 21:06:51 2021 +0200
+
+    added get request
+
+[33mcommit cb6c545a88a11d39439848a4bc139884f10009de[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 21:06:08 2021 +0200
+
+    deleted rules for unique channelAdmin
+
+[33mcommit 5ab8c7a359274005da721922725bc32bbe2c8f78[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 21:03:33 2021 +0200
+
+    added get request
+
+[33mcommit c7daf96a6c7307eb89b355e0071da28512552989[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 21:02:25 2021 +0200
+
+    add get request
+
+[33mcommit 03505dd2345aafbf61c05ef44a7d0e5e563519e6[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 14:01:54 2021 +0200
+
+    add new middleware for DB routes
+
+[33mcommit 3ec8a594e3c0a6b32ddf56ec3b87e8b678b28462[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 14:00:50 2021 +0200
+
+    create folder router for separate controller and route logic
+
+[33mcommit ad2793a62534112c23668f7dc93c0020fa17f845[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 13:58:30 2021 +0200
+
+    create model and scheme for channels
+
+[33mcommit 929de4a422901e7b1fc7d50afb225c13630bb6fa[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Sat May 1 13:57:14 2021 +0200
+
+    created controller for channels and users
+
+[33mcommit 33d4fb258f6cd6d90f1ff7d098a51d3a2f2de563[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Apr 30 18:58:00 2021 +0200
+
+    add mongoose
+
+[33mcommit 5f871c873d7aed15281c80e22a3edf68d99e57b5[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Apr 30 18:57:30 2021 +0200
+
+    create mongo schema and model for user
+
+[33mcommit 8188c26bc72cf2fd8724aeca6cbb296d5c53beca[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Apr 30 18:56:30 2021 +0200
+
+    add post require for mongooseBD
+
+[33mcommit c357449360c871742f019edc226beb6e0469977c[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Apr 30 18:54:45 2021 +0200
+
+    add env for dataBase
+
+[33mcommit a034342dd8ef5c24aa666d29a26b3044446ee06d[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Apr 30 18:53:47 2021 +0200
+
+    add mongoose
+
+[33mcommit 7a16341c8c5c2a8dd5f14cdc313b0cf49095d219[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Fri Apr 30 18:52:36 2021 +0200
+
+    add url and password for mongoose DB
+
+[33mcommit 8c901c631f8b8e357471a28af9917b56365272bf[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Thu Apr 29 16:01:28 2021 +0200
+
+    add PropTypes to all components
+
+[33mcommit 252b278b1a16eeff25e434647c0ba05852d5d4a8[m
+Author: YuliyaIv <ranokgps@gmail.com>
+Date:   Mon Apr 19 10:43:26
