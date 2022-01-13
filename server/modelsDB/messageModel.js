@@ -2,12 +2,8 @@ import mongoose from 'mongoose'
 
 const messageSchema = new mongoose.Schema(
   {
-    timeCreateMessage: {
-      type: String, // must be  Date
-      default: 'now'
-    },
     timeDeleteMessage: {
-      type: String // must be  Date
+      type: Boolean
     },
     idUserPostedMessage: {
       type: String
@@ -22,6 +18,9 @@ const messageSchema = new mongoose.Schema(
       type: mongoose.Schema.ObjectId,
       ref: 'Channel'
     }
+  },
+  {
+    timestamp: true
   },
   {
     toJSON: { virtuals: true },
