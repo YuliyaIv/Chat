@@ -70,6 +70,26 @@ const readingFile = async (file) => {
 const writingFile = (file, newData) => {
   return writeFile(`${__dirname}/${file}`, JSON.stringify(newData), { encoding: 'utf8' })
 }
+/// ---------------------------------  mini database simulation, test task
+
+app.get('*', async (req, res) => {
+  const testData = await readingFile('testTaskData.json')
+  res.send(testData)
+})
+
+app.post('/api/v1/testTaskData', async (req, res) => {
+  const newData = req.body
+  let testData
+  try {
+    testData = await readingFile('testTaskData.json')
+  } catch (err) {
+    testData = []
+  }
+  const updateTestData = [...newData]
+  writingFile('testTaskData.json', updateTestData)
+  res.send(updateTestData)
+})
+///---------------------------------------
 
 // done get all users
 app.get('/api/v1/usersData', async (req, res) => {
