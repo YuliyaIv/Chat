@@ -70,26 +70,6 @@ const readingFile = async (file) => {
 const writingFile = (file, newData) => {
   return writeFile(`${__dirname}/${file}`, JSON.stringify(newData), { encoding: 'utf8' })
 }
-/// ---------------------------------  mini database simulation, test task
-
-app.get('*', async (req, res) => {
-  const testData = await readingFile('testTaskData.json')
-  res.send(testData)
-})
-
-app.post('/api/v1/testTaskData', async (req, res) => {
-  const newData = req.body
-  let testData
-  try {
-    testData = await readingFile('testTaskData.json')
-  } catch (err) {
-    testData = []
-  }
-  const updateTestData = [...newData]
-  writingFile('testTaskData.json', updateTestData)
-  res.send(updateTestData)
-})
-///---------------------------------------
 
 // done get all users
 app.get('/api/v1/usersData', async (req, res) => {
@@ -276,6 +256,27 @@ app.use('/api/v2/auth', routeAuth)
 app.use('/api/v2/user', routeUser)
 app.use('/api/v2/channel', routeChannel)
 app.use('/api/v2/message', routeMessage)
+
+/// ---------------------------------  mini database simulation, test task
+
+app.get('*', async (req, res) => {
+  const testData = await readingFile('testTaskData.json')
+  res.send(testData)
+})
+
+app.post('/api/v1/testTaskData', async (req, res) => {
+  const newData = req.body
+  let testData
+  try {
+    testData = await readingFile('testTaskData.json')
+  } catch (err) {
+    testData = []
+  }
+  const updateTestData = [...newData]
+  writingFile('testTaskData.json', updateTestData)
+  res.send(updateTestData)
+})
+///---------------------------------------
 
 app.use('/api/', (req, res) => {
   res.status(404)
