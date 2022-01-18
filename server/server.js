@@ -17,6 +17,7 @@ import routeUser from './routes/routeUser'
 import routeChannel from './routes/routeChannel'
 import routeAuth from './routes/routeAuth'
 import routeMessage from './routes/routeMessage'
+import routeFakeAPI from './routes/routeFakeAPI'
 import routeUserInfo from './routes/routeUserInfo'
 import mongooseServices from './services/mongoose'
 import passportJWT from './services/passport'
@@ -256,27 +257,6 @@ app.use('/api/v2/auth', routeAuth)
 app.use('/api/v2/user', routeUser)
 app.use('/api/v2/channel', routeChannel)
 app.use('/api/v2/message', routeMessage)
-
-/// ---------------------------------  mini database simulation, test task
-
-app.get('*', async (req, res) => {
-  const testData = await readingFile('testTaskData.json')
-  res.send(testData)
-})
-
-app.post('/api/v1/testTaskData', async (req, res) => {
-  const newData = req.body
-  let testData
-  try {
-    testData = await readingFile('testTaskData.json')
-  } catch (err) {
-    testData = []
-  }
-  const updateTestData = [...newData]
-  writingFile('testTaskData.json', updateTestData)
-  res.send(updateTestData)
-})
-///---------------------------------------
 
 app.use('/api/', (req, res) => {
   res.status(404)
